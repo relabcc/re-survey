@@ -10,15 +10,19 @@
  */
 
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
-import messages from './messages';
+
+import { Button1 } from 'components/Buttons';
+import Container from 'components/Container';
 
 export default class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
-      <h1>
-        <FormattedMessage {...messages.header} />
-      </h1>
+      <Container>
+        <h1>
+          Home
+        </h1>
+        <Button1 to="/quiz/1">Go!</Button1>
+      </Container>
     );
   }
 }

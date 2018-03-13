@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import styled from 'styled-components';
 import tag from 'clean-tag';
@@ -41,7 +42,7 @@ const BG = BackgroundImage.extend`
 const Base = ({ onClick, to, ratio, src, hoverSrc, hoverColor, ...props }) => (
   <Box w="10em">
     <BG src={src} hoverSrc={hoverSrc} ratio={ratio}>
-      <Button onClick={onClick} hoverColor={hoverColor}>
+      <Button is={to && Link} to={to} onClick={onClick} hoverColor={hoverColor}>
         <Absolute top="50%" left="50%" transform="translate(-50%, -50%)" {...props} />
       </Button>
     </BG>
