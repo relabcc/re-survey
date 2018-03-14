@@ -8,7 +8,7 @@ import Bubble1 from '../app/components/Bubbles/Bubble1';
 import Bubble2 from '../app/components/Bubbles/Bubble2';
 import Underline from '../app/components/Underline';
 
-import { Button1, Button2 } from '../app/components/Buttons';
+import { Button1, Button2, Button3 } from '../app/components/Buttons';
 import Text from '../app/components/Text';
 
 storiesOf('Bubbles', module)
@@ -54,6 +54,11 @@ storiesOf('Buttons', module)
   .add('Button 2', () => (
     <div>
       <Button2>Next</Button2>
+    </div>
+  ))
+  .add('Button 3', () => (
+    <div>
+      <Button3>Next</Button3>
     </div>
   ));
 

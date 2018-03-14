@@ -1,28 +1,34 @@
-/*
- * HomePage
- *
- * This is the first thing users see of our App, at the '/' route
- *
- * NOTE: while this component should technically be a stateless functional
- * component (SFC), hot reloading does not currently support SFCs. If hot
- * reloading is not a necessity for you then you can refactor it and remove
- * the linting exception.
- */
-
 import React from 'react';
-
-import { Button1 } from 'components/Buttons';
+import { Button3 } from 'components/Buttons';
 import Container from 'components/Container';
+import Fullpage from 'components/Fullpage';
+import Flex from 'components/Flex';
+import BackgroundImage from 'components/BackgroundImage';
+
+import dr from './dr.svg';
+
+const ratio = 651.54 / 719.94;
+
+const BG = (props) => (
+  <BackgroundImage
+    left="0"
+    right="0"
+    ratio={ratio}
+    {...props}
+  />
+);
 
 export default class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
-      <Container>
-        <h1>
-          Home
-        </h1>
-        <Button1 to="/quiz/1">Go!</Button1>
-      </Container>
+      <Fullpage>
+        <Container px="4em" align="center">
+          <Flex flexDirection="column">
+            <BG src={dr} my="2em"></BG>
+            <Button3 to="/quiz/1">病久沒藥醫，速速檢測去</Button3>
+          </Flex>
+        </Container>
+      </Fullpage>
     );
   }
 }
