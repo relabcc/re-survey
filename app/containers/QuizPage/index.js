@@ -12,7 +12,7 @@ import Quiz from './Quiz';
 
 const idPath = 'match.params.id';
 
-const logoW = '14em';
+const logoW = '20em';
 
 const Logo = Box.extend`
   display: inline-block;
@@ -45,17 +45,19 @@ class QuizPage extends React.PureComponent {
           w={1}
           align="center"
         >
-          <Logo
-            bg="black"
-            color="background"
-            align="center"
-            w={logoW}
-          >資訊肥胖症檢測</Logo>
+          <Box w={logoW}>
+            <Logo
+              px="1.5em"
+              bg="black"
+              color="background"
+              align="center"
+            >資訊肥胖症檢測</Logo>
+          </Box>
           <Steps px="1em" current={current} />
           <Box w={[0, null, logoW]} />
         </Flex>
         <Fullpage>
-          <Container px="4em" py="8em" align="center">
+          <Container px={['2em', null, '4em']} pt="8em" pb="4em" align="center">
             <Quiz index={current} />
           </Container>
         </Fullpage>
