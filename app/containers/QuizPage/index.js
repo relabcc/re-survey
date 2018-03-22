@@ -4,30 +4,21 @@ import Fullpage from 'components/Fullpage';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
 
-import { Button2 } from 'components/Buttons';
 import Box from 'components/Box';
+import Flex from 'components/Flex';
+import Steps from 'components/Steps';
 
-import Q1 from './Q1';
-import Q2 from './Q2';
+import Quiz from './Quiz';
+
 const idPath = 'match.params.id';
 
-const comps = {
-  1: Q1,
-  2: Q2,
-};
-
 const Logo = Box.extend`
-  background-color: black;
-  color: white;
   display: inline-block;
-  position: absolute;
-  content '';
-  top: 2em;
-  left: 3em;
-  padding: 0 2em;
-  line-height: 2.4em;
+  line-height: 2.5;
   border-radius: 10em;
 `;
+
+const logoW = '14em';
 
 class QuizPage extends React.PureComponent {
   state = {}
@@ -43,18 +34,31 @@ class QuizPage extends React.PureComponent {
 
   render() {
     const id = get(this.props, idPath);
-    const Quiz = comps[id] || null;
+    const current = id - 1;
     return (
-      <Fullpage>
-        <Container px="4em" align="center">
-          <Logo>資訊肥胖症檢測</Logo>
-          {/* {id} */}
-          <Button2 position="absolute" bottom="2em" right="2em" to={`/quiz/${+id + 1}`}>
-            下一題
-          </Button2>
-          {Quiz && <Quiz />}
-        </Container>
-      </Fullpage>
+      <div>
+        <Flex
+          position="absolute"
+          top={0}
+          px={['1em', null, null, '2em']}
+          w={1}
+          align="center"
+        >
+          <Logo
+            bg="black"
+            color="background"
+            align="center"
+            w={logoW}
+          >資訊肥胖症檢測</Logo>
+          <Steps px="1em" current={current} />
+          <Box w={[0, null, null, logoW]} />
+        </Flex>
+        <Fullpage>
+          <Container px="4em" align="center">
+            <Quiz index={current} />
+          </Container>
+        </Fullpage>
+      </div>
     );
   }
 }

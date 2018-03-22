@@ -24,7 +24,7 @@ const BG = (props) => (
   />
 );
 
-const Bubble1 = ({ children, ...props }) => (
+const Bubble1 = ({ children, showIcon, ...props }) => (
   <Box pt={['8%', null, '5%']}>
     <Relative pt={`${ratio * 200}%`}>
       <ContainerDimensions>
@@ -44,16 +44,18 @@ const Bubble1 = ({ children, ...props }) => (
                         px="1em"
                         {...props}
                         pt={[width / 30, null, width / 50]}
-                        transform={gap > 0 ? `translateY(${gap / 2}px)` : null}
+                        transform={showIcon && (gap > 0 ? `translateY(${gap / 2}px)` : null)}
                       >
                         {children}
                       </Box>);
                   }}
                 </ContainerDimensions>
               </Relative>
-              <Absolute top="0" left="50%" w={['16%', null, '10%']} transform="translate(-50%, -50%)">
-                <BackgroundImage ratio={1} src={bubbleHead} />
-              </Absolute>
+              {showIcon && (
+                <Absolute top="0" left="50%" w={['16%', null, '10%']} transform="translate(-50%, -50%)">
+                  <BackgroundImage ratio={1} src={bubbleHead} />
+                </Absolute>
+              )}
             </div>
           );
         }}
@@ -64,6 +66,7 @@ const Bubble1 = ({ children, ...props }) => (
 
 Bubble1.propTypes = {
   children: PropTypes.node,
+  showIcon: PropTypes.bool,
 };
 
 export default Bubble1;

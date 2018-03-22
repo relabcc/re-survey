@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import Box from './Box';
-// import config from 'config';
 
 const FlexibleFlex = Box.extend`
   display: flex;
@@ -27,7 +26,6 @@ class Fullpage extends PureComponent {
   handleResize = () => {
     this.setState({
       dimensions: this.container.getBoundingClientRect(),
-      // minHeight: getComputedStyle && parseInt(getComputedStyle(this.container).minHeight, 10),
     });
   }
 
@@ -36,7 +34,6 @@ class Fullpage extends PureComponent {
       children,
       align,
       justify,
-      hideFooter,
       ...props
     } = this.props;
     const { dimensions: { height } } = this.state;
@@ -47,7 +44,6 @@ class Fullpage extends PureComponent {
           shouldCenter={typeof window !== 'undefined' && window.innerHeight > height - 1}
           align={align}
           justify={justify}
-          hideFooter={hideFooter}
         >
           {children}
         </FlexibleFlex>
@@ -60,7 +56,6 @@ Fullpage.propTypes = {
   children: PropTypes.node.isRequired,
   align: PropTypes.string,
   justify: PropTypes.string,
-  hideFooter: PropTypes.bool,
 };
 
 Fullpage.defaultProps = {

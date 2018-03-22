@@ -4,7 +4,7 @@ import constants from 'styled-system/dist/constants';
 const emToPx = (em) => em * 16;
 
 export const breakpoints = [36, 48, 62, 75, 90, 120, 150].map(emToPx);
-export const containerWidth = [36, 46, 60].map(emToPx);
+export const containerWidth = [36, 46, 54].map(emToPx);
 
 const font = '"PingFang TC", "HeiTi TC", "Microsoft JhengHei", sans-serif';
 

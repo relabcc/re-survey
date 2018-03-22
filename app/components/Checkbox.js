@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import Box from './Box';
-import Underline from './/Underline';
+import Underline from './Underline';
 
 const Input = styled.input.attrs({ type: 'checkbox' })`
   position: absolute;
@@ -35,10 +35,10 @@ const LabelBox = Box.extend`
     &:after {
       content: "";
       position: absolute;
-      left: -.31em;
-      top:  -.32em;
-      width: .4em;
-      height: .4em;
+      left: -0.31em;
+      top:  -0.32em;
+      width: 0.4em;
+      height: 0.4em;
       border-radius: 50%;
       background: black;
     }
@@ -56,13 +56,15 @@ function Checkbox({
   ...props
 }) {
   return (
-    <LabelBox is="label" {...props}>
-      <Input onChange={onChange} name={name} />
-      <span className="checkmark" />
-      <Underline w={['12em', '12em', null, '10em']} align="left" pl="1em">
-        {children}
-      </Underline>
-    </LabelBox>
+    <Box {...props}>
+      <LabelBox is="label">
+        <Input onChange={onChange} name={name} />
+        <span className="checkmark" />
+        <Underline w={['12em', '12em', null, '10em']} align="left" pl="1em">
+          {children}
+        </Underline>
+      </LabelBox>
+    </Box>
   );
 }
 
