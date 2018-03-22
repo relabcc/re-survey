@@ -10,6 +10,8 @@ import { select } from 'd3-selection';
 import { max } from 'd3-array';
 import 'd3-transition';
 
+import theme from 'components/ThemeProvider/theme';
+
 const handleData = (json) => {
   const data = [];
   const groups = []; // track unique groups
@@ -51,7 +53,7 @@ const baseConfig = {
   facetPaddingScale: 2.5,
   maxValue: 0,
   radians: 2 * Math.PI,
-  polygonAreaOpacity: 0.8,
+  polygonAreaOpacity: 1,
   polygonStrokeOpacity: 1,
   polygonPointSize: 4,
   legendBoxSize: 10,
@@ -59,7 +61,6 @@ const baseConfig = {
   translateY: h / 3,
   paddingX: w,
   paddingY: h,
-  colors: () => '#d1ccc7',
   showLevels: true,
   showLevelsLabels: false,
   showAxesLabels: true,
@@ -102,17 +103,17 @@ class RadarChart {
     this.updateConfig();
 
     if (this.config.facet) {
-      this.data.forEach((d, i) => {
+      this.data.forEach((d) => {
         this.buildVis([d]); // build svg for each data group
 
         // override colors
         this.vis.svg.selectAll('.polygon-areas')
-          .attr('stroke', this.config.colors(i))
-          .attr('fill', this.config.colors(i));
+          .attr('stroke', theme.colors.darkGray)
+          .attr('fill', theme.colors.darkGray);
         this.vis.svg.selectAll('.polygon-vertices')
-          .attr('fill', this.config.colors(i));
+          .attr('fill', theme.colors.darkGray);
         this.vis.svg.selectAll('.legend-tiles')
-          .attr('fill', this.config.colors(i));
+          .attr('fill', theme.colors.darkGray);
       });
     } else {
       this.buildVis(this.data); // build svg
@@ -141,6 +142,7 @@ class RadarChart {
   buildVis() {
     this.buildVisComponents();
     this.buildCoordinates();
+    this.buildPolygons();
     if (this.config.showLevels) this.buildLevels();
     if (this.config.showLevelsLabels) this.buildLevelsLabels();
     if (this.config.showAxes) this.buildAxes();
@@ -148,7 +150,6 @@ class RadarChart {
     // if (this.config.showLegend) this.buildLegend();
     // if (this.config.showVertices) this.buildVertices();
     this.buildDots();
-    this.buildPolygons();
   }
 
   updateValue(value, index) {
@@ -160,7 +161,6 @@ class RadarChart {
 
   updateVis() {
     this.buildCoordinates();
-    // this.updateVertices();
     this.updatePolygons();
   }
 
@@ -211,8 +211,8 @@ class RadarChart {
         .attr('x2', (d, i) => levelFactor * (1 - Math.sin((i + 1) * this.config.radians / this.vis.totalAxes)))
         .attr('y2', (d, i) => levelFactor * (1 - Math.cos((i + 1) * this.config.radians / this.vis.totalAxes)))
         .attr('transform', `translate(${this.config.w / 2 - levelFactor}, ${this.config.h / 2 - levelFactor})`)
-        .attr('stroke', 'gray')
-        .attr('stroke-width', '0.5px');
+        .attr('stroke', 'black')
+        .attr('stroke-width', '4px');
     }
   }
 
@@ -236,25 +236,6 @@ class RadarChart {
     }
   }
 
-  // builds out the levels labels
-  buildLevelsLabels() {
-    for (let level = 0; level < this.config.levels; level += 1) {
-      const levelFactor = this.vis.radius * ((level + 1) / this.config.levels);
-
-      // build level-labels
-      this.vis.levels
-        .data([1]).enter()
-        .append('svg:text').classed('level-labels', true)
-        .text((this.config.maxValue * (level + 1) / this.config.levels).toFixed(2))
-        .attr('x', () => levelFactor * (1 - Math.sin(0)))
-        .attr('y', () => levelFactor * (1 - Math.cos(0)))
-        .attr('transform', `translate(${this.config.w / 2 - levelFactor + 5}, ${this.config.h / 2 - levelFactor})`)
-        .attr('fill', 'gray')
-        .attr('font-family', 'sans-serif')
-        .attr('font-size', `${10 * this.config.labelScale}px`);
-    }
-  }
-
   // builds out the axes
   buildAxes() {
     this.vis.axes
@@ -264,8 +245,8 @@ class RadarChart {
       .attr('y1', this.config.h / 2)
       .attr('x2', (d, i) => this.config.w / 2 * (1 - Math.sin(i * this.config.radians / this.vis.totalAxes)))
       .attr('y2', (d, i) => this.config.h / 2 * (1 - Math.cos(i * this.config.radians / this.vis.totalAxes)))
-      .attr('stroke', 'grey')
-      .attr('stroke-width', '1px');
+      .attr('stroke', 'black')
+      .attr('stroke-width', '2px');
   }
 
   // builds out the axes labels
@@ -276,9 +257,9 @@ class RadarChart {
       .text((d) => d)
       .attr('text-anchor', 'middle')
       .attr('x', (d, i) => this.config.w / 2 * (1 - 1.3 * Math.sin(i * this.config.radians / this.vis.totalAxes)))
-      .attr('y', (d, i) => this.config.h / 2 * (1 - 1.1 * Math.cos(i * this.config.radians / this.vis.totalAxes)))
-      .attr('font-family', 'sans-serif')
-      .attr('font-size', `${11 * this.config.labelScale}px`);
+      .attr('y', (d, i) => this.config.h / 2 * (1 - 1.15 * Math.cos(i * this.config.radians / this.vis.totalAxes)))
+      .attr('font-size', `${11 * this.config.labelScale}px`)
+      .attr('font-weight', 'bold');
   }
 
 
@@ -296,30 +277,6 @@ class RadarChart {
     });
   }
 
-  // builds out the polygon vertices of the dataset
-  buildVertices() {
-    this.data.forEach((group, g) => {
-      this.vis.vertices
-        .data(group.axes).enter()
-        .append('svg:circle').classed('polygon-vertices', true)
-        .attr('r', this.config.polygonPointSize)
-        .attr('cx', (d) => d.coordinates.x)
-        .attr('cy', (d) => d.coordinates.y)
-        .attr('fill', this.config.colors(g));
-    });
-  }
-
-  updateVertices() {
-    this.data.forEach((group) => {
-      this.vis.svg
-        .selectAll('.polygon-vertices')
-        .data(group.axes)
-        .transition(this.config.transition)
-        .attr('cx', (d) => d.coordinates.x)
-        .attr('cy', (d) => d.coordinates.y);
-    });
-  }
-
   // builds out the polygon areas of the dataset
   buildPolygons() {
     this.vis.vertices
@@ -327,8 +284,8 @@ class RadarChart {
       .append('svg:polygon').classed('polygon-areas', true)
       .attr('points', this.buildPolygonPoints)
       .attr('stroke-width', '2px')
-      .attr('stroke', (d, i) => this.config.colors(i))
-      .attr('fill', (d, i) => this.config.colors(i))
+      .attr('stroke', theme.colors.darkGray)
+      .attr('fill', theme.colors.darkGray)
       .attr('fill-opacity', this.config.polygonAreaOpacity)
       .attr('stroke-opacity', this.config.polygonStrokeOpacity)
       .attr('pointer-events', 'none');
@@ -346,32 +303,6 @@ class RadarChart {
     let verticesString = '';
     group.axes.forEach((d) => { verticesString += `${d.coordinates.x},${d.coordinates.y} `; });
     return verticesString;
-  }
-
-  // builds out the legend
-  buildLegend() {
-    // Create legend squares
-    this.vis.legend.selectAll('.legend-tiles')
-      .data(this.data).enter()
-      .append('svg:rect')
-      .classed('legend-tiles', true)
-      .attr('x', this.config.w - this.config.paddingX / 2)
-      .attr('y', (d, i) => i * 2 * this.config.legendBoxSize)
-      .attr('width', this.config.legendBoxSize)
-      .attr('height', this.config.legendBoxSize)
-      .attr('fill', (d, g) => this.config.colors(g));
-
-    // Create text next to squares
-    this.vis.legend.selectAll('.legend-labels')
-      .data(this.data).enter()
-      .append('svg:text')
-      .classed('legend-labels', true)
-      .attr('x', this.config.w - this.config.paddingX / 2 + (1.5 * this.config.legendBoxSize))
-      .attr('y', (d, i) => i * 2 * this.config.legendBoxSize)
-      .attr('dy', `${0.07 * this.config.legendBoxSize}em`)
-      .attr('font-size', `${11 * this.config.labelScale}px`)
-      .attr('fill', 'gray')
-      .text((d) => d.group);
   }
 }
 

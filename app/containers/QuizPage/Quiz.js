@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Button2 } from 'components/Buttons';
+import Box from 'components/Box';
 import Text from 'components/Text';
 import Bubble1 from 'components/Bubbles/Bubble1';
 
@@ -13,7 +14,7 @@ const questionLength = questions.length;
 const Quiz = ({ index }) => {
   const questionData = questions[index];
   return (
-    <div>
+    <Box align="center">
       {questionData.map((question, i) => {
         const InputModule = InputModules[question.type];
         return (
@@ -26,15 +27,10 @@ const Quiz = ({ index }) => {
           </div>
         );
       })}
-      <Button2
-        position="absolute"
-        bottom="2em"
-        right="2em"
-        to={index === questionLength - 1 ? '/result' : `/quiz/${+index + 2}`}
-      >
+      <Button2 my="2em" to={index === questionLength - 1 ? '/result' : `/quiz/${+index + 2}`}>
         下一題
       </Button2>
-    </div>
+    </Box>
   );
 };
 

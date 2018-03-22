@@ -7,7 +7,7 @@ const BackgroundImage = Box.extend`
   position: relative;
   background-image: url(${({ src }) => src});
   background-size: ${({ size }) => size};
-  background-position: ${({ position }) => position};
+  background-position: ${({ backgroundPosition }) => backgroundPosition};
   background-repeat: no-repeat;
   ${ratio}
 `;
@@ -21,7 +21,7 @@ BackgroundImage.propTypes = {
 BackgroundImage.defaultProps = {
   ratio: 9 / 16,
   size: 'cover',
-  position: '50% 50%',
+  backgroundPosition: '50% 50%',
 };
 
 BackgroundImage.displayName = 'BackgroundImage';

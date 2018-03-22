@@ -15,7 +15,7 @@ svg {
   cursor: pointer;
   r: 6;
   &:hover {
-    opacity: 1;
+    opacity: 0.8;
   }
 }
 `;

@@ -10,11 +10,13 @@ const font = '"PingFang TC", "HeiTi TC", "Microsoft JhengHei", sans-serif';
 
 const beige = '#f3eee8';
 const gray = '#d1ccc7';
+const darkGray = '#9b9a98';
 
 export default merge(constants, {
   colors: {
     beige,
     gray,
+    darkGray,
     background: beige,
     bg: beige,
   },

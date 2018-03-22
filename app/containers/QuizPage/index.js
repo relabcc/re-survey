@@ -12,13 +12,14 @@ import Quiz from './Quiz';
 
 const idPath = 'match.params.id';
 
+const logoW = '14em';
+
 const Logo = Box.extend`
   display: inline-block;
   line-height: 2.5;
   border-radius: 10em;
+  max-width: ${logoW};
 `;
-
-const logoW = '14em';
 
 class QuizPage extends React.PureComponent {
   state = {}
@@ -40,7 +41,7 @@ class QuizPage extends React.PureComponent {
         <Flex
           position="absolute"
           top={0}
-          px={['1em', null, null, '2em']}
+          px={['1em', null, '2em']}
           w={1}
           align="center"
         >
@@ -51,10 +52,10 @@ class QuizPage extends React.PureComponent {
             w={logoW}
           >資訊肥胖症檢測</Logo>
           <Steps px="1em" current={current} />
-          <Box w={[0, null, null, logoW]} />
+          <Box w={[0, null, logoW]} />
         </Flex>
         <Fullpage>
-          <Container px="4em" align="center">
+          <Container px="4em" py="8em" align="center">
             <Quiz index={current} />
           </Container>
         </Fullpage>

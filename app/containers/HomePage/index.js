@@ -10,7 +10,7 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
   render() {
     return (
       <Fullpage>
-        <Container px={['1em', null, null, '4em']} align="center">
+        <Container px={['1em', null, '4em']} align="center">
           <BackgroundImage ratio={651.54 / 719.94} src={dr} my="2em"></BackgroundImage>
           <Button3 to="/quiz/1">病久沒藥醫，速速檢測去</Button3>
         </Container>

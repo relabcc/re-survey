@@ -16,7 +16,7 @@ const Container = styled(Box)`
 
 Container.defaultProps = {
   mx: 'auto',
-  px: ['1em', null, null, '2em'],
+  px: ['1em', null, '2em'],
   w: 1,
   maxWidth: containerWidth,
 };

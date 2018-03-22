@@ -14,7 +14,6 @@ const Input = styled.input.attrs({ type: 'checkbox' })`
 
 const LabelBox = Box.extend`
   cursor: pointer;
-  padding-left: 3em;
   display: inline-block;
   position: relative;
   font-size: 1em;
@@ -37,8 +36,8 @@ const LabelBox = Box.extend`
       position: absolute;
       left: -0.31em;
       top:  -0.32em;
-      width: 0.4em;
-      height: 0.4em;
+      width: 0.375em;
+      height: 0.375em;
       border-radius: 50%;
       background: black;
     }
@@ -57,10 +56,10 @@ function Checkbox({
 }) {
   return (
     <Box {...props}>
-      <LabelBox is="label">
+      <LabelBox w={1} pl="2.5em" pr="1em" is="label">
         <Input onChange={onChange} name={name} />
         <span className="checkmark" />
-        <Underline w={['12em', '12em', null, '10em']} align="left" pl="1em">
+        <Underline w={1} align="left">
           {children}
         </Underline>
       </LabelBox>

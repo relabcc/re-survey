@@ -43,8 +43,10 @@ const Bubble1 = ({ children, showIcon, ...props }) => (
                       <Box
                         px="1em"
                         {...props}
-                        pt={[width / 30, null, width / 50]}
-                        transform={showIcon && (gap > 0 ? `translateY(${gap / 2}px)` : null)}
+                        pt={showIcon && [width / 30, null, width / 50]}
+                        transform={gap > 0 ? `translateY(${gap / 2}px)` : null}
+                        fontWeight="bold"
+                        f="1.25em"
                       >
                         {children}
                       </Box>);
