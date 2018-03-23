@@ -37,45 +37,37 @@ const handleData = (json) => {
   return data;
 };
 
-const w = 300;
-const h = 300;
-// const over = 'ontouchstart' in window ? 'touchstart' : 'mouseover';
-// const out = 'ontouchstart' in window ? 'touchend' : 'mouseout';
-
-const baseConfig = {
-  w,
-  h,
-  transition: 500,
-  facet: false,
-  levels: 4,
-  levelScale: 0.85,
-  labelScale: 1.0,
-  facetPaddingScale: 2.5,
-  maxValue: 0,
-  radians: 2 * Math.PI,
-  polygonAreaOpacity: 1,
-  polygonStrokeOpacity: 1,
-  polygonPointSize: 4,
-  legendBoxSize: 10,
-  translateX: w / 3,
-  translateY: h / 3,
-  paddingX: w,
-  paddingY: h,
-  showLevels: true,
-  showLevelsLabels: false,
-  showAxesLabels: true,
-  showAxes: true,
-  showLegend: true,
-  showVertices: true,
-  showPolygons: true,
-};
-
 class RadarChart {
   constructor(dom, json, options) {
     this.dom = dom;
     this.json = json;
     this.data = handleData(json);
-    this.config = Object.assign(baseConfig, options);
+    const w = options.width || 300;
+    const h = w;
+    // const over = 'ontouchstart' in window ? 'touchstart' : 'mouseover';
+    // const out = 'ontouchstart' in window ? 'touchend' : 'mouseout';
+
+    this.config = {
+      w,
+      h,
+      transition: 500,
+      levels: 4,
+      levelScale: 0.7,
+      labelScale: 1.0,
+      maxValue: 4,
+      radians: 2 * Math.PI,
+      polygonAreaOpacity: 1,
+      polygonStrokeOpacity: 1,
+      polygonPointSize: 4,
+      legendBoxSize: 10,
+      showLevels: true,
+      showLevelsLabels: false,
+      showAxesLabels: true,
+      showAxes: true,
+      showLegend: true,
+      showVertices: true,
+      showPolygons: true,
+    };
     this.render();
   }
 
@@ -102,22 +94,7 @@ class RadarChart {
     select(this.dom).selectAll('svg').remove();
     this.updateConfig();
 
-    if (this.config.facet) {
-      this.data.forEach((d) => {
-        this.buildVis([d]); // build svg for each data group
-
-        // override colors
-        this.vis.svg.selectAll('.polygon-areas')
-          .attr('stroke', theme.colors.darkGray)
-          .attr('fill', theme.colors.darkGray);
-        this.vis.svg.selectAll('.polygon-vertices')
-          .attr('fill', theme.colors.darkGray);
-        this.vis.svg.selectAll('.legend-tiles')
-          .attr('fill', theme.colors.darkGray);
-      });
-    } else {
-      this.buildVis(this.data); // build svg
-    }
+    this.buildVis(this.data); // build svg
   }
 
   updateConfig() {
@@ -127,15 +104,6 @@ class RadarChart {
     this.config.h *= this.config.levelScale;
     this.config.paddingX = this.config.w * this.config.levelScale;
     this.config.paddingY = this.config.h * this.config.levelScale;
-
-    // if facet required:
-    if (this.config.facet) {
-      this.config.w /= this.data.length;
-      this.config.h /= this.data.length;
-      this.config.paddingX /= (this.data.length / this.config.facetPaddingScale);
-      this.config.paddingY /= (this.data.length / this.config.facetPaddingScale);
-      this.config.polygonPointSize *= 0.9 ** this.data.length;
-    }
   }
 
   // build visualization using the other build helper functions
@@ -170,13 +138,15 @@ class RadarChart {
     this.vis.allAxis = this.data[0].axes.map((i) => i.axis);
     this.vis.totalAxes = this.vis.allAxis.length;
     this.vis.radius = Math.min(this.config.w / 2, this.config.h / 2);
+    const realWidth = this.config.w + this.config.paddingX;
+    const realHeight = this.config.h + this.config.paddingY;
 
     // create main vis svg
     this.vis.svg = select(this.dom)
       .append('svg').classed('svg-vis', true)
-      .attr('viewBox', `0 0 ${this.config.w + this.config.paddingX} ${this.config.h + this.config.paddingY}`)
+      .attr('viewBox', `0 0 ${realWidth} ${realHeight}`)
       .append('svg:g')
-      .attr('transform', `translate(${this.config.translateX},${this.config.translateY})`);
+      .attr('transform', `translate(${realWidth / 5},${realHeight / 5})`);
 
     // create levels
     this.vis.levels = this.vis.svg.selectAll('.levels')
@@ -212,7 +182,8 @@ class RadarChart {
         .attr('y2', (d, i) => levelFactor * (1 - Math.cos((i + 1) * this.config.radians / this.vis.totalAxes)))
         .attr('transform', `translate(${this.config.w / 2 - levelFactor}, ${this.config.h / 2 - levelFactor})`)
         .attr('stroke', 'black')
-        .attr('stroke-width', '4px');
+        .attr('stroke-linecap', 'round')
+        .attr('stroke-width', this.config.w / 60);
     }
   }
 
@@ -246,7 +217,7 @@ class RadarChart {
       .attr('x2', (d, i) => this.config.w / 2 * (1 - Math.sin(i * this.config.radians / this.vis.totalAxes)))
       .attr('y2', (d, i) => this.config.h / 2 * (1 - Math.cos(i * this.config.radians / this.vis.totalAxes)))
       .attr('stroke', 'black')
-      .attr('stroke-width', '2px');
+      .attr('stroke-width', this.config.w / 120);
   }
 
   // builds out the axes labels
@@ -258,7 +229,7 @@ class RadarChart {
       .attr('text-anchor', 'middle')
       .attr('x', (d, i) => this.config.w / 2 * (1 - 1.3 * Math.sin(i * this.config.radians / this.vis.totalAxes)))
       .attr('y', (d, i) => this.config.h / 2 * (1 - 1.15 * Math.cos(i * this.config.radians / this.vis.totalAxes)))
-      .attr('font-size', `${11 * this.config.labelScale}px`)
+      .attr('font-size', `${this.config.w / 20}px`)
       .attr('font-weight', 'bold');
   }
 
