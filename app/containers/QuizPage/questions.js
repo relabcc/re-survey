@@ -30,6 +30,7 @@ export default [
   }],
   [{
     type: 'Clock',
+    variation: 2,
     title: '一天有24小時，你大概花幾小時「傳達」資訊',
     description: '演講簡報/企劃報告/社群溝通/產品說明/理念推廣/服務介紹/教材',
   }],

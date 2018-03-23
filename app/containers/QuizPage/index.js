@@ -55,7 +55,7 @@ class QuizPage extends React.PureComponent {
           <Box w={[0, null, logoW]} />
         </Flex>
         <Fullpage>
-          <Container px="4em" py="8em" align="center">
+          <Container px={['2em', null, '4em']} pt="8em" align="center">
             <Quiz index={current} />
           </Container>
         </Fullpage>

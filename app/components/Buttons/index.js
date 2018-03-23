@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import styled from 'styled-components';
+import { fontWeight } from 'styled-system';
 import tag from 'clean-tag';
 
 import Box from '../Box';
@@ -26,6 +27,7 @@ const Button = styled(tag.button)`
   height: 100%;
   cursor: pointer;
   font-family: inherit;
+  ${fontWeight}
   &:hover {
     ${(props) => props.hoverColor && `color: ${getColor(props.hoverColor)(props)};`}
   }
@@ -33,6 +35,7 @@ const Button = styled(tag.button)`
 
 Button.defaultProps = {
   blacklist,
+  fontWeight: 'bold',
 };
 
 const BG = BackgroundImage.extend`
@@ -41,12 +44,12 @@ const BG = BackgroundImage.extend`
   }
 `;
 
-const Base = ({ onClick, to, ratio, src, hoverSrc, hoverColor, children, ...props }) => (
+const Base = ({ onClick, to, ratio, src, hoverSrc, hoverColor, children, xOffset, ...props }) => (
   <Box mx="auto" align="center" {...props}>
     <BG src={src} hoverSrc={hoverSrc} ratio={ratio}>
       <Button is={to && Link} to={to} onClick={onClick} hoverColor={hoverColor}>
         <Absolute top="50%" left="50%" transform="translate(-50%, -50%)">
-          {children}
+          {xOffset ? <Box transform={`translateX(${xOffset})`}>{children}</Box> : children}
         </Absolute>
       </Button>
     </BG>
@@ -61,10 +64,11 @@ Base.propTypes = {
   hoverColor: PropTypes.string,
   ratio: PropTypes.number,
   children: PropTypes.node,
+  xOffset: PropTypes.string,
 };
 
 export const Button1 = (props) => <Base w="10em" src={button1} hoverSrc={button1Hover} ratio={72 / 228} {...props} />;
-export const Button2 = (props) => <Base w="10em" src={button2} hoverSrc={button2Hover} hoverColor="background" ratio={72 / 227} {...props} />;
-export const Button3 = (props) => <Base m="auto" w="24em" src={button3} hoverSrc={button3Hover} hoverColor="background" ratio={89.129 / 411.43} {...props} />;
+export const Button2 = (props) => <Base w="10em" src={button2} hoverSrc={button2Hover} hoverColor="background" ratio={72 / 227} xOffset="-0.5em" {...props} />;
+export const Button3 = (props) => <Base m="auto" w="24em" src={button3} hoverSrc={button3Hover} ratio={89.129 / 411.43} {...props} />;
 
 export default Button1;

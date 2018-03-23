@@ -14,7 +14,7 @@ const CheckBox = ({ icon, options, onChange, title, ...props }) => (
     <Flex flexWrap="wrap" w={[1, null, 3 / 4]} mt={['2em', null, 0]}>
       {options.map(({ label }, index) => (
         <Checkbox
-          w={[1, 1 / 2]}
+          w={1 / 2}
           my="0.25em"
           value={index}
           onChange={onChange}
