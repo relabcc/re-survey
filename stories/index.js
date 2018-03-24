@@ -9,6 +9,8 @@ import Underline from '../app/components/Underline';
 
 import { Button1, Button2, Button3 } from '../app/components/Buttons';
 import Text from '../app/components/Text';
+import Checkbox from '../app/components/Checkbox';
+import Degree from '../app/components/Degree';
 
 storiesOf('Bubbles', module)
   .add('Bubble', () => (
@@ -49,4 +51,15 @@ storiesOf('Buttons', module)
 storiesOf('Underline', module)
   .add('Underline', () => (
     <Underline>拯救他</Underline>
+  ));
+
+storiesOf('Inputs', module)
+  .add('Checkbox', () => (
+    <Checkbox>選項</Checkbox>
+  ))
+  .add('Degree', () => (
+    <Degree onChange={action('onchange')}>
+      <Text f="1.25em">中文</Text>
+      <Text>Sub</Text>
+    </Degree>
   ));

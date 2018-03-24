@@ -6,13 +6,13 @@ import styled from 'styled-components';
 import Box from './Box';
 import Underline from './Underline';
 
-const Input = styled.input.attrs({ type: 'checkbox' })`
+export const InputCheckbox = styled.input.attrs({ type: 'checkbox' })`
   position: absolute;
   opacity: 0;
   cursor: pointer;
 `;
 
-const LabelBox = Box.extend`
+export const LabelBox = Box.extend`
   cursor: pointer;
   display: inline-block;
   position: relative;
@@ -58,7 +58,7 @@ function Checkbox({
   return (
     <Box {...props}>
       <LabelBox w={1} pl="2.5em" pr="1em" is="label">
-        <Input onChange={onChange} name={name} checked={checked} />
+        <InputCheckbox onChange={onChange} name={name} checked={checked} />
         <span className="checkmark" />
         <Underline w={1} align="left">
           {children}

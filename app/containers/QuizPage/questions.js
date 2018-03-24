@@ -85,4 +85,25 @@ export default [
       { label: '說服認同和行動' },
     ],
   }],
+  [{
+    type: 'Pie',
+    title: '做一份資訊圖表，你花在「資訊處理」、「故事文案」跟「視覺美化」的時間分別佔比多少？',
+    options: [
+      { label: '資訊處理', color: '#f3eee8' },
+      { label: '故事文案', color: '#d1ccc7' },
+      { label: '視覺美化', color: '#9b9a98' },
+    ],
+  }],
+  [{
+    type: 'Degree',
+    title: '你最擅長的工具',
+    options: [
+      { label: '簡報軟體', ex: 'Powerpoint / Keynote' },
+      { label: '試算表軟體', ex: 'Excel / Numbers' },
+      { label: '繪圖軟體', ex: 'Photoshop / Illustrator' },
+      { label: '圖表製作軟體', ex: 'Google Charts / Tableau / plot.ly / RAWgraphs' },
+      { label: '資訊圖表模板製作工具', ex: 'piktocharts / easel.ly / canva' },
+      { label: '開發者資料視覺化工具', ex: 'D3.js / FusionCharts / Chart.js' },
+    ],
+  }],
 ];

@@ -153,8 +153,7 @@ class D3Clock extends Component {
       clockBg,
     } = this.props;
     const svg = select(this.container).append('svg')
-      .attr('width', width)
-      .attr('height', height)
+      .attr('viewBox', `0 0 ${width} ${height}`)
       .call(drag()
         .on('end', this.handleDragEnd)
         .on('drag', this.handleDrag));

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { select, event } from 'd3-selection';
 import { pie, arc } from 'd3-shape';
 import { drag } from 'd3-drag';
+import { format } from 'd3-format';
 
 import Box from 'components/Box';
 import DragToRotate, { radianToDegree } from '../utils/DragToRotate';
@@ -10,10 +11,6 @@ import DragToRotate, { radianToDegree } from '../utils/DragToRotate';
 const StyledContainer = Box.extend`
   .pie-handle {
     cursor: pointer;
-    transition: opacity 0.2s ease;
-    &:hover {
-      opacity: 0.2;
-    }
   }
 
   .pie-label {
@@ -40,9 +37,7 @@ class Pie extends Component {
   setContants = () => {
     this.width = this.container.getBoundingClientRect().width;
     this.height = this.width;
-    this.svg
-      .attr('width', this.width)
-      .attr('height', this.width);
+    this.svg.attr('viewBox', `0 0 ${this.width} ${this.width}`);
     this.radius = this.width / 2;
     const gap = this.radius / 10;
     this.base = this.svg.append('g').attr('transform', `translate(${this.radius},${this.radius})`);
@@ -84,6 +79,7 @@ class Pie extends Component {
       .attr('d', this.path);
     this.pieText
       .data(newPie)
+      .text((d) => format('.1%')(d.value / 100))
       .attr('transform', (d) => `translate(${this.label.centroid(d)})`);
     this.pieHandle
       .data(newPie)
@@ -92,7 +88,7 @@ class Pie extends Component {
   }
 
   drawPie = () => {
-    const { labels, colors } = this.props;
+    const { options } = this.props;
     const arcGroup = this.base.selectAll('.arc')
       .data(this.pie(this.values))
       .enter()
@@ -101,25 +97,27 @@ class Pie extends Component {
 
     this.piePath = arcGroup.append('path')
       .attr('d', (d) => this.path(d))
-      .attr('stroke', 'white')
-      .attr('fill', (d, i) => colors[i]);
+      .attr('stroke', 'black')
+      .attr('stroke-width', this.width / 70)
+      .attr('fill', (d, i) => options[i].color);
 
     this.pieText = arcGroup.append('text')
       .attr('class', 'pie-label')
       .attr('text-anchor', 'middle')
+      .attr('font-size', this.width / 20)
       .attr('transform', (d) => `translate(${this.label.centroid(d)})`)
       .attr('dy', '0.35em')
-      .text((d, i) => labels[i]);
+      .text((d) => format('.1%')(d.value / 100));
 
     this.pieHandle = arcGroup.append('line')
       .attr('x1', 0)
       .attr('y1', 0)
       .attr('x2', 0)
       .attr('y2', -this.outerRadius)
-      .attr('opacity', 0.1)
+      .attr('opacity', 0)
       .attr('class', (d, i) => i > 0 && 'pie-handle')
       .attr('stroke', 'currentColor')
-      .attr('stroke-width', this.radius / 10)
+      .attr('stroke-width', this.radius / 8)
       .attr('transform', (d) => `rotate(${radianToDegree(d.startAngle)})`)
       .call(drag().filter(canDrag).container(this.container)
         .on('end', this.handleDragEnd)
@@ -133,14 +131,13 @@ class Pie extends Component {
   handleDrag = () => {
     const { x, y, subject: { index } } = event;
     const delta = this.dragging.parseDrag([x, y]);
-    this.updateValues(index, delta * 12);
+    this.updateValues(index, delta * 60);
   }
 
   render() {
     const {
       values,
-      colors,
-      labels,
+      options,
       onChange,
       ...props
     } = this.props;
@@ -153,8 +150,7 @@ class Pie extends Component {
 }
 
 Pie.propTypes = {
-  colors: PropTypes.arrayOf(PropTypes.string),
-  labels: PropTypes.arrayOf(PropTypes.string),
+  options: PropTypes.array,
   values: PropTypes.arrayOf(PropTypes.number),
   onChange: PropTypes.func,
 };

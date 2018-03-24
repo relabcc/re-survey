@@ -183,7 +183,7 @@ class RadarChart {
         .attr('transform', `translate(${this.config.w / 2 - levelFactor}, ${this.config.h / 2 - levelFactor})`)
         .attr('stroke', 'black')
         .attr('stroke-linecap', 'round')
-        .attr('stroke-width', this.config.w / 60);
+        .attr('stroke-width', this.config.w / 45);
     }
   }
 
@@ -217,7 +217,7 @@ class RadarChart {
       .attr('x2', (d, i) => this.config.w / 2 * (1 - Math.sin(i * this.config.radians / this.vis.totalAxes)))
       .attr('y2', (d, i) => this.config.h / 2 * (1 - Math.cos(i * this.config.radians / this.vis.totalAxes)))
       .attr('stroke', 'black')
-      .attr('stroke-width', this.config.w / 120);
+      .attr('stroke-width', this.config.w / 90);
   }
 
   // builds out the axes labels
@@ -227,9 +227,9 @@ class RadarChart {
       .append('svg:text').classed('axis-labels', true)
       .text((d) => d)
       .attr('text-anchor', 'middle')
-      .attr('x', (d, i) => this.config.w / 2 * (1 - 1.3 * Math.sin(i * this.config.radians / this.vis.totalAxes)))
-      .attr('y', (d, i) => this.config.h / 2 * (1 - 1.15 * Math.cos(i * this.config.radians / this.vis.totalAxes)))
-      .attr('font-size', `${this.config.w / 20}px`)
+      .attr('x', (d, i) => this.config.w / 2 * (1 - 1.4 * Math.sin(i * this.config.radians / this.vis.totalAxes)))
+      .attr('y', (d, i) => this.config.h / 2 * (1 - 1.2 * Math.cos(i * this.config.radians / this.vis.totalAxes)) + this.config.h / 30)
+      .attr('font-size', `${this.config.w / 18}px`)
       .attr('font-weight', 'bold');
   }
 

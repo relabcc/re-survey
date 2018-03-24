@@ -39,7 +39,7 @@ Button.defaultProps = {
   fontWeight: 'bold',
 };
 
-const BG = BackgroundImage.extend`
+const BG = styled(BackgroundImage)`
   ${({ disabled }) => disabled && 'opacity: 0.5;'}
   &:hover {
     ${({ disabled, hoverSrc }) => !disabled && `

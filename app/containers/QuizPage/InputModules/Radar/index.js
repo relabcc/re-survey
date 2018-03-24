@@ -6,6 +6,7 @@ import { fromJS, List } from 'immutable';
 import Relative from 'components/Relative';
 import Legs from 'components/Legs';
 import Absolute from 'components/Absolute';
+import DragMe from 'components/DragMe';
 
 import RadarInput from './Radar';
 
@@ -24,6 +25,7 @@ class Radar extends PureComponent {
     const { axes } = this.props;
     return (
       <Relative>
+        <DragMe top="10%" right="15%" w="20%" />
         <Absolute bottom="15.5%" left="50%" w="25%" transform="translateX(-60%)">
           <Legs />
         </Absolute>

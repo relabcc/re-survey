@@ -6,6 +6,7 @@ import Text from 'components/Text';
 import Absolute from 'components/Absolute';
 import Relative from 'components/Relative';
 import BackgroundImage from 'components/BackgroundImage';
+import TurnMe from 'components/TurnMe';
 
 import toPercent from 'utils/toPercent';
 
@@ -38,8 +39,9 @@ class Clock extends PureComponent {
     const { variation, defaultValue } = this.props;
     const { hour, touched } = this.state;
     return (
-      <Relative my="2em">
+      <Relative mt={['5em', '7em', '10em']} mb="2em">
         <BackgroundImage ratio={h / w} src={variations[variation]}>
+          <TurnMe top="-30%" left={toPercent(465 / w)} right={toPercent(188 / w)} />
           <Absolute left={toPercent(243.98 / w)} right={toPercent(243.98 / w)} top={toPercent(39.55 / h)}>
             <ConatianerDiemnsions>
               {({ width }) => (
@@ -59,7 +61,7 @@ class Clock extends PureComponent {
             <BackgroundImage ratio={h / w} src={face} />
           </Absolute>
           <Absolute transform="translate(50%,-50%)" top={toPercent(96 / h)} right={toPercent(145 / w)}>
-            <Text f="1.5em" fontWeight="bold" letterSpacing="0">
+            <Text f={['1.25em', null, '1.5em']} fontWeight="bold" letterSpacing="0">
               {touched ? hour : defaultValue}
             </Text>
           </Absolute>
