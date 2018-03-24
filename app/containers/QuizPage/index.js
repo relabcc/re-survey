@@ -8,18 +8,12 @@ import Box from 'components/Box';
 import Flex from 'components/Flex';
 import Steps from 'components/Steps';
 
+import TitleLogo from './TitleLogo';
 import Quiz from './Quiz';
 
 const idPath = 'match.params.id';
 
-const logoW = '20em';
-
-const Logo = Box.extend`
-  display: inline-block;
-  line-height: 2.5;
-  border-radius: 10em;
-  max-width: ${logoW};
-`;
+const logoW = '14em';
 
 class QuizPage extends React.PureComponent {
   state = {}
@@ -45,19 +39,14 @@ class QuizPage extends React.PureComponent {
           w={1}
           align="center"
         >
-          <Box w={logoW}>
-            <Logo
-              px="1.5em"
-              bg="black"
-              color="background"
-              align="center"
-            >資訊肥胖症檢測</Logo>
+          <Box w={logoW} pr={['1em', null, '2em']}>
+            <TitleLogo />
           </Box>
           <Steps px="1em" current={current} />
           <Box w={[0, null, logoW]} />
         </Flex>
         <Fullpage>
-          <Container px={['2em', null, '4em']} pt="8em" align="center">
+          <Container px={['1.5em', null, '4em']} pt={['6em', null, '8em']} align="center">
             <Quiz index={current} />
           </Container>
         </Fullpage>

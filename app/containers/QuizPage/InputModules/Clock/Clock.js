@@ -7,7 +7,7 @@ import clamp from 'lodash/clamp';
 import Absolute from 'components/Absolute';
 import Transform from 'components/Transform';
 
-import DragToRotate from './DragToRotate';
+import DragToRotate from '../utils/DragToRotate';
 
 const getAngle = (value, hours) => {
   const base = hours ? 12 * 60 : 60;

@@ -24,7 +24,7 @@ const BG = (props) => (
   />
 );
 
-const Bubble1 = ({ children, showIcon, ...props }) => (
+const Bubble = ({ children, showIcon, ...props }) => (
   <Box pt={['8%', null, '5%']}>
     <Relative pt={`${ratio * 200}%`}>
       <ContainerDimensions>
@@ -49,7 +49,8 @@ const Bubble1 = ({ children, showIcon, ...props }) => (
                         f="1.25em"
                       >
                         {children}
-                      </Box>);
+                      </Box>
+                    );
                   }}
                 </ContainerDimensions>
               </Relative>
@@ -66,9 +67,9 @@ const Bubble1 = ({ children, showIcon, ...props }) => (
   </Box>
 );
 
-Bubble1.propTypes = {
+Bubble.propTypes = {
   children: PropTypes.node,
   showIcon: PropTypes.bool,
 };
 
-export default Bubble1;
+export default Bubble;

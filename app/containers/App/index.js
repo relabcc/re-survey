@@ -5,14 +5,16 @@ import HomePage from 'containers/HomePage/Loadable';
 import QuizPage from 'containers/QuizPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 
+import ScrollToTop from './ScrollToTop';
+
 export default function App() {
   return (
-    <div>
+    <ScrollToTop>
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/quiz/:id" component={QuizPage} />
         <Route component={NotFoundPage} />
       </Switch>
-    </div>
+    </ScrollToTop>
   );
 }

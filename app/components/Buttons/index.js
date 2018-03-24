@@ -19,35 +19,39 @@ import button2Hover from './button-2-hover.svg';
 import button3 from './button-3.svg';
 import button3Hover from './button-3-hover.svg';
 
-const Button = styled(tag.button)`
+const Button = styled(tag)`
   padding: 0;
   display: block;
   position: absolute;
   width: 100%;
   height: 100%;
-  cursor: pointer;
+  cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'pointer'};
   font-family: inherit;
   ${fontWeight}
   &:hover {
-    ${(props) => props.hoverColor && `color: ${getColor(props.hoverColor)(props)};`}
+    ${(props) => !props.disabled && props.hoverColor && `color: ${getColor(props.hoverColor)(props)};`}
   }
 `;
 
 Button.defaultProps = {
   blacklist,
+  is: 'button',
   fontWeight: 'bold',
 };
 
 const BG = BackgroundImage.extend`
+  ${({ disabled }) => disabled && 'opacity: 0.5;'}
   &:hover {
-    background-image: url(${({ hoverSrc }) => hoverSrc});
+    ${({ disabled, hoverSrc }) => !disabled && `
+      background-image: url(${hoverSrc});
+    `}
   }
 `;
 
-const Base = ({ onClick, to, ratio, src, hoverSrc, hoverColor, children, xOffset, ...props }) => (
+const Base = ({ onClick, to, ratio, src, hoverSrc, hoverColor, children, xOffset, disabled, ...props }) => (
   <Box mx="auto" align="center" {...props}>
-    <BG src={src} hoverSrc={hoverSrc} ratio={ratio}>
-      <Button is={to && Link} to={to} onClick={onClick} hoverColor={hoverColor}>
+    <BG src={src} hoverSrc={hoverSrc} ratio={ratio} disabled={disabled}>
+      <Button is={to && Link} to={to} onClick={onClick} hoverColor={hoverColor} disabled={disabled}>
         <Absolute top="50%" left="50%" transform="translate(-50%, -50%)">
           {xOffset ? <Box transform={`translateX(${xOffset})`}>{children}</Box> : children}
         </Absolute>
@@ -65,6 +69,7 @@ Base.propTypes = {
   ratio: PropTypes.number,
   children: PropTypes.node,
   xOffset: PropTypes.string,
+  disabled: PropTypes.bool,
 };
 
 export const Button1 = (props) => <Base w="10em" src={button1} hoverSrc={button1Hover} ratio={72 / 228} {...props} />;
