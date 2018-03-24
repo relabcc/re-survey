@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 
 import styled from 'styled-components';
 import { fontWeight } from 'styled-system';
@@ -9,6 +8,7 @@ import tag from 'clean-tag';
 import Box from '../Box';
 import Absolute from '../Absolute';
 import BackgroundImage from '../BackgroundImage';
+import Link from '../RouterLink';
 
 import blacklist from '../utils/blacklist';
 import getColor from '../utils/getColor';
@@ -48,7 +48,18 @@ const BG = BackgroundImage.extend`
   }
 `;
 
-const Base = ({ onClick, to, ratio, src, hoverSrc, hoverColor, children, xOffset, disabled, ...props }) => (
+const Base = ({
+  onClick,
+  to,
+  ratio,
+  src,
+  hoverSrc,
+  hoverColor,
+  children,
+  xOffset,
+  disabled,
+  ...props
+}) => (
   <Box mx="auto" align="center" {...props}>
     <BG src={src} hoverSrc={hoverSrc} ratio={ratio} disabled={disabled}>
       <Button is={to && Link} to={to} onClick={onClick} hoverColor={hoverColor} disabled={disabled}>

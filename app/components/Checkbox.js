@@ -52,12 +52,13 @@ function Checkbox({
   name,
   error,
   onChange,
+  checked,
   ...props
 }) {
   return (
     <Box {...props}>
       <LabelBox w={1} pl="2.5em" pr="1em" is="label">
-        <Input onChange={onChange} name={name} />
+        <Input onChange={onChange} name={name} checked={checked} />
         <span className="checkmark" />
         <Underline w={1} align="left">
           {children}
@@ -73,6 +74,7 @@ Checkbox.propTypes = {
   name: PropTypes.string,
   error: PropTypes.string,
   onChange: PropTypes.func,
+  checked: PropTypes.bool,
 };
 
 export default Checkbox;

@@ -1,25 +1,23 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ContainerDimensions from 'react-container-dimensions';
+import { fromJS, List } from 'immutable';
 
 import Relative from 'components/Relative';
 import Legs from 'components/Legs';
 import Absolute from 'components/Absolute';
-import { scoreBase } from 'quizReducer';
 
 import RadarInput from './Radar';
 
 class Radar extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.defaultValue = props.defaultValue || new List();
+  }
+
   handleOnChange = (values) => {
-    const { axes } = this.props;
-    this.scores = Object.assign({}, scoreBase);
-    values.forEach((v, i) => {
-      const axis = axes[i];
-      axis.scores.forEach((key) => {
-        this.scores[key] += (values[i] - 1);
-      });
-    });
-    console.log(this.scores);
+    const { onChange } = this.props;
+    if (onChange) onChange(fromJS(values));
   }
 
   render() {
@@ -34,10 +32,10 @@ class Radar extends PureComponent {
             <RadarInput
               position="relative"
               width={width}
-              data={axes.map(({ label }) => ({
+              data={axes.map(({ label }, index) => ({
                 axis: label,
                 group: 'a',
-                value: 1,
+                value: this.defaultValue.get(index) || 1,
               }))}
               onChange={this.handleOnChange}
             />
@@ -50,6 +48,8 @@ class Radar extends PureComponent {
 
 Radar.propTypes = {
   axes: PropTypes.array,
+  defaultValue: PropTypes.shape(),
+  onChange: PropTypes.func,
 };
 
 export default Radar;
