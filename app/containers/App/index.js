@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import HomePage from 'containers/HomePage/Loadable';
 import QuizPage from 'containers/QuizPage/Loadable';
+import SurveyPage from 'containers/SurveyPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 
 import ScrollToTop from './ScrollToTop';
@@ -13,6 +14,7 @@ export default function App() {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/quiz/:id" component={QuizPage} />
+        <Route path="/final" component={SurveyPage} />
         <Route component={NotFoundPage} />
       </Switch>
     </ScrollToTop>

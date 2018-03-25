@@ -1,7 +1,6 @@
 /* eslint-disable */
 export default [
   require('../components/Bubble/bubble-1-bottom.svg'),
-  require('../components/Bubble/bubble-1-head.svg'),
   require('../components/Bubble/bubble-1-top.svg'),
   require('../components/Buttons/button-1-hover.svg'),
   require('../components/Buttons/button-1.svg'),
@@ -10,6 +9,7 @@ export default [
   require('../components/Buttons/button-3-hover.svg'),
   require('../components/Buttons/button-3.svg'),
   require('../components/DragMe/bubble-2.svg'),
+  require('../components/FixedLogo/title-icon.svg'),
   require('../components/Legs/legs.svg'),
   require('../components/Steps/timeline-1.svg'),
   require('../components/Steps/timeline-2.svg'),
@@ -17,6 +17,7 @@ export default [
   require('../components/Steps/timeline-4.svg'),
   require('../components/Steps/timeline-5.svg'),
   require('../components/Steps/timeline-6.svg'),
+  require('../components/TextWithIcon/bubble-1-head.svg'),
   require('../components/TurnMe/bubble-1.svg'),
   require('../components/Underline/underline-square.svg'),
   require('../containers/HomePage/dr.svg'),
@@ -27,7 +28,8 @@ export default [
   require('../containers/QuizPage/InputModules/Clock/clock-face.svg'),
   require('../containers/QuizPage/InputModules/Clock/long hand.svg'),
   require('../containers/QuizPage/InputModules/Clock/short hand.svg'),
+  require('../containers/QuizPage/InputModules/Degree/legend.svg'),
+  require('../containers/QuizPage/InputModules/Pie/legend.svg'),
   require('../containers/QuizPage/love.svg'),
-  require('../containers/QuizPage/nervous.svg'),
-  require('../containers/QuizPage/title-icon.svg')
+  require('../containers/QuizPage/nervous.svg')
 ];

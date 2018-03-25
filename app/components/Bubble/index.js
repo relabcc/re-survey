@@ -8,7 +8,6 @@ import Relative from '../Relative';
 import Absolute from '../Absolute';
 import Box from '../Box';
 
-import bubbleHead from './bubble-1-head.svg';
 import bubbleTop from './bubble-1-top.svg';
 import bubbleBottom from './bubble-1-bottom.svg';
 
@@ -24,7 +23,7 @@ const BG = (props) => (
   />
 );
 
-const Bubble = ({ children, showIcon, ...props }) => (
+const Bubble = ({ children, ...props }) => (
   <Box pt={['8%', null, '5%']}>
     <Relative pt={`${ratio * 200}%`}>
       <ContainerDimensions>
@@ -43,7 +42,6 @@ const Bubble = ({ children, showIcon, ...props }) => (
                       <Box
                         px="1em"
                         {...props}
-                        pt={showIcon && [width / 30, null, width / 50]}
                         transform={gap > 0 ? `translateY(${gap / 2}px)` : null}
                         fontWeight="bold"
                         f="1.25em"
@@ -54,11 +52,6 @@ const Bubble = ({ children, showIcon, ...props }) => (
                   }}
                 </ContainerDimensions>
               </Relative>
-              {showIcon && (
-                <Absolute top="0" left="50%" w={['16%', null, '10%']} transform="translate(-50%, -50%)">
-                  <BackgroundImage ratio={1} src={bubbleHead} />
-                </Absolute>
-              )}
             </div>
           );
         }}
@@ -69,7 +62,6 @@ const Bubble = ({ children, showIcon, ...props }) => (
 
 Bubble.propTypes = {
   children: PropTypes.node,
-  showIcon: PropTypes.bool,
 };
 
 export default Bubble;

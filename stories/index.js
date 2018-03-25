@@ -10,7 +10,11 @@ import Underline from '../app/components/Underline';
 import { Button1, Button2, Button3 } from '../app/components/Buttons';
 import Text from '../app/components/Text';
 import Checkbox from '../app/components/Checkbox';
+import CheckboxGroup from '../app/components/CheckboxGroup';
 import Degree from '../app/components/Degree';
+import TextWithIcon from '../app/components/TextWithIcon';
+import Toggle from '../app/components/Toggle';
+import TextInput from '../app/components/TextInput';
 
 storiesOf('Bubbles', module)
   .add('Bubble', () => (
@@ -48,18 +52,74 @@ storiesOf('Buttons', module)
     </div>
   ));
 
-storiesOf('Underline', module)
+storiesOf('Text', module)
   .add('Underline', () => (
     <Underline>拯救他</Underline>
+  ))
+  .add('Underline (Inline)', () => (
+    <Underline.inline>拯救他</Underline.inline>
+  ))
+  .add('TextWithIcon', () => (
+    <TextWithIcon>有icon Blah</TextWithIcon>
   ));
 
 storiesOf('Inputs', module)
+  .add('TextInput', () => (
+    <div>
+      <TextInput onChange={action('onchange')} />
+      <TextInput onChange={action('onchange')} error="無效的電子信箱!" />
+    </div>
+  ))
   .add('Checkbox', () => (
-    <Checkbox>選項</Checkbox>
+    <div>
+      <Checkbox>選項</Checkbox>
+      <Checkbox disabled>選項 disabled</Checkbox>
+    </div>
+  ))
+  .add('CheckboxGroup (one)', () => (
+    <CheckboxGroup
+      onChange={action('onchange')}
+      options={[
+        '$1000以下',
+        '$1000-1999',
+        '$2000-2999',
+        '$3000以上',
+      ]}
+    />
+  ))
+  .add('CheckboxGroup (multiple)', () => (
+    <CheckboxGroup
+      onChange={action('onchange')}
+      multiple
+      options={[
+        '$1000以下',
+        '$1000-1999',
+        '$2000-2999',
+        '$3000以上',
+      ]}
+    />
+  ))
+  .add('CheckboxGroup (disabled)', () => (
+    <CheckboxGroup
+      disabled
+      onChange={action('onchange')}
+      options={[
+        '$1000以下',
+        '$1000-1999',
+        '$2000-2999',
+        '$3000以上',
+      ]}
+    />
+  ))
+  .add('Checkbox (No Underline)', () => (
+    <Checkbox noUnderline>選項</Checkbox>
   ))
   .add('Degree', () => (
     <Degree onChange={action('onchange')}>
       <Text f="1.25em">中文</Text>
       <Text>Sub</Text>
     </Degree>
+  ))
+  .add('Toggle', () => (
+    <Toggle onChange={action('onchange')} labelTrue="當然好，已填完！" labelFalse="完全沒興趣" />
   ));

@@ -13,7 +13,7 @@ export const InputCheckbox = styled.input.attrs({ type: 'checkbox' })`
 `;
 
 export const LabelBox = Box.extend`
-  cursor: pointer;
+  cursor: ${({ disabled }) => disabled ? 'default' : 'pointer'};
   display: inline-block;
   position: relative;
   font-size: 1em;
@@ -26,18 +26,18 @@ export const LabelBox = Box.extend`
     margin: auto;
     height: 1.6em;
     width: 1.5em;
-    font-size: 1.25em;
+    font-size: 1em;
     box-sizing: border-box;
     border: 1px solid black;
-    border-width: 7px 8px 8px 7px;
-    border-radius: 8px 15px 8px 16px;
+    border-width: 0.3em 0.4em 0.35em 0.4em;
+    border-radius: 0.7em 0.5em 0.6em 0.5em;
     &:after {
       content: "";
       position: absolute;
-      left: -0.31em;
-      top:  -0.32em;
-      width: 0.375em;
-      height: 0.375em;
+      left: -0.34em;
+      top:  -0.3em;
+      width: 0.5em;
+      height: 0.5em;
       border-radius: 50%;
       background: black;
     }
@@ -49,20 +49,21 @@ export const LabelBox = Box.extend`
 
 function Checkbox({
   children,
-  name,
   error,
   onChange,
   checked,
+  noUnderline,
+  disabled,
   ...props
 }) {
   return (
     <Box {...props}>
-      <LabelBox w={1} pl="2.5em" pr="1em" is="label">
-        <InputCheckbox onChange={onChange} name={name} checked={checked} />
+      <LabelBox w={1} pl="2.5em" pr="1em" is="label" disabled={disabled} opacity={disabled ? 0.3 : 1}>
+        <InputCheckbox onChange={onChange} checked={checked} disabled={disabled} />
         <span className="checkmark" />
-        <Underline w={1} align="left">
+        <Box w={1} is={noUnderline ? undefined : Underline} align="left" pl={noUnderline && '0.5em'}>
           {children}
-        </Underline>
+        </Box>
       </LabelBox>
     </Box>
   );
@@ -71,10 +72,11 @@ function Checkbox({
 
 Checkbox.propTypes = {
   children: PropTypes.node.isRequired,
-  name: PropTypes.string,
   error: PropTypes.string,
   onChange: PropTypes.func,
   checked: PropTypes.bool,
+  noUnderline: PropTypes.bool,
+  disabled: PropTypes.bool,
 };
 
 export default Checkbox;

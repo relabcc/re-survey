@@ -7,7 +7,7 @@ import Box from 'components/Box';
 import Text from 'components/Text';
 import Bubble from 'components/Bubble';
 
-import { setAnswer } from 'quizReducer';
+import { setAnswer } from './reducer';
 
 import InputModules from './InputModules';
 import questions from './questions';
@@ -55,7 +55,7 @@ class Quiz extends PureComponent {
             </div>
           );
         })}
-        <Button2 disabled={!touched} my="2em" to={isLast ? '/result' : `/quiz/${+index + 2}`}>
+        <Button2 disabled={!touched} my="2em" to={isLast ? '/final' : `/quiz/${+index + 2}`}>
           {isLast ? '看結果' : '下一題'}
         </Button2>
       </Box>

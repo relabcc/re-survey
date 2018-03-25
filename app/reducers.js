@@ -7,7 +7,8 @@ import { fromJS } from 'immutable';
 import { LOCATION_CHANGE } from 'react-router-redux';
 
 import languageProviderReducer from 'containers/LanguageProvider/reducer';
-import quizReducer from './quizReducer';
+import quizReducer from 'containers/QuizPage/reducer';
+import surveyReducer from 'containers/SurveyPage/reducer';
 
 /*
  * routeReducer
@@ -45,6 +46,7 @@ export default function createReducer(injectedReducers) {
     route: routeReducer,
     language: languageProviderReducer,
     quiz: quizReducer,
+    survey: surveyReducer,
     ...injectedReducers,
   });
 }

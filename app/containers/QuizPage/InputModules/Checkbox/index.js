@@ -1,30 +1,13 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { List } from 'immutable';
+import map from 'lodash/map';
 
 import Box from 'components/Box';
 import Flex from 'components/Flex';
 import Image from 'components/Image';
-import Checkbox from 'components/Checkbox';
+import CheckboxGroup from 'components/CheckboxGroup';
 
 class CheckBox extends PureComponent {
-  state = {
-    values: this.props.defaultValue || new List(),
-  }
-
-  handleOnChange = (index) => (e) => {
-    const { onChange } = this.props;
-    if (onChange) onChange(this.valueTransformer(index, e.target.checked));
-  }
-
-  valueTransformer = (index, value) => {
-    const values = this.state.values.set(index, value);
-    this.setState({
-      values,
-    });
-    return values;
-  }
-
   render() {
     const {
       icon,
@@ -32,10 +15,9 @@ class CheckBox extends PureComponent {
       onChange,
       title,
       variation,
+      defaultValue,
       ...props
     } = this.props;
-
-    const { values } = this.state;
 
     const ImageWrapper = variation === 2 ? (p) => <Box w={1} px="25%" {...p} />
       : (p) => <Box w={[1, null, 1 / 4]} px={['25%', null, '1.5em']} {...p} />;
@@ -47,17 +29,7 @@ class CheckBox extends PureComponent {
           <Image src={icon} />
         </ImageWrapper>
         <OptionsWrapper>
-          {options.map(({ label }, index) => (
-            <Checkbox
-              key={index}
-              w={variation === 2 ? [1 / 2, null, 1 / 3] : 1 / 2}
-              my="0.25em"
-              checked={values.get(index)}
-              onChange={this.handleOnChange(index)}
-            >
-              {label}
-            </Checkbox>
-          ))}
+          <CheckboxGroup defaultValue={defaultValue} options={map(options, 'label')} onChange={onChange} multiple />
         </OptionsWrapper>
       </Flex>
     );

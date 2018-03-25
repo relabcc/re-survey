@@ -1,6 +1,6 @@
 import { fromJS } from 'immutable';
 
-export const SET_ANSWER = 'App/SET_ANSWER';
+export const SET_ANSWER = 'App/Quiz/SET_ANSWER';
 
 export function setAnswer(idPath, answer) {
   return {

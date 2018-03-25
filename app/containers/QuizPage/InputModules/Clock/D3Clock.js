@@ -6,7 +6,6 @@ import { range } from 'd3-array';
 import { select, event } from 'd3-selection';
 import { drag } from 'd3-drag';
 import clamp from 'lodash/clamp';
-import round from 'lodash/round';
 
 import Box from 'components/Box';
 import DragToRotate from '../utils/DragToRotate';
@@ -117,9 +116,9 @@ class D3Clock extends Component {
   }
 
   updateValue = (value) => {
-    const { onChange, min, max, precision } = this.props;
+    const { onChange, min, max } = this.props;
     const displayValue = clamp(value, min, max);
-    if (onChange) onChange(round(displayValue, precision));
+    if (onChange) onChange(displayValue);
     this.setState({
       displayValue,
     });
@@ -257,7 +256,6 @@ class D3Clock extends Component {
       showMinuteTick,
       clockBg,
       value,
-      precision,
       defaultValue,
       ...props
     } = this.props;
@@ -288,7 +286,6 @@ D3Clock.propTypes = {
   max: PropTypes.number,
   hours: PropTypes.bool,
   clockBg: PropTypes.string,
-  precision: PropTypes.number,
   defaultValue: PropTypes.number,
 };
 
@@ -304,7 +301,6 @@ D3Clock.defaultProps = {
   minuteLabelYOffset: 5,
   hourLabelYOffset: 7,
   clockBg: 'white',
-  precision: 0,
   // showHourTick: true,
   // showMinuteTick: true,
   // showHourLabel: true,
