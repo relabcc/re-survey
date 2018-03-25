@@ -54,8 +54,7 @@ class Clock extends PureComponent {
                   onChange={this.handleOnChange}
                   hours
                   max={24}
-                  precision={1}
-                  defaultValue={defaultValue}
+                  defaultValue={+defaultValue}
                 />
               )}
             </ConatianerDiemnsions>

@@ -7,6 +7,7 @@
 
 // Needed for redux-saga es6 generator support
 import 'babel-polyfill';
+import smoothscroll from 'smoothscroll-polyfill';
 
 // Import all the third party stuff
 import React from 'react';
@@ -39,6 +40,7 @@ const initialState = {};
 const history = createHistory();
 const store = configureStore(initialState, history);
 const MOUNT_NODE = document.getElementById('app');
+smoothscroll.polyfill();
 
 const render = (messages) => {
   ReactDOM.render(

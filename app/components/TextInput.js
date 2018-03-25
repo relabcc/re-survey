@@ -32,15 +32,15 @@ class TextInput extends PureComponent {
     const { value } = this.state;
     return (
       <Box {...props}>
-        <Underline.inline.black w="20em" opacity={disabled ? 0.3 : 1}>
+        <Underline.black opacity={disabled ? 0.3 : 1}>
           <Input
             value={value}
             disabled={disabled}
             onChange={this.handleOnChange}
             onBlur={() => onBlur && onBlur(value)}
           />
-        </Underline.inline.black>
-        {error && <Text>{error}</Text>}
+        </Underline.black>
+        {error && <Text f="0.8em" mt="0.5em">{error}</Text>}
       </Box>
     );
   }

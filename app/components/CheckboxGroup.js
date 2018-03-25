@@ -67,7 +67,7 @@ class CheckboxGroup extends PureComponent {
 }
 
 CheckboxGroup.propTypes = {
-  defaultValue: PropTypes.bool,
+  defaultValue: PropTypes.any,
   onChange: PropTypes.func,
   options: PropTypes.array,
   perRow: PropTypes.oneOfType([

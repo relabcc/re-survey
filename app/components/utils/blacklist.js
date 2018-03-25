@@ -24,4 +24,5 @@ export default [
   'hoverColor',
   'shouldCenter',
   'description',
+  'dotRadius',
 ];

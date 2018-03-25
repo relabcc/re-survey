@@ -2,8 +2,6 @@
 export default [
   require('../components/Bubble/bubble-1-bottom.svg'),
   require('../components/Bubble/bubble-1-top.svg'),
-  require('../components/Buttons/button-1-hover.svg'),
-  require('../components/Buttons/button-1.svg'),
   require('../components/Buttons/button-2-hover.svg'),
   require('../components/Buttons/button-2.svg'),
   require('../components/Buttons/button-3-hover.svg'),
@@ -19,6 +17,7 @@ export default [
   require('../components/Steps/timeline-6.svg'),
   require('../components/TextWithIcon/bubble-1-head.svg'),
   require('../components/TurnMe/bubble-1.svg'),
+  require('../components/Underline/underline-square-black.svg'),
   require('../components/Underline/underline-square.svg'),
   require('../containers/HomePage/dr.svg'),
   require('../containers/HomePage/relab-logo.svg'),
