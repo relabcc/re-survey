@@ -1,0 +1,58 @@
+import { fromJS } from 'immutable';
+import { createSelector } from 'reselect';
+import isArray from 'lodash/isArray';
+
+import quizQuestions from '../QuizPage/questions';
+
+const scoreBase = fromJS({
+  story: 0,
+  info: 0,
+  design: 0,
+});
+
+const incrementAtKey = (scores, key, amount = 1) => scores.set(key, scores.get(key) + Number(amount));
+
+const selectQuiz = (state) => state.get('quiz');
+const selectSurvey = (state) => state.get('survey');
+
+const makeSelectQuizScore = () => createSelector(
+  selectQuiz,
+  (quizState) => quizQuestions.reduce((finalSum, questions, qIndex) => questions.reduce((scoreSum, question, subQIndex) => {
+    switch (question.type) {
+      case 'Checkbox':
+        return question.options.reduce((subSum, { scores }, index) => {
+          // not checked or no score related
+          if (!quizState.getIn([qIndex, subQIndex, index]) || !isArray(scores)) return subSum;
+          return scores.reduce((subScoreSum, scoreKey) => incrementAtKey(subScoreSum, scoreKey), subSum);
+        }, scoreSum);
+      case 'Radar':
+        return question.axes.reduce((subSum, { scores }, index) => {
+          const axisScore = quizState.getIn([qIndex, subQIndex, index]);
+          // no score or no score related
+          if (axisScore === 1 || !isArray(scores)) return subSum;
+          return scores.reduce((subScoreSum, scoreKey) => incrementAtKey(subScoreSum, scoreKey, axisScore / 2), subSum);
+        }, scoreSum);
+      case 'Degree':
+        return question.options.reduce((subSum, { scores }, index) => {
+          const optionScore = quizState.getIn([qIndex, subQIndex, index]);
+          // no score or no score related
+          if (!optionScore || !isArray(scores)) return subSum;
+          return scores.reduce((subScoreSum, scoreKey) => incrementAtKey(subScoreSum, scoreKey, optionScore / 2), subSum);
+        }, scoreSum);
+      default:
+        return scoreSum;
+    }
+  }, finalSum), scoreBase).toJS()
+);
+
+
+const makeSelectSurveyEmail = () => createSelector(
+  selectSurvey,
+  (surveyState) => surveyState.get('email')
+);
+
+export {
+  selectQuiz,
+  makeSelectSurveyEmail,
+  makeSelectQuizScore,
+};

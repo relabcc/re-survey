@@ -19,17 +19,16 @@ class Survey extends PureComponent {
   state = {}
 
   getPerRow = (key) => {
-    if (key === 'price') return 2;
     if (key === 'wantTo') return [1, null, 2];
     return 2;
   }
 
   handleEmailChange = (email) => {
     const { syncAnswer } = this.props;
-    const error = isEmail(email);
+    const pass = email.length === 0 || isEmail(email);
     this.setState({
       email,
-      emailError: error ? null : 'E-mail格式不對喔',
+      emailError: pass ? null : 'E-mail格式不對喔',
     });
     syncAnswer('email', email);
   }
@@ -42,7 +41,7 @@ class Survey extends PureComponent {
   }
 
   render() {
-    const { syncAnswer, answers, disabled, submitLabel, ...props } = this.props;
+    const { syncAnswer, answers, disabled, submitLabel, to, ...props } = this.props;
     const { emailError, showError } = this.state;
     return (
       <Box {...props}>
@@ -78,7 +77,8 @@ class Survey extends PureComponent {
         </Flex>
         <Button2
           mt="4em"
-          disabled={!disabled && (emailError || ['price', 'wantTo', 'email'].some((key) => !answers.get(key)))}
+          to={to}
+          disabled={!disabled && Boolean(emailError || ['price', 'wantTo'].some((key) => !answers.get(key)))}
         >
           {submitLabel}
         </Button2>
@@ -92,6 +92,7 @@ Survey.propTypes = {
   syncAnswer: PropTypes.func,
   disabled: PropTypes.bool,
   submitLabel: PropTypes.node,
+  to: PropTypes.string,
 };
 
 const mapStateToProps = (state) => ({

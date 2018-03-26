@@ -10,12 +10,6 @@ export function setAnswer(idPath, answer) {
   };
 }
 
-export const scoreBase = {
-  story: 0,
-  info: 0,
-  design: 0,
-};
-
 const initialState = fromJS({});
 
 export default function quizReducer(state = initialState, action) {

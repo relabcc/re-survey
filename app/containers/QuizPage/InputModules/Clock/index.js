@@ -28,7 +28,7 @@ const f = format('.1f');
 
 class Clock extends PureComponent {
   state = {
-    hour: 0.0,
+    hour: 0,
   }
 
   handleOnChange = (hr) => {
@@ -76,12 +76,12 @@ class Clock extends PureComponent {
 Clock.propTypes = {
   variation: PropTypes.number,
   onChange: PropTypes.func,
-  defaultValue: PropTypes.number,
+  defaultValue: PropTypes.string,
 };
 
 Clock.defaultProps = {
   variation: 1,
-  defaultValue: 0,
+  defaultValue: '0.0',
 };
 
 export default Clock;

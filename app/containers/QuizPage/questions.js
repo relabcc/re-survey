@@ -44,7 +44,7 @@ export default [
     icon: confidence,
     options: scenes.map((v, i) => {
       if (i < 4) return v;
-      return Object.assign(v, { score: { story: 1 } });
+      return Object.assign(v, { scores: ['story'] });
     }),
   }, {
     type: 'Checkbox',
@@ -73,16 +73,16 @@ export default [
     description: '複選',
     icon: love,
     options: [
-      { label: '資料呈現的準確' },
-      { label: '視覺呈現的美感' },
-      { label: '溝通對象理解內容' },
-      { label: '品牌概念的營造' },
-      { label: '資訊重點的傳達' },
-      { label: '對溝通對象有幫助' },
-      { label: '引發共鳴和思考' },
-      { label: '資訊脈絡的邏輯' },
-      { label: '有趣的設計和創意' },
-      { label: '說服認同和行動' },
+      { label: '資料呈現的準確', scores: ['info'] },
+      { label: '資訊重點的傳達', scores: ['info', 'design'] },
+      { label: '資訊脈絡的邏輯', scores: ['info', 'story'] },
+      { label: '視覺呈現的美感', scores: ['design'] },
+      { label: '對溝通對象有幫助', scores: ['design', 'story'] },
+      { label: '有趣的設計和創意', scores: ['design'] },
+      { label: '溝通對象理解內容', scores: ['info', 'design'] },
+      { label: '引發共鳴和思考', scores: ['design', 'story'] },
+      { label: '說服認同和行動', scores: ['design', 'story'] },
+      { label: '品牌概念的營造', scores: ['design', 'story'] },
     ],
   }],
   [{
@@ -98,12 +98,12 @@ export default [
     type: 'Degree',
     title: '你最擅長的工具',
     options: [
-      { label: '簡報軟體', ex: 'Powerpoint / Keynote' },
-      { label: '試算表軟體', ex: 'Excel / Numbers' },
-      { label: '繪圖軟體', ex: 'Photoshop / Illustrator' },
-      { label: '圖表製作軟體', ex: 'Google Charts / Tableau / plot.ly / RAWgraphs' },
-      { label: '資訊圖表模板製作工具', ex: 'piktocharts / easel.ly / canva' },
-      { label: '開發者資料視覺化工具', ex: 'D3.js / FusionCharts / Chart.js' },
+      { label: '簡報軟體', ex: 'Powerpoint / Keynote', scores: ['design'] },
+      { label: '試算表軟體', ex: 'Excel / Numbers', scores: ['info'] },
+      { label: '繪圖軟體', ex: 'Photoshop / Illustrator', scores: ['design'] },
+      { label: '圖表製作軟體', ex: 'Google Charts / Tableau / plot.ly / RAWgraphs', scores: ['info'] },
+      { label: '資訊圖表模板製作工具', ex: 'piktocharts / easel.ly / canva', scores: ['design'] },
+      { label: '開發者資料視覺化工具', ex: 'D3.js / FusionCharts / Chart.js', scores: ['info'] },
     ],
   }],
 ];
