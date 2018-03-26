@@ -30,8 +30,8 @@ class Degree extends PureComponent {
       <Flex is={Underline} justify="space-between" align="center" {...props}>
         <Box align="left" mb="0.5em">{children}</Box>
         <Flex w="8em" mb="1em">
-          {range(3).map((v) => (
-            <LabelBox is="label" w="2em" mx="0.25em">
+          {range(3).map((v, index) => (
+            <LabelBox is="label" w="2em" mx="0.25em" key={index}>
               <InputCheckbox onChange={this.handleOnChange(v)} checked={v < value} />
               <span className="checkmark" />
             </LabelBox>

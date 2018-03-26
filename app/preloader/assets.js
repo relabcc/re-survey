@@ -1,5 +1,6 @@
 /* eslint-disable */
 export default [
+  require('../components/ArrowDown/down.svg'),
   require('../components/Bubble/bubble-1-bottom.svg'),
   require('../components/Bubble/bubble-1-top.svg'),
   require('../components/Buttons/button-2-hover.svg'),
@@ -9,6 +10,8 @@ export default [
   require('../components/DragMe/bubble-2.svg'),
   require('../components/FixedLogo/title-icon.svg'),
   require('../components/Legs/legs.svg'),
+  require('../components/List/bulletin-point.svg'),
+  require('../components/Paper/paper-bottom.svg'),
   require('../components/Steps/timeline-1.svg'),
   require('../components/Steps/timeline-2.svg'),
   require('../components/Steps/timeline-3.svg'),
@@ -30,5 +33,11 @@ export default [
   require('../containers/QuizPage/InputModules/Degree/legend.svg'),
   require('../containers/QuizPage/InputModules/Pie/legend.svg'),
   require('../containers/QuizPage/love.svg'),
-  require('../containers/QuizPage/nervous.svg')
+  require('../containers/QuizPage/nervous.svg'),
+  require('../containers/ResultPage/Prescription/black-logo.svg'),
+  require('../containers/ResultPage/Prescription/hand-overlay.svg'),
+  require('../containers/ResultPage/Prescription/others.svg'),
+  require('../containers/ResultPage/Prescription/three-head.svg'),
+  require('../containers/ResultPage/Prescription/title.svg'),
+  require('../containers/ResultPage/pyramid.svg')
 ];

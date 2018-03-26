@@ -16,6 +16,7 @@ import {
   color,
   fontSize,
   fontWeight,
+  borderRadius,
 } from 'styled-system';
 
 import injectProps from './utils/injectProps';
@@ -64,6 +65,7 @@ const StyledBox = styled(tag)`
   ${right}
   ${bottom}
   ${fontWeight}
+  ${borderRadius}
   ${({ onClick }) => onClick && 'cursor: pointer;'}
 `;
 

@@ -40,6 +40,7 @@ class Radar extends PureComponent {
                 value: this.defaultValue.get(index) || 1,
               }))}
               onChange={this.handleOnChange}
+              clickable
             />
           )}
         </ContainerDimensions>

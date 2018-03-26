@@ -42,6 +42,9 @@ class RadarChart {
     this.dom = dom;
     this.json = json;
     this.data = handleData(json);
+    this.clickable = options.clickable;
+    const levels = options.levels || 4;
+    const maxValue = options.maxValue || 4;
     const w = options.width || 300;
     const h = w;
     // const over = 'ontouchstart' in window ? 'touchstart' : 'mouseover';
@@ -51,10 +54,10 @@ class RadarChart {
       w,
       h,
       transition: 500,
-      levels: 4,
+      levels,
       levelScale: 0.7,
       labelScale: 1.0,
-      maxValue: 4,
+      maxValue,
       radians: 2 * Math.PI,
       polygonAreaOpacity: 1,
       polygonStrokeOpacity: 1,
@@ -117,7 +120,7 @@ class RadarChart {
     if (this.config.showAxesLabels) this.buildAxesLabels();
     // if (this.config.showLegend) this.buildLegend();
     // if (this.config.showVertices) this.buildVertices();
-    this.buildDots();
+    if (this.clickable) this.buildDots();
   }
 
   updateValue(value, index) {

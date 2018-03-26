@@ -25,10 +25,8 @@ svg {
 
 class Radar extends PureComponent {
   componentDidMount() {
-    const { data, width } = this.props;
-    this.chart = new RadarChart(this.container, data, {
-      width,
-    });
+    const { data, ...props } = this.props;
+    this.chart = new RadarChart(this.container, data, props);
     this.chart.on('change', this.handleOnChange);
   }
 
@@ -38,7 +36,15 @@ class Radar extends PureComponent {
   }
 
   render() {
-    const { data, width, onChange, ...props } = this.props;
+    const {
+      data,
+      width,
+      onChange,
+      clickable,
+      levels,
+      maxValue,
+      ...props
+    } = this.props;
     return (
       <Box align="center" {...props} mb="-4em">
         <StyledContainer
@@ -52,7 +58,10 @@ class Radar extends PureComponent {
 
 Radar.propTypes = {
   width: PropTypes.number,
+  levels: PropTypes.number,
+  maxValue: PropTypes.number,
   onChange: PropTypes.func,
+  clickable: PropTypes.bool,
   data: PropTypes.arrayOf(PropTypes.shape({
     group: PropTypes.string,
     axis: PropTypes.string,

@@ -7,7 +7,7 @@ import { action } from '@storybook/addon-actions';
 import Bubble from '../app/components/Bubble';
 import Underline from '../app/components/Underline';
 
-import { Button1, Button2, Button3 } from '../app/components/Buttons';
+import { Button2, Button3 } from '../app/components/Buttons';
 import Text from '../app/components/Text';
 import Checkbox from '../app/components/Checkbox';
 import CheckboxGroup from '../app/components/CheckboxGroup';
@@ -15,6 +15,8 @@ import Degree from '../app/components/Degree';
 import TextWithIcon from '../app/components/TextWithIcon';
 import Toggle from '../app/components/Toggle';
 import TextInput from '../app/components/TextInput';
+import Paper from '../app/components/Paper';
+import List from '../app/components/List';
 
 storiesOf('Bubbles', module)
   .add('Bubble', () => (
@@ -31,14 +33,15 @@ storiesOf('Bubbles', module)
         <Text>在這些常見的視覺溝通製作霧中的比例形式與掌握度？</Text>
       </Bubble>
     </div>
+  ))
+  .add('Paper', () => (
+    <Paper>
+      <Text>在這些常見的視覺溝通製作霧中的比例形式與掌握度？</Text>
+      <Text>在這些常見的視覺溝通製作霧中的比例形式與掌握度？</Text>
+    </Paper>
   ));
 
 storiesOf('Buttons', module)
-  .add('Button 1', () => (
-    <div>
-      <Button1>拯救他</Button1>
-    </div>
-  ))
   .add('Button 2', () => (
     <div>
       <Button2 onClick={action('onClick')}>Next</Button2>
@@ -61,6 +64,12 @@ storiesOf('Text', module)
   ))
   .add('TextWithIcon', () => (
     <TextWithIcon>有icon Blah</TextWithIcon>
+  ))
+  .add('List', () => (
+    <List>
+      <li>1</li>
+      <li>List Item</li>
+    </List>
   ));
 
 storiesOf('Inputs', module)
