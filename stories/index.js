@@ -7,7 +7,7 @@ import { action } from '@storybook/addon-actions';
 import Bubble from '../app/components/Bubble';
 import Underline from '../app/components/Underline';
 
-import { Button2, Button3 } from '../app/components/Buttons';
+import { Button1, Button2, Button3 } from '../app/components/Buttons';
 import Text from '../app/components/Text';
 import Checkbox from '../app/components/Checkbox';
 import CheckboxGroup from '../app/components/CheckboxGroup';
@@ -17,6 +17,7 @@ import Toggle from '../app/components/Toggle';
 import TextInput from '../app/components/TextInput';
 import Paper from '../app/components/Paper';
 import List from '../app/components/List';
+import FbShare from '../app/components/FbShare';
 
 storiesOf('Bubbles', module)
   .add('Bubble', () => (
@@ -42,6 +43,12 @@ storiesOf('Bubbles', module)
   ));
 
 storiesOf('Buttons', module)
+  .add('Button 1', () => (
+    <div>
+      <Button1 onClick={action('onClick')}>Next</Button1>
+      <Button1 onClick={action('onClick')} disabled>Disabled</Button1>
+    </div>
+  ))
   .add('Button 2', () => (
     <div>
       <Button2 onClick={action('onClick')}>Next</Button2>
@@ -53,6 +60,9 @@ storiesOf('Buttons', module)
       <Button3 onClick={action('onClick')}>Next</Button3>
       <Button3 onClick={action('onClick')} disabled>Disabled</Button3>
     </div>
+  ))
+  .add('FbShare', () => (
+    <FbShare onClick={action('onClick')} />
   ));
 
 storiesOf('Text', module)

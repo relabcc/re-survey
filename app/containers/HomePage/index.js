@@ -4,6 +4,8 @@ import Container from 'components/Container';
 import Fullpage from 'components/Fullpage';
 import Image from 'components/Image';
 import BackgroundImage from 'components/BackgroundImage';
+import Box from 'components/Box';
+import FbShare from 'components/FbShare';
 
 import dr from './dr.svg';
 import logo from './relab-logo.svg';
@@ -17,6 +19,9 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
           <Button3 to="/quiz/1">病久沒藥醫，速速檢測去</Button3>
           <Image mx="auto" mt="2em" w="6em" src={logo} />
         </Container>
+        <Box position="fixed" top="1em" right="1em">
+          <FbShare />
+        </Box>
       </Fullpage>
     );
   }
