@@ -31,22 +31,30 @@ class Preloader extends PureComponent {
 
   render() {
     const { loaded } = this.state;
+    const loader = (
+      <Wrapper>
+        {assets && assets.map((src, index) => (
+          <BackgroundImage
+            key={`preload-${index}`}
+            src={src}
+          />
+        ))}
+      </Wrapper>
+    );
     if (!loaded) {
       return (
         <div>
           Loading...
-          <Wrapper>
-            {assets && assets.map((src, index) => (
-              <BackgroundImage
-                key={`preload-${index}`}
-                src={src}
-              />
-            ))}
-          </Wrapper>
+          {loader}
         </div>
       );
     }
-    return this.props.children;
+    return (
+      <div>
+        {this.props.children}
+        {loader}
+      </div>
+    );
   }
 }
 

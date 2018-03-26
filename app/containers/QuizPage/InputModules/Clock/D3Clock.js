@@ -6,9 +6,12 @@ import { range } from 'd3-array';
 import { select, event } from 'd3-selection';
 import { drag } from 'd3-drag';
 import clamp from 'lodash/clamp';
+import bowser from 'bowser';
 
 import Box from 'components/Box';
 import DragToRotate from '../utils/DragToRotate';
+
+const isMobile = bowser.mobile;
 
 const StyledDiv = styled.div`
   .draggable{
@@ -152,10 +155,12 @@ class D3Clock extends Component {
       clockBg,
     } = this.props;
     const svg = select(this.container).append('svg')
-      .attr('viewBox', `0 0 ${width} ${height}`)
-      .call(drag()
-        .on('end', this.handleDragEnd)
+      .attr('viewBox', `0 0 ${width} ${height}`);
+
+    if (isMobile) {
+      svg.call(drag()
         .on('drag', this.handleDrag));
+    }
 
     this.face = svg.append('g')
       .attr('class', 'clock-face')
@@ -195,6 +200,12 @@ class D3Clock extends Component {
       .attr('stroke', 'currentColor')
       .attr('stroke-width', (d) => clockRadius * d.strokeRatio)
       .attr('transform', (d) => `rotate(${d.scale(d.value)})`);
+    if (!isMobile) {
+      this.hands.call(drag()
+        .container(this.container)
+        .filter(this.canDrag)
+        .on('drag', this.handleDrag));
+    }
   }
 
   drawTick = (type, showLabel) => {

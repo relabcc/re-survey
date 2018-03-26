@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import ContainerDimensions from 'react-container-dimensions';
 
-import Box from '../Box';
 import Relative from '../Relative';
 import Border from '../Border';
 
@@ -36,8 +35,8 @@ const Paper = ({ children, ...props }) => (
         const borderWidth = width / 120;
         return (
           <DecoBorder py="1%" {...props}>
-            <Border borderWidth={borderWidth} borderTop="transparent" borderBottom="transparent">
-              <Box px="2em" py="2em">{children}</Box>
+            <Border px="2em" py="2em" borderWidth={borderWidth} borderTop="transparent" borderBottom="transparent">
+              {children}
             </Border>
           </DecoBorder>
         );

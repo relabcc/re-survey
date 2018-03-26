@@ -25,9 +25,9 @@ const Prescription = ({ type, enrolled, onWantClick, ...props }) => (
   <Box {...props}>
     <Relative>
       <Box px={[0, 0, '13.4%']}>
-        <Paper>
+        <Paper id="prescription">
           <Image src={title} />
-          <MdLink py="2em" lineHeight="2">{suggestions[type].suggestion}</MdLink>
+          <MdLink py="2em" mx="1em" lineHeight="2">{suggestions[type].suggestion}</MdLink>
           <Box px="1em">
             <Underline.black />
             <Box my="2em">

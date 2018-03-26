@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import map from 'lodash/map';
+import isUndefined from 'lodash/isUndefined';
 
 import Box from 'components/Box';
 import Underline from 'components/Underline';
@@ -73,7 +74,7 @@ class Survey extends PureComponent {
         <Button2
           mt="4em"
           to={to}
-          disabled={!disabled && Boolean(emailError || ['price', 'wantTo'].some((key) => !answers.get(key)))}
+          disabled={!disabled && (Boolean(emailError) || ['price', 'wantTo'].some((key) => isUndefined(answers.get(key))))}
         >
           {submitLabel}
         </Button2>

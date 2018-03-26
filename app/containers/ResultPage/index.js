@@ -27,9 +27,9 @@ import {
 } from './selectors';
 
 const names = {
-  info: '資訊',
+  info: '資訊',
   story: '故事',
-  design: '設計',
+  design: '設計',
 };
 
 class ResultPage extends PureComponent {
@@ -39,6 +39,10 @@ class ResultPage extends PureComponent {
 
   handleOpen = () => {
     this.setState({ openEnroll: true });
+  }
+
+  scrollToPrescription = () => {
+    document.getElementById('prescription').scrollIntoView({ behavior: 'smooth' });
   }
 
   render() {
@@ -79,7 +83,7 @@ class ResultPage extends PureComponent {
             </Absolute>
           </Relative>
         </Box>
-        <ArrowDown mt={['-6em', null, '-8em']} />
+        <ArrowDown mt={['-6em', null, '-8em']} onClick={this.scrollToPrescription} />
         <Prescription
           mt="3em"
           type={minBy(scoresArray, ([, value]) => value)[0]}
