@@ -1,6 +1,7 @@
 import { fromJS } from 'immutable';
 import { createSelector } from 'reselect';
 import isArray from 'lodash/isArray';
+import isNil from 'lodash/isNil';
 
 import quizQuestions from '../QuizPage/questions';
 
@@ -46,6 +47,11 @@ const makeSelectQuizScore = () => createSelector(
 );
 
 
+const makeSelectSurveyTaken = () => createSelector(
+  selectSurvey,
+  (surveyState) => !isNil(surveyState.get('price')) && surveyState.get('wantTo').some(Boolean),
+);
+
 const makeSelectSurveyEmail = () => createSelector(
   selectSurvey,
   (surveyState) => surveyState.get('email')
@@ -53,6 +59,7 @@ const makeSelectSurveyEmail = () => createSelector(
 
 export {
   selectQuiz,
+  makeSelectSurveyTaken,
   makeSelectSurveyEmail,
   makeSelectQuizScore,
 };

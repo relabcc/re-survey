@@ -42,7 +42,7 @@ module.exports = (options) => ({
         use: ['style-loader', 'css-loader'],
       },
       {
-        test: /\.(eot|svg|otf|ttf|woff|woff2)$/,
+        test: /\.(eot|otf|ttf|woff|woff2)$/,
         use: 'file-loader',
       },
       {
@@ -72,7 +72,7 @@ module.exports = (options) => ({
         use: 'json-loader',
       },
       {
-        test: /\.(mp4|webm)$/,
+        test: /\.(mp4|webm|svg)$/,
         use: {
           loader: 'url-loader',
           options: {

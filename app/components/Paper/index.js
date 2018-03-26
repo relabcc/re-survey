@@ -16,6 +16,8 @@ const deco = css`
   background-image: url(${edge});
   padding-bottom: ${ratio * 100}%;
   width: 100%;
+  margin-top: -1px;
+  margin-bottom: -1px;
 `;
 
 const DecoBorder = styled(Relative)`
@@ -28,14 +30,23 @@ const DecoBorder = styled(Relative)`
   }
 `;
 
-const Paper = ({ children, ...props }) => (
+const Paper = ({ children, maxHeight, ...props }) => (
   <div>
     <ContainerDimensions>
       {({ width }) => {
-        const borderWidth = width / 120;
+        const borderWidth = width / 100;
         return (
           <DecoBorder py="1%" {...props}>
-            <Border px="2em" py="2em" borderWidth={borderWidth} borderTop="transparent" borderBottom="transparent">
+            <Border
+              px="2em"
+              py="2em"
+              bg="background"
+              borderWidth={borderWidth}
+              borderTop="transparent"
+              borderBottom="transparent"
+              overflowY={maxHeight && 'auto'}
+              style={{ maxHeight }}
+            >
               {children}
             </Border>
           </DecoBorder>
@@ -47,6 +58,7 @@ const Paper = ({ children, ...props }) => (
 
 Paper.propTypes = {
   children: PropTypes.node,
+  maxHeight: PropTypes.string,
 };
 
 export default Paper;

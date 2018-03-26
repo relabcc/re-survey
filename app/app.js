@@ -25,8 +25,6 @@ import LanguageProvider from 'containers/LanguageProvider';
 
 import ThemeProvider from 'components/ThemeProvider';
 
-import Preloader from 'preloader';
-
 import configureStore from './configureStore';
 
 // Import i18n messages
@@ -45,15 +43,13 @@ smoothscroll.polyfill();
 const render = (messages) => {
   ReactDOM.render(
     <Provider store={store}>
-      <Preloader>
-        <LanguageProvider messages={messages}>
-          <ConnectedRouter history={history}>
-            <ThemeProvider>
-              <App />
-            </ThemeProvider>
-          </ConnectedRouter>
-        </LanguageProvider>
-      </Preloader>
+      <LanguageProvider messages={messages}>
+        <ConnectedRouter history={history}>
+          <ThemeProvider>
+            <App />
+          </ThemeProvider>
+        </ConnectedRouter>
+      </LanguageProvider>
     </Provider>,
     MOUNT_NODE
   );

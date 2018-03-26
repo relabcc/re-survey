@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import map from 'lodash/map';
-import isUndefined from 'lodash/isUndefined';
+import isNil from 'lodash/isNil';
 
 import Box from 'components/Box';
 import Underline from 'components/Underline';
@@ -41,17 +41,29 @@ class Survey extends PureComponent {
   }
 
   render() {
-    const { syncAnswer, answers, disabled, submitLabel, to, ...props } = this.props;
+    const {
+      syncAnswer,
+      answers,
+      skip,
+      submitLabel,
+      to,
+      emailOnly,
+      emailLabel,
+      buttonEle: Button,
+      onSubmit,
+      emailRequired,
+      ...props
+    } = this.props;
     const { emailError, showError } = this.state;
     return (
       <Box {...props}>
-        {map(questions, ({ options, title, multiple }, key) => (
+        {!emailOnly && map(questions, ({ options, title, multiple }, key) => (
           <Box key={key} my="1em">
-            <Underline.inline my="1em" opacity={disabled ? 0.3 : 1}>
+            <Underline.inline my="1em" opacity={skip ? 0.3 : 1}>
               <Text>{title}</Text>
             </Underline.inline>
             <CheckboxGroup
-              disabled={disabled}
+              disabled={skip}
               onChange={(value) => syncAnswer(key, value)}
               options={options}
               defaultValue={answers.get(key)}
@@ -66,18 +78,24 @@ class Survey extends PureComponent {
           onBlur={this.handleEmailBlur}
           error={showError && emailError}
           defaultValue={answers.get('email')}
-          disabled={disabled}
+          disabled={skip}
           name="email"
         >
-          想收到後續通知嗎？(留信箱)
+          {emailLabel}
         </TextInputwithLable>
-        <Button2
+        <Button
           mt="4em"
           to={to}
-          disabled={!disabled && (Boolean(emailError) || ['price', 'wantTo'].some((key) => isUndefined(answers.get(key))))}
+          onSubmit={onSubmit}
+          disabled={!skip && (
+              Boolean(emailError)
+              || (!emailOnly && ['price', 'wantTo'].some((key) => isNil(answers.get(key))))
+              || (emailRequired && !answers.get('email').length)
+            )
+          }
         >
           {submitLabel}
-        </Button2>
+        </Button>
       </Box>
     );
   }
@@ -86,9 +104,19 @@ class Survey extends PureComponent {
 Survey.propTypes = {
   answers: PropTypes.shape(),
   syncAnswer: PropTypes.func,
-  disabled: PropTypes.bool,
+  skip: PropTypes.bool,
   submitLabel: PropTypes.node,
   to: PropTypes.string,
+  emailOnly: PropTypes.bool,
+  buttonEle: PropTypes.func,
+  emailLabel: PropTypes.node,
+  onSubmit: PropTypes.func,
+  emailRequired: PropTypes.bool,
+};
+
+Survey.defaultProps = {
+  buttonEle: Button2,
+  emailLabel: '想收到後續通知嗎？(留信箱)',
 };
 
 const mapStateToProps = (state) => ({

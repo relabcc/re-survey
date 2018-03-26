@@ -14,16 +14,26 @@ import Relative from 'components/Relative';
 import Bubble from 'components/Bubble';
 import BackgroundImage from 'components/BackgroundImage';
 import ArrowDown from 'components/ArrowDown';
+import Image from 'components/Image';
+import Text from 'components/Text';
+import Modal from 'components/Modal';
+import { Button1 } from 'components/Buttons';
 
 import HeaderTitle from './HeaderTitle';
 import Prescription from './Prescription';
 import Radar from '../QuizPage/InputModules/Radar/Radar';
 
 import pyramid from './pyramid.svg';
+import wantLesson from './i-want-lesson.svg';
+
+import Survey from '../SurveyPage/Survey';
+import isEmail from '../SurveyPage/isEmail';
+import { setAnswer } from '../SurveyPage/reducer';
 
 import {
   makeSelectSurveyEmail,
   makeSelectQuizScore,
+  makeSelectSurveyTaken,
 } from './selectors';
 
 const names = {
@@ -35,18 +45,45 @@ const names = {
 class ResultPage extends PureComponent {
   state = {
     openEnroll: false,
+    taken: this.props.taken,
   }
 
   handleOpen = () => {
     this.setState({ openEnroll: true });
   }
 
+  handleClose = () => {
+    this.setState({ openEnroll: false });
+  }
+
+  handleEmailChange = (email) => {
+    const { syncAnswer } = this.props;
+    const pass = email.length === 0 || isEmail(email);
+    this.setState({
+      email,
+      emailError: pass ? null : 'E-mail格式不對喔',
+    });
+    syncAnswer('email', email);
+  }
+
+  handleEmailBlur = () => {
+    const { emailError } = this.state;
+    this.setState({
+      showError: Boolean(emailError),
+    });
+  }
+
   scrollToPrescription = () => {
     document.getElementById('prescription').scrollIntoView({ behavior: 'smooth' });
   }
 
+  handleSubmit = () => {
+    this.handleClose();
+  }
+
   render() {
     const { scores } = this.props;
+    const { openEnroll, taken } = this.state;
     const scoresArray = Object.entries(scores);
 
     return (
@@ -89,6 +126,25 @@ class ResultPage extends PureComponent {
           type={minBy(scoresArray, ([, value]) => value)[0]}
           onWantClick={this.handleOpen}
         />
+        <Modal
+          isOpen={openEnroll}
+          onRequestClose={this.handleClose}
+        >
+          <Image src={wantLesson} />
+          <Text align="center" mt="2em">
+            {taken
+              ? '請確認一下E-mail地址，有任何最新消息我們會立刻通知你！'
+              : '如果你有想上課的意願，底下的問題能幫助我們更了解你對課堂上的需求喔！'}
+          </Text>
+          <Survey
+            buttonEle={Button1}
+            emailOnly={taken}
+            emailRequired
+            emailLabel="你的E-mail地址"
+            submitLabel="送出"
+            onSubmit={this.handleSubmit}
+          />
+        </Modal>
       </Container>
     );
   }
@@ -100,11 +156,19 @@ ResultPage.propTypes = {
     info: PropTypes.number,
     design: PropTypes.number,
   }),
+  taken: PropTypes.bool,
+  email: PropTypes.string,
+  syncAnswer: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
   scores: makeSelectQuizScore(),
   email: makeSelectSurveyEmail(),
+  taken: makeSelectSurveyTaken(),
 });
 
-export default connect(mapStateToProps)(ResultPage);
+const mapDispatchToProps = (dispatch) => ({
+  syncAnswer: (...param) => dispatch(setAnswer(...param)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ResultPage);

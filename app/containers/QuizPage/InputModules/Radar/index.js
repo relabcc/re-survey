@@ -27,7 +27,7 @@ class Radar extends PureComponent {
     return (
       <Box px={[0, 0, '10%']}>
         <Relative>
-          <DragMe top="10%" right="15%" w="20%" />
+          <DragMe.click top="10%" right="15%" w="20%" />
           <Absolute bottom="15.5%" left="50%" w="25%" transform="translateX(-60%)">
             <Legs />
           </Absolute>
