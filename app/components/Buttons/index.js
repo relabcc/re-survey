@@ -12,6 +12,8 @@ import Link from '../RouterLink';
 
 import blacklist from '../utils/blacklist';
 import getColor from '../utils/getColor';
+import button1 from './button-1.svg';
+import button1Hover from './button-1-hover.svg';
 import button2 from './button-2.svg';
 import button2Hover from './button-2-hover.svg';
 import button3 from './button-3.svg';
@@ -81,5 +83,6 @@ Base.propTypes = {
   disabled: PropTypes.bool,
 };
 
+export const Button1 = (props) => <Base w="10em" src={button1} hoverSrc={button1Hover} ratio={72 / 228} {...props} />;
 export const Button2 = (props) => <Base w="10em" src={button2} hoverSrc={button2Hover} hoverColor="background" ratio={72 / 227} xOffset="-0.5em" {...props} />;
 export const Button3 = (props) => <Base m="auto" w="24em" src={button3} hoverSrc={button3Hover} ratio={89.129 / 411.43} {...props} />;

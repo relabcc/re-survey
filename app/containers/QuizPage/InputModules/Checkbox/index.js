@@ -21,7 +21,7 @@ class CheckBox extends PureComponent {
 
     const ImageWrapper = variation === 2 ? (p) => <Box w={1} px="25%" {...p} />
       : (p) => <Box w={[1, null, 1 / 4]} px={['25%', null, '1.5em']} {...p} />;
-    const OptionsWrapper = variation === 2 ? (p) => <Flex flexWrap="wrap" w={1} mt="2em" {...p} />
+    const OptionsWrapper = variation === 2 ? (p) => <Flex flexWrap="wrap" w={1} mx={[0, null, '10%']} mt="2em" {...p} />
       : (p) => <Flex flexWrap="wrap" w={[1, null, 3 / 4]} mt={['2em', null, 0]} {...p} />;
     return (
       <Flex py="1em" w={1} flexWrap="wrap" {...props}>

@@ -34,11 +34,11 @@ const names = {
 
 class ResultPage extends PureComponent {
   state = {
-    skip: false,
+    openEnroll: false,
   }
 
-  handleToggle = (value) => {
-    this.setState({ skip: !value });
+  handleOpen = () => {
+    this.setState({ openEnroll: true });
   }
 
   render() {
@@ -69,6 +69,7 @@ class ResultPage extends PureComponent {
                     onChange={this.handleOnChange}
                     levels={4}
                     maxValue={20}
+                    strokeWidthRatio={75}
                   />
                 )}
               </ContainerDimensions>
@@ -79,7 +80,11 @@ class ResultPage extends PureComponent {
           </Relative>
         </Box>
         <ArrowDown mt={['-6em', null, '-8em']} />
-        <Prescription mt="3em" type={minBy(scoresArray, ([, value]) => value)[0]} />
+        <Prescription
+          mt="3em"
+          type={minBy(scoresArray, ([, value]) => value)[0]}
+          onWantClick={this.handleOpen}
+        />
       </Container>
     );
   }

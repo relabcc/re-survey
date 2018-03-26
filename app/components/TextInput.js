@@ -28,13 +28,22 @@ class TextInput extends PureComponent {
   }
 
   render() {
-    const { defaultValue, onChange, onBlur, error, disabled, ...props } = this.props;
+    const {
+      defaultValue,
+      onChange,
+      onBlur,
+      error,
+      disabled,
+      name,
+      ...props
+    } = this.props;
     const { value } = this.state;
     return (
       <Box {...props}>
         <Underline.black opacity={disabled ? 0.3 : 1}>
           <Input
             value={value}
+            name={name}
             disabled={disabled}
             onChange={this.handleOnChange}
             onBlur={() => onBlur && onBlur(value)}
@@ -52,6 +61,7 @@ TextInput.propTypes = {
   onBlur: PropTypes.func,
   error: PropTypes.node,
   disabled: PropTypes.bool,
+  name: PropTypes.string,
 };
 
 export default TextInput;

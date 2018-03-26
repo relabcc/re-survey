@@ -8,9 +8,10 @@ import Flex from 'components/Flex';
 import Paper from 'components/Paper';
 import BackgroundImage from 'components/BackgroundImage';
 import Image from 'components/Image';
-import Text from 'components/Text';
+import MdLink from 'components/MdLink';
 import Link from 'components/Link';
-import { Button3 } from 'components/Buttons';
+import Underline from 'components/Underline';
+import { Button1 } from 'components/Buttons';
 
 import title from './title.svg';
 import others from './others.svg';
@@ -20,31 +21,34 @@ import logo from './black-logo.svg';
 
 import suggestions from './suggestions';
 
-const Prescription = ({ type, ...props }) => (
+const Prescription = ({ type, enrolled, onWantClick, ...props }) => (
   <Box {...props}>
     <Relative>
       <Box px={[0, 0, '13.4%']}>
         <Paper>
           <Image src={title} />
-          <Text>{suggestions[type].suggestion}</Text>
-          <Box my="2em">
-            <Image w="6em" src={others} />
+          <MdLink py="2em" lineHeight="2">{suggestions[type].suggestion}</MdLink>
+          <Box px="1em">
+            <Underline.black />
+            <Box my="2em">
+              <Image w="6em" src={others} />
+            </Box>
+            <Relative>
+              <Paper>
+                {suggestions[type].extension.map(({ name, url }, index) => (
+                  <li key={index}>
+                    <Link href={url} target="_blank">{name}</Link>
+                  </li>
+                ))}
+              </Paper>
+              <Absolute w="35%" right="2%" top="0">
+                <BackgroundImage transform="translateY(-88%)" src={three} ratio={54.1 / 183.36} />
+              </Absolute>
+            </Relative>
           </Box>
-          <Relative>
-            <Paper>
-              {suggestions[type].extension.map(({ name, link }, index) => (
-                <li key={index}>
-                  <Link href={link} _target="blank">{name}</Link>
-                </li>
-              ))}
-            </Paper>
-            <Absolute w="35%" right="2%" top="0">
-              <BackgroundImage transform="translateY(-93%)" src={three} ratio={54.1 / 183.36} />
-            </Absolute>
-          </Relative>
-          <Flex my="2em">
-            <Button3 mx="1em">分享</Button3>
-            <Button3 mx="1em">我想上課</Button3>
+          <Flex justify="center" my="2em">
+            <Button1 mx="1em">分享</Button1>
+            <Button1 mx="1em" disabled={enrolled} onClick={onWantClick}>我想上課</Button1>
           </Flex>
           <Box mx="auto" w="8em">
             <Image src={logo} />
@@ -60,6 +64,8 @@ const Prescription = ({ type, ...props }) => (
 
 Prescription.propTypes = {
   type: PropTypes.string,
+  enrolled: PropTypes.bool,
+  onWantClick: PropTypes.func,
 };
 
 export default Prescription;

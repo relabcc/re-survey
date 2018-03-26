@@ -70,6 +70,7 @@ class RadarChart {
       showLegend: true,
       showVertices: true,
       showPolygons: true,
+      strokeWidthRatio: options.strokeWidthRatio || 45,
     };
     this.render();
   }
@@ -186,7 +187,7 @@ class RadarChart {
         .attr('transform', `translate(${this.config.w / 2 - levelFactor}, ${this.config.h / 2 - levelFactor})`)
         .attr('stroke', 'black')
         .attr('stroke-linecap', 'round')
-        .attr('stroke-width', this.config.w / 45);
+        .attr('stroke-width', this.config.w / this.config.strokeWidthRatio);
     }
   }
 
@@ -201,6 +202,7 @@ class RadarChart {
         .append('svg:circle').classed('level-dot', true)
         .attr('cx', (d, i) => levelFactor * (1 - Math.sin(i * this.config.radians / this.vis.totalAxes)))
         .attr('cy', (d, i) => levelFactor * (1 - Math.cos(i * this.config.radians / this.vis.totalAxes)))
+        .attr('r', this.config.w / 50)
         .attr('transform', `translate(${this.config.w / 2 - levelFactor}, ${this.config.h / 2 - levelFactor})`)
         .attr('fill', 'gray')
         .attr('opacity', 0)
@@ -220,7 +222,7 @@ class RadarChart {
       .attr('x2', (d, i) => this.config.w / 2 * (1 - Math.sin(i * this.config.radians / this.vis.totalAxes)))
       .attr('y2', (d, i) => this.config.h / 2 * (1 - Math.cos(i * this.config.radians / this.vis.totalAxes)))
       .attr('stroke', 'black')
-      .attr('stroke-width', this.config.w / 90);
+      .attr('stroke-width', this.config.w / (this.config.strokeWidthRatio * 2));
   }
 
   // builds out the axes labels

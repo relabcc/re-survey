@@ -28,7 +28,7 @@ class Degree extends PureComponent {
     const { value } = this.state;
     return (
       <Flex is={Underline} justify="space-between" align="center" {...props}>
-        <Box align="left" mb="0.5em">{children}</Box>
+        <Box w={1} align="left" mb="0.5em">{children}</Box>
         <Flex w="8em" mb="1em">
           {range(3).map((v, index) => (
             <LabelBox is="label" w="2em" mx="0.25em" key={index}>

@@ -18,7 +18,7 @@ export default {
   info: {
     suggestion: `看到數據就頭暈也沒關係，多用[「餐巾紙的背後」](${googleSearch}餐巾紙的背後)練習。你會發現運用視覺來思考，世界都變得不一樣！`,
     extension: [
-      { name: '實用資訊圖表分類', url: 'https://facebook.com' },
+      { name: '實用資訊圖表分類', url: 'https://www.facebook.com/ReLAB.cc/posts/1579498278775394' },
       { name: '「人人都能上手的資訊圖表設計術」', url: `${googleSearch}人人都能上手的資訊圖表設計術` },
     ],
   },

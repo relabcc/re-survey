@@ -5,11 +5,10 @@ import map from 'lodash/map';
 
 import Box from 'components/Box';
 import Underline from 'components/Underline';
-import Flex from 'components/Flex';
 import Text from 'components/Text';
-import TextInput from 'components/TextInput';
 import CheckboxGroup from 'components/CheckboxGroup';
 import { Button2 } from 'components/Buttons';
+import TextInputwithLable from 'components/TextInputwithLable';
 
 import questions from './questions';
 import { setAnswer } from './reducer';
@@ -61,20 +60,16 @@ class Survey extends PureComponent {
             />
           </Box>
         ))}
-        <Flex my="2em" flexWrap="wrap">
-          <Box w={[1, null, 1 / 2]} pr={[0, 0, '1em']} my="0.5em" opacity={disabled ? 0.3 : 1}>
-            <Underline>想收到後續通知嗎？(留信箱)</Underline>
-          </Box>
-          <Box w={[1, null, 1 / 2]} pl={[0, 0, '1em']} my="0.5em">
-            <TextInput
-              onChange={this.handleEmailChange}
-              onBlur={this.handleEmailBlur}
-              error={showError && emailError}
-              defaultValue={answers.get('email')}
-              disabled={disabled}
-            />
-          </Box>
-        </Flex>
+        <TextInputwithLable
+          onChange={this.handleEmailChange}
+          onBlur={this.handleEmailBlur}
+          error={showError && emailError}
+          defaultValue={answers.get('email')}
+          disabled={disabled}
+          name="email"
+        >
+          想收到後續通知嗎？(留信箱)
+        </TextInputwithLable>
         <Button2
           mt="4em"
           to={to}

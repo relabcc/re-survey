@@ -61,7 +61,7 @@ function Checkbox({
       <LabelBox w={1} pl="2.5em" pr="1em" is="label" disabled={disabled} opacity={disabled ? 0.3 : 1}>
         <InputCheckbox onChange={onChange} checked={checked} disabled={disabled} />
         <span className="checkmark" />
-        <Box w={1} is={noUnderline ? undefined : Underline} align="left" pl={noUnderline && '0.5em'}>
+        <Box w={1} is={noUnderline ? undefined : Underline.forCheckbox} align="left" pl={noUnderline && '0.5em'}>
           {children}
         </Box>
       </LabelBox>

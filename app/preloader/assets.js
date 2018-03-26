@@ -3,6 +3,8 @@ export default [
   require('../components/ArrowDown/down.svg'),
   require('../components/Bubble/bubble-1-bottom.svg'),
   require('../components/Bubble/bubble-1-top.svg'),
+  require('../components/Buttons/button-1-hover.svg'),
+  require('../components/Buttons/button-1.svg'),
   require('../components/Buttons/button-2-hover.svg'),
   require('../components/Buttons/button-2.svg'),
   require('../components/Buttons/button-3-hover.svg'),
