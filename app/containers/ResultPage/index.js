@@ -83,12 +83,15 @@ class ResultPage extends PureComponent {
   }
 
   handleSubmit = () => {
-    this.handleClose();
+    this.setState({
+      openEnroll: false,
+      enrolled: true,
+    });
   }
 
   render() {
     const { scores } = this.props;
-    const { openEnroll, taken } = this.state;
+    const { openEnroll, enrolled, taken } = this.state;
     const scoresArray = Object.entries(scores);
 
     return (
@@ -130,6 +133,7 @@ class ResultPage extends PureComponent {
           mt="3em"
           type={minBy(scoresArray, ([, value]) => value)[0]}
           onWantClick={this.handleOpen}
+          enrolled={enrolled}
         />
         <Modal
           isOpen={openEnroll}

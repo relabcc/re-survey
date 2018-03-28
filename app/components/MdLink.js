@@ -40,6 +40,7 @@ class MdLink extends React.PureComponent {
     }
 
     let lastIndex = 0;
+
     matches.forEach((match, idx) => {
       // Push the preceding text if there is any
       if (match.index > lastIndex) {

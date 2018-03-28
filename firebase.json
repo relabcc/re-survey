@@ -11,6 +11,10 @@
     ],
     "rewrites": [
       {
+        "source": "/data/userAgent",
+        "function": "setUserAgentData"
+      },
+      {
         "source": "**",
         "destination": "/index.html"
       }

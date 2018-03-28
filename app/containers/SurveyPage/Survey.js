@@ -86,7 +86,7 @@ class Survey extends PureComponent {
         <Button
           mt="4em"
           to={to}
-          onSubmit={onSubmit}
+          onClick={onSubmit}
           disabled={!skip && (
               Boolean(emailError)
               || (!emailOnly && ['price', 'wantTo'].some((key) => isNil(answers.get(key))))

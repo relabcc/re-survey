@@ -2,7 +2,7 @@ const googleSearch = 'https://www.google.com.tw/search?q=';
 
 export default {
   design: {
-    suggestion: `不懂設計沒關係，設計思考很容易。[「設計思考」](${googleSearch}設計思考)一書帶回去，搭配[線上圖表工具]（${googleSearch}infographic+tools），你的設計一定很可以！`,
+    suggestion: `不懂設計沒關係，設計思考很容易。[「設計思考」](${googleSearch}設計思考)一書帶回去，搭配線上圖表工具[(google 搜尋)](${googleSearch}infographic+tools)，你的設計一定很可以！`,
     extension: [
       { name: '「打造圖像腦」', url: `${googleSearch}打造圖像腦` },
       { name: '「人人都能上手的資訊圖表設計術」', url: `${googleSearch}人人都能上手的資訊圖表設計術` },

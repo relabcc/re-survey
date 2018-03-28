@@ -10,7 +10,7 @@ import blacklist from '../utils/blacklist';
 import fbicon from './fbicon.svg';
 import fbiconHover from './fbicon-hover.svg';
 
-const FbShare = styled(({ link, ...props }) => <Tag to={fbShareLink(link)} {...props} />)`
+const FbShare = styled(({ link, ...props }) => <Tag to={fbShareLink(link)} eventLabel="FB Share" {...props} />)`
   display: block;
   padding: 0;
   ${fontSize}
@@ -27,7 +27,6 @@ FbShare.defaultProps = {
   is: ReactGA.OutboundLink,
   f: '1em',
   target: '_blank',
-  eventLabel: 'FB Share',
 };
 
 export default FbShare;
