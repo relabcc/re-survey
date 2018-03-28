@@ -58,8 +58,8 @@ import Border from '../Border';
 
 const Paper = ({ children, maxHeight, ...props }) => (
   <Border
-    px="2em"
-    py="2em"
+    px={['1em', null, '2em']}
+    py={['1em', null, '2em']}
     bg="background"
     border="0.4em black solid"
     borderRadius="0.25em"

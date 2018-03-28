@@ -55,6 +55,7 @@ class Survey extends PureComponent {
       ...props
     } = this.props;
     const { emailError, showError } = this.state;
+    const emailValue = answers.get('email');
     return (
       <Box {...props}>
         {!emailOnly && map(questions, ({ options, title, multiple }, key) => (
@@ -77,7 +78,7 @@ class Survey extends PureComponent {
           onChange={this.handleEmailChange}
           onBlur={this.handleEmailBlur}
           error={showError && emailError}
-          defaultValue={answers.get('email')}
+          defaultValue={emailValue}
           placeholder="XXX@xmail.com"
           disabled={skip}
           name="email"
@@ -91,7 +92,7 @@ class Survey extends PureComponent {
           disabled={!skip && (
               Boolean(emailError)
               || (!emailOnly && ['price', 'wantTo'].some((key) => isNil(answers.get(key))))
-              || !answers.get('email').length
+              || (!emailValue || !emailValue.length)
             )
           }
         >

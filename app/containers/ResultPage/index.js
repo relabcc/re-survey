@@ -18,7 +18,6 @@ import ArrowDown from 'components/ArrowDown';
 import Image from 'components/Image';
 import Text from 'components/Text';
 import Modal from 'components/Modal';
-import Underline from 'components/Underline';
 import { Button1 } from 'components/Buttons';
 
 import HeaderTitle from './HeaderTitle';
@@ -27,6 +26,7 @@ import Radar from '../QuizPage/InputModules/Radar/Radar';
 
 import pyramid from './pyramid.svg';
 import wantLesson from './i-want-lesson.svg';
+import doubleLine from './double-line.svg';
 
 import Survey from '../SurveyPage/Survey';
 import isEmail from '../SurveyPage/isEmail';
@@ -144,10 +144,9 @@ class ResultPage extends PureComponent {
             <Image src={wantLesson} />
           </Box>
           <Box mt="1em" px="2em" f="0.9em">
-            <Underline.black />
-            <Underline.black />
+            <Image src={doubleLine} />
           </Box>
-          <Box px="1em">
+          <Box px={[0, 0, '1em']}>
             <Text align="center" fontWeight="bold" mt="2em">
               {taken
                 ? '請確認一下E-mail地址，有任何最新消息我們會立刻通知你！'
