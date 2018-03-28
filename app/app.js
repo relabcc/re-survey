@@ -16,6 +16,7 @@ import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
 import createHistory from 'history/createBrowserHistory';
 import 'sanitize.css/sanitize.css';
+import ReactGA from 'react-ga';
 
 // Import root app
 import App from 'containers/App';
@@ -33,12 +34,16 @@ import { translationMessages } from './i18n';
 // Import CSS reset and Global Styles
 import './global-styles';
 
+const IS_PRODUCTION = process.env.NODE_ENV === 'production';
+
 // Create redux store with history
 const initialState = {};
 const history = createHistory();
 const store = configureStore(initialState, history);
 const MOUNT_NODE = document.getElementById('app');
 smoothscroll.polyfill();
+
+ReactGA.initialize(IS_PRODUCTION ? 'UA-77055530-18' : 'UA-58674730-15', { debug: !IS_PRODUCTION });
 
 const render = (messages) => {
   ReactDOM.render(
@@ -84,7 +89,7 @@ if (!window.Intl) {
 // Install ServiceWorker and AppCache in the end since
 // it's not most important operation and if main code fails,
 // we do not want it installed
-if (process.env.NODE_ENV === 'production') {
+if (IS_PRODUCTION) {
   const runtime = require('offline-plugin/runtime'); // eslint-disable-line global-require
   runtime.install({
     onUpdateReady: () => {

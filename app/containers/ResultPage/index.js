@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ContainerDimensions from 'react-container-dimensions';
+import ReactGA from 'react-ga';
 
 import minBy from 'lodash/minBy';
 
@@ -50,6 +51,10 @@ class ResultPage extends PureComponent {
 
   handleOpen = () => {
     this.setState({ openEnroll: true });
+    ReactGA.event({
+      category: 'Result',
+      action: 'Want Lesson',
+    });
   }
 
   handleClose = () => {

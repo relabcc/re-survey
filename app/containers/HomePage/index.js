@@ -7,6 +7,8 @@ import BackgroundImage from 'components/BackgroundImage';
 import Box from 'components/Box';
 import FbShare from 'components/FbShare';
 
+import basename from 'basename';
+
 import dr from './dr.svg';
 import logo from './relab-logo.svg';
 
@@ -20,7 +22,7 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
           <Image mx="auto" mt="2em" w="6em" src={logo} />
         </Container>
         <Box position="fixed" top="1em" right="1em">
-          <FbShare />
+          <FbShare link={basename} />
         </Box>
       </Fullpage>
     );

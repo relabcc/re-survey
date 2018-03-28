@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ReactGA from 'react-ga';
 
 import styled from 'styled-components';
 import { fontWeight } from 'styled-system';
@@ -51,6 +52,7 @@ const BG = styled(BackgroundImage)`
 const Base = ({
   onClick,
   to,
+  href,
   ratio,
   src,
   hoverSrc,
@@ -58,11 +60,20 @@ const Base = ({
   children,
   xOffset,
   disabled,
+  eventLabel,
   ...props
 }) => (
   <Box mx="auto" align="center" {...props}>
     <BG src={src} hoverSrc={hoverSrc} ratio={ratio} disabled={disabled}>
-      <Button is={to && Link} to={to} onClick={onClick} hoverColor={hoverColor} disabled={disabled}>
+      <Button
+        is={href ? ReactGA.OutboundLink : (to && Link)}
+        to={href || to}
+        onClick={onClick}
+        hoverColor={hoverColor}
+        disabled={disabled}
+        eventLabel={eventLabel}
+        target={href && '_blank'}
+      >
         <Absolute top="50%" left="50%" transform="translate(-50%, -50%)">
           {xOffset ? <Box transform={`translateX(${xOffset})`}>{children}</Box> : children}
         </Absolute>
@@ -81,6 +92,8 @@ Base.propTypes = {
   children: PropTypes.node,
   xOffset: PropTypes.string,
   disabled: PropTypes.bool,
+  href: PropTypes.string,
+  eventLabel: PropTypes.string,
 };
 
 export const Button1 = (props) => <Base w="10em" src={button1} hoverSrc={button1Hover} ratio={72 / 228} {...props} />;

@@ -36,6 +36,7 @@ export default [
     description: '演講簡報/企劃報告/社群溝通/產品說明/理念推廣/服務介紹/教材',
     name: 'deliveryTime',
   }],
+
   [{
     type: 'Checkbox',
     title: '你最有自信的溝通情境',
@@ -54,6 +55,7 @@ export default [
     icon: nervous,
     options: scenes,
   }],
+
   [{
     type: 'Radar',
     title: '這些技能你目前為止分別點到多高？',
@@ -66,6 +68,7 @@ export default [
       { label: '了解溝通對象', scores: ['story', 'design'] },
     ],
   }],
+
   [{
     type: 'Checkbox',
     variation: 2,
@@ -85,6 +88,7 @@ export default [
       { label: '品牌概念的營造', scores: ['design', 'story'] },
     ],
   }],
+
   [{
     type: 'Pie',
     title: '做一份資訊圖表，你花在「資訊處理」、「故事文案」跟「視覺美化」的時間分別佔比多少？',
@@ -94,6 +98,7 @@ export default [
       { label: '視覺美化', color: '#9b9a98' },
     ],
   }],
+
   [{
     type: 'Degree',
     title: '你最擅長的工具',

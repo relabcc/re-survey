@@ -25,4 +25,6 @@ export default [
   'shouldCenter',
   'description',
   'dotRadius',
+  'strokeWidthRatio',
+  'eventLabel',
 ];

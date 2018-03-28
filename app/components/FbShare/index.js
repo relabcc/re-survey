@@ -1,18 +1,21 @@
+import React from 'react';
 import { fontSize } from 'styled-system';
 import styled from 'styled-components';
-import tag from 'clean-tag';
+import Tag from 'clean-tag';
+import ReactGA from 'react-ga';
 
+import fbShareLink from 'utils/fbShareLink';
 import blacklist from '../utils/blacklist';
 
 import fbicon from './fbicon.svg';
 import fbiconHover from './fbicon-hover.svg';
 
-const FbShare = styled(tag)`
+const FbShare = styled(({ link, ...props }) => <Tag to={fbShareLink(link)} {...props} />)`
+  display: block;
   padding: 0;
   ${fontSize}
   width: 2em;
   height: 2em;
-  cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'pointer'};
   background-image: url(${fbicon});
   &:hover {
     background-image: url(${fbiconHover});
@@ -21,8 +24,10 @@ const FbShare = styled(tag)`
 
 FbShare.defaultProps = {
   blacklist,
-  is: 'button',
+  is: ReactGA.OutboundLink,
   f: '1em',
+  target: '_blank',
+  eventLabel: 'FB Share',
 };
 
 export default FbShare;

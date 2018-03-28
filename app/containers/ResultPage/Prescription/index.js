@@ -12,6 +12,8 @@ import MdLink from 'components/MdLink';
 import Link from 'components/Link';
 import Underline from 'components/Underline';
 import { Button1 } from 'components/Buttons';
+import fbShareLink from 'utils/fbShareLink';
+import basename from 'basename';
 
 import title from './title.svg';
 import others from './others.svg';
@@ -47,7 +49,7 @@ const Prescription = ({ type, enrolled, onWantClick, ...props }) => (
             </Relative>
           </Box>
           <Flex justify="center" my="2em">
-            <Button1 mx="1em">分享</Button1>
+            <Button1 mx="1em" eventLabel="FB Share Result" href={fbShareLink(`${basename}share`)}>分享</Button1>
             <Button1 mx="1em" disabled={enrolled} onClick={onWantClick}>我想上課</Button1>
           </Flex>
           <Box mx="auto" w="8em">
