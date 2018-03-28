@@ -6,6 +6,7 @@ import {
   borderColor,
   borderWidth,
   border,
+  borderRadius,
 } from 'styled-system';
 import styled from 'styled-components';
 
@@ -19,4 +20,5 @@ export default styled(Box)`
   ${borderLeft}
   ${borderRight}
   ${borderTop}
+  ${borderRadius}
 `;

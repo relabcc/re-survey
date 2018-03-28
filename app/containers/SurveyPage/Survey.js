@@ -58,7 +58,7 @@ class Survey extends PureComponent {
     return (
       <Box {...props}>
         {!emailOnly && map(questions, ({ options, title, multiple }, key) => (
-          <Box key={key} my="1em">
+          <Box key={key} my="2.5em">
             <Underline my="1em" opacity={skip ? 0.3 : 1}>
               <Text fontWeight="bold">{title}</Text>
             </Underline>

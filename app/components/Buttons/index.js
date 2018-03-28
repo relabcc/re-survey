@@ -74,8 +74,8 @@ const Base = ({
         eventLabel={eventLabel}
         target={href && '_blank'}
       >
-        <Absolute top="50%" left="50%" transform="translate(-50%, -50%)">
-          {xOffset ? <Box transform={`translateX(${xOffset})`}>{children}</Box> : children}
+        <Absolute top="50%" left="50%" transform="translate(-50%, -50%)" w={1}>
+          {xOffset ? <Box align="center" transform={`translateX(${xOffset})`}>{children}</Box> : children}
         </Absolute>
       </Button>
     </BG>
@@ -98,4 +98,4 @@ Base.propTypes = {
 
 export const Button1 = (props) => <Base w="10em" src={button1} hoverSrc={button1Hover} ratio={72 / 228} {...props} />;
 export const Button2 = (props) => <Base w="10em" src={button2} hoverSrc={button2Hover} hoverColor="background" ratio={72 / 227} xOffset="-0.5em" {...props} />;
-export const Button3 = (props) => <Base m="auto" w="24em" src={button3} hoverSrc={button3Hover} ratio={89.129 / 411.43} {...props} />;
+export const Button3 = (props) => <Base m="auto" w="18em" src={button3} hoverSrc={button3Hover} ratio={89.129 / 411.43} {...props} />;

@@ -16,7 +16,7 @@ class SurveyPage extends PureComponent {
   handleSkip = (value) => {
     const skip = !value;
     this.setState({ skip });
-    if (skip) window.scroll({ top: window.innerHeight, left: 0, behavior: 'smooth' });
+    if (skip) window.scroll({ top: window.innerHeight + 100, left: 0, behavior: 'smooth' });
   }
 
   render() {

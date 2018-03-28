@@ -19,7 +19,7 @@ class CheckBox extends PureComponent {
       ...props
     } = this.props;
 
-    const ImageWrapper = variation === 2 ? (p) => <Box w={1} px="10%" {...p} />
+    const ImageWrapper = variation === 2 ? (p) => <Box w={1} px={['10%', null, '25%']} {...p} />
       : (p) => <Box w={[1, null, 1 / 4]} px={['33%', null, '1.5em']} {...p} />;
     const OptionsWrapper = variation === 2 ? (p) => <Flex flexWrap="wrap" w={1} mx={[0, null, '10%']} mt="2em" {...p} />
       : (p) => <Flex flexWrap="wrap" w={[1, null, 3 / 4]} mt={['2em', null, 0]} {...p} />;

@@ -13,7 +13,7 @@ const HeaderTitle = (props) => (
       borderRadius="2.5em"
       display="inline-block"
     >
-      <Text f={['1.5em', null, '2em']}>
+      <Text f="1.5em" fontWeight="bold">
         「資訊肥胖症」檢測結果
       </Text>
     </Box>

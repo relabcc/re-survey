@@ -4,6 +4,7 @@ import ConatianerDiemnsions from 'react-container-dimensions';
 import { format } from 'd3-format';
 
 import Text from 'components/Text';
+import Box from 'components/Box';
 import Absolute from 'components/Absolute';
 import Relative from 'components/Relative';
 import BackgroundImage from 'components/BackgroundImage';
@@ -42,33 +43,35 @@ class Clock extends PureComponent {
     const { variation, defaultValue } = this.props;
     const { hour, touched } = this.state;
     return (
-      <Relative mt={['7em', '7em', '10em']} mb="2em">
-        <BackgroundImage ratio={h / w} src={variations[variation]}>
-          <TurnMe top="-30%" left={toPercent(465 / w)} right={toPercent(188 / w)} />
-          <Absolute left={toPercent(243.98 / w)} right={toPercent(243.98 / w)} top={toPercent(39.55 / h)}>
-            <ConatianerDiemnsions>
-              {({ width }) => (
-                <ColckModule
-                  clockRadius={width * (3 / 8)}
-                  clockPadding={width / 8}
-                  onChange={this.handleOnChange}
-                  hours
-                  max={24}
-                  defaultValue={+defaultValue}
-                />
-              )}
-            </ConatianerDiemnsions>
-          </Absolute>
-          <Absolute z={1} left={0} top={0} right={0} style={{ pointerEvents: 'none' }}>
-            <BackgroundImage ratio={h / w} src={face} />
-          </Absolute>
-          <Absolute transform="translate(50%,-50%)" top={toPercent(96 / h)} right={toPercent(145 / w)}>
-            <Text f={['1.25em', null, '1.5em']} fontWeight="bold" letterSpacing="0">
-              {touched ? hour : defaultValue}
-            </Text>
-          </Absolute>
-        </BackgroundImage>
-      </Relative>
+      <Box mx={[0, 0, '5%']}>
+        <Relative mt={['7em', '7em', '9em']} mb="2em">
+          <BackgroundImage ratio={h / w} src={variations[variation]}>
+            <TurnMe top="-30%" left={toPercent(465 / w)} right={toPercent(188 / w)} />
+            <Absolute left={toPercent(243.98 / w)} right={toPercent(243.98 / w)} top={toPercent(39.55 / h)}>
+              <ConatianerDiemnsions>
+                {({ width }) => (
+                  <ColckModule
+                    clockRadius={width * (3 / 8)}
+                    clockPadding={width / 8}
+                    onChange={this.handleOnChange}
+                    hours
+                    max={24}
+                    defaultValue={+defaultValue}
+                  />
+                )}
+              </ConatianerDiemnsions>
+            </Absolute>
+            <Absolute z={1} left={0} top={0} right={0} style={{ pointerEvents: 'none' }}>
+              <BackgroundImage ratio={h / w} src={face} />
+            </Absolute>
+            <Absolute transform="translate(50%,-50%)" top={toPercent(96 / h)} right={toPercent(145 / w)}>
+              <Text f={['1.25em', null, '1.5em']} fontWeight="bold" letterSpacing="0">
+                {touched ? hour : defaultValue}
+              </Text>
+            </Absolute>
+          </BackgroundImage>
+        </Relative>
+      </Box>
     );
   }
 }

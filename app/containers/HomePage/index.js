@@ -17,11 +17,11 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
     return (
       <Fullpage>
         <Container px={['1em', null, '4em']} align="center">
-          <Box px={[0, 0, '10%']}>
+          <Box px={[0, 0, '10%', '16%', '10%']}>
             <BackgroundImage ratio={653.13 / 740.25} src={dr} my="2em"></BackgroundImage>
           </Box>
           <Button3 to="/quiz/1">病久沒藥醫，速速檢測去</Button3>
-          <Image mx="auto" mt="2em" w="6em" src={logo} />
+          <Image mx="auto" mt="1.5em" w="6em" src={logo} />
         </Container>
         <Box position="fixed" top="1em" right="1em">
           <FbShare link={basename} />
