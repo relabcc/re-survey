@@ -16,8 +16,7 @@ export const LabelBox = Box.extend`
   cursor: ${({ disabled }) => disabled ? 'default' : 'pointer'};
   display: inline-block;
   position: relative;
-  font-size: 1em;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.05em;
   .checkmark {
     position: absolute;
     left: 0;
@@ -58,10 +57,10 @@ function Checkbox({
 }) {
   return (
     <Box {...props}>
-      <LabelBox w={1} pl="2.5em" pr="1em" is="label" disabled={disabled} opacity={disabled ? 0.3 : 1}>
+      <LabelBox w={1} f={['0.9em', '1em']} pl="2em" pr="1em" is="label" disabled={disabled} opacity={disabled ? 0.3 : 1}>
         <InputCheckbox onChange={onChange} checked={checked} disabled={disabled} />
         <span className="checkmark" />
-        <Box w={1} is={noUnderline ? undefined : Underline.forCheckbox} align="left" pl={noUnderline && '0.5em'}>
+        <Box w={1} is={noUnderline ? undefined : Underline.forCheckbox} align="left" fontWeight="bold" pl={noUnderline && '0.5em'}>
           {children}
         </Box>
       </LabelBox>

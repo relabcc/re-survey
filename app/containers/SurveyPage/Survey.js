@@ -59,9 +59,9 @@ class Survey extends PureComponent {
       <Box {...props}>
         {!emailOnly && map(questions, ({ options, title, multiple }, key) => (
           <Box key={key} my="1em">
-            <Underline.inline my="1em" opacity={skip ? 0.3 : 1}>
-              <Text>{title}</Text>
-            </Underline.inline>
+            <Underline my="1em" opacity={skip ? 0.3 : 1}>
+              <Text fontWeight="bold">{title}</Text>
+            </Underline>
             <CheckboxGroup
               disabled={skip}
               onChange={(value) => syncAnswer(key, value)}
@@ -78,6 +78,7 @@ class Survey extends PureComponent {
           onBlur={this.handleEmailBlur}
           error={showError && emailError}
           defaultValue={answers.get('email')}
+          placeholder="XXX@xmail.com"
           disabled={skip}
           name="email"
         >
@@ -90,7 +91,7 @@ class Survey extends PureComponent {
           disabled={!skip && (
               Boolean(emailError)
               || (!emailOnly && ['price', 'wantTo'].some((key) => isNil(answers.get(key))))
-              || (emailRequired && !answers.get('email').length)
+              || !answers.get('email').length
             )
           }
         >

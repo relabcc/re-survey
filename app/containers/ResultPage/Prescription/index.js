@@ -43,7 +43,7 @@ const Prescription = ({ type, enrolled, onWantClick, ...props }) => (
                   </li>
                 ))}
               </Paper>
-              <Absolute w="35%" right="2%" top="0">
+              <Absolute w="45%" right="2%" top="0">
                 <BackgroundImage transform="translateY(-88%)" src={three} ratio={54.1 / 183.36} />
               </Absolute>
             </Relative>

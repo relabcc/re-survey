@@ -25,10 +25,12 @@ class Toggle extends PureComponent {
     const { onChange, defaultValue, labelTrue, labelFalse, ...props } = this.props;
     const { value } = this.state;
     return (
-      <Flex is={Underline.black} justify="center" align="center" pb="0.75em" {...props}>
-        <Checkbox noUnderline onChange={this.handleOnChange(true)} checked={value}>{labelTrue}</Checkbox>
-        <Checkbox noUnderline onChange={this.handleOnChange(false)} checked={!value}>{labelFalse}</Checkbox>
-      </Flex>
+      <Underline.black {...props}>
+        <Flex justify="center" align="center" mb="0.5em">
+          <Checkbox noUnderline onChange={this.handleOnChange(true)} checked={value}>{labelTrue}</Checkbox>
+          <Checkbox noUnderline onChange={this.handleOnChange(false)} checked={!value}>{labelFalse}</Checkbox>
+        </Flex>
+      </Underline.black>
     );
   }
 }

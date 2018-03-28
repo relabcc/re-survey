@@ -6,6 +6,7 @@ import FixedLogo from 'components/FixedLogo';
 import Steps from 'components/Steps';
 import Container from 'components/Container';
 import Fullpage from 'components/Fullpage';
+import Box from 'components/Box';
 
 import Quiz from './Quiz';
 
@@ -29,7 +30,9 @@ class QuizPage extends React.PureComponent {
     return (
       <div>
         <FixedLogo>
-          <Steps px="1em" current={current} />
+          <Box style={{ flex: 1 }} px="1em" align="center">
+            <Steps current={current} />
+          </Box>
         </FixedLogo>
         <Fullpage>
           <Container px={['1.5em', null, '4em']} pt={['6em', null, '8em']} align="center">

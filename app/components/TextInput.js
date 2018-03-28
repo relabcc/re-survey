@@ -35,6 +35,7 @@ class TextInput extends PureComponent {
       error,
       disabled,
       name,
+      placeholder,
       ...props
     } = this.props;
     const { value } = this.state;
@@ -44,6 +45,7 @@ class TextInput extends PureComponent {
           <Input
             value={value}
             name={name}
+            placeholder={placeholder}
             disabled={disabled}
             onChange={this.handleOnChange}
             onBlur={() => onBlur && onBlur(value)}
@@ -62,6 +64,7 @@ TextInput.propTypes = {
   error: PropTypes.node,
   disabled: PropTypes.bool,
   name: PropTypes.string,
+  placeholder: PropTypes.string,
 };
 
 export default TextInput;

@@ -39,14 +39,13 @@ class Quiz extends PureComponent {
           const InputModule = InputModules[question.type];
           return (
             <div key={i}>
-              <Box px={['2em', null, '4em']}>
+              <Box px={['1em', null, '4em']}>
                 <Bubble>
                   <Text>{question.title}</Text>
-                  {question.description && <Text f="0.8em">({question.description})</Text>}
+                  {question.description && <Text mt="0.5em" f="0.8em">({question.description})</Text>}
                 </Bubble>
               </Box>
               <InputModule
-                py="2em"
                 w={1}
                 {...question}
                 onChange={this.handleChange([index, i])}

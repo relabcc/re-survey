@@ -27,17 +27,19 @@ class Degree extends PureComponent {
     const { onChange, children, defaultValue, ...props } = this.props;
     const { value } = this.state;
     return (
-      <Flex is={Underline} justify="space-between" align="center" {...props}>
-        <Box w={1} align="left" mb="0.5em">{children}</Box>
-        <Flex w="8em" mb="1em">
-          {range(3).map((v, index) => (
-            <LabelBox is="label" w="2em" mx="0.25em" key={index}>
-              <InputCheckbox onChange={this.handleOnChange(v)} checked={v < value} />
-              <span className="checkmark" />
-            </LabelBox>
-          ))}
+      <Underline.forDegree w={1} {...props}>
+        <Flex w={1} justify="space-between" align="center">
+          <Box w={1} f={['0.9em', '1em']} align="left" mb="0.5em">{children}</Box>
+          <Flex f="0.9em" w="8em" mb="1em">
+            {range(3).map((v, index) => (
+              <LabelBox is="label" w="2em" mx="0.125em" key={index}>
+                <InputCheckbox onChange={this.handleOnChange(v)} checked={v < value} />
+                <span className="checkmark" />
+              </LabelBox>
+            ))}
+          </Flex>
         </Flex>
-      </Flex>
+      </Underline.forDegree>
     );
   }
 }

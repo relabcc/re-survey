@@ -39,18 +39,18 @@ class DegreeModule extends PureComponent {
 
     return (
       <Box py="1em" {...props}>
-        <Box px="10%" mt="1em" mb="2em">
+        <Box px={[0, 0, '10%']} mt="1em" mb="2em">
           <Image src={legend} />
         </Box>
         <Box>
           {options.map(({ label, ex }, index) => (
             <Degree
               key={index}
-              my="0.25em"
+              mt="0.25em"
               onChange={this.handleOnChange(index)}
               defaultValue={values.get(index)}
             >
-              <Text>{label}</Text>
+              <Text fontWeight="bold">{label}</Text>
               <Text>{ex}</Text>
             </Degree>
           ))}

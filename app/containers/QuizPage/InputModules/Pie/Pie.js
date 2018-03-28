@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { keyframes } from 'styled-components';
 import PropTypes from 'prop-types';
 import { select, event } from 'd3-selection';
 import { pie, arc } from 'd3-shape';
@@ -8,9 +9,20 @@ import { format } from 'd3-format';
 import Box from 'components/Box';
 import DragToRotate, { radianToDegree } from '../utils/DragToRotate';
 
+const bling = keyframes`
+  0%, 50%, 100% {
+    opacity: 0;
+  }
+
+  25%, 75% {
+    opacity: 0.7;
+  }
+`;
+
 const StyledContainer = Box.extend`
   .pie-handle {
     cursor: pointer;
+    animation: ${bling} 3s linear;
   }
 
   .pie-label {
@@ -104,7 +116,8 @@ class Pie extends Component {
     this.pieText = arcGroup.append('text')
       .attr('class', 'pie-label')
       .attr('text-anchor', 'middle')
-      .attr('font-size', this.width / 20)
+      .attr('font-weight', 'bold')
+      .attr('font-size', this.width / 16)
       .attr('transform', (d) => `translate(${this.label.centroid(d)})`)
       .attr('dy', '0.35em')
       .text((d) => format('.1%')(d.value / 100));
@@ -116,8 +129,8 @@ class Pie extends Component {
       .attr('y2', -this.outerRadius)
       .attr('opacity', 0)
       .attr('class', (d, i) => i > 0 && 'pie-handle')
-      .attr('stroke', 'currentColor')
-      .attr('stroke-width', this.radius / 8)
+      .attr('stroke', 'white')
+      .attr('stroke-width', this.radius / 20)
       .attr('transform', (d) => `rotate(${radianToDegree(d.startAngle)})`)
       .call(drag().filter(canDrag).container(this.container)
         .on('end', this.handleDragEnd)

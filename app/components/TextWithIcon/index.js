@@ -10,7 +10,7 @@ import img from './bubble-1-head.svg';
 
 const TextWithIcon = ({ children, ...props }) => (
   <Flex align="center" justify="center" {...props}>
-    <Box w="4em" mr="1em">
+    <Box w="4em" mr="0.25em">
       <BackgroundImage src={img} ratio={1} />
     </Box>
     <Text f="1.25em" fontWeight="bold">

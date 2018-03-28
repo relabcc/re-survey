@@ -8,7 +8,6 @@ const FlexibleFlex = Box.extend`
   text-align: left;
   align-items: ${({ align }) => align};
   flex-direction: column;
-  min-height: 100vh;
   ${({ shouldCenter }) => shouldCenter && `
     justify-content: center;
   `}
@@ -41,6 +40,7 @@ class Fullpage extends PureComponent {
       <Box position="relative" {...props}>
         <FlexibleFlex
           innerRef={(ref) => { this.container = ref; }}
+          style={{ minHeight: window.innerHeight }}
           shouldCenter={typeof window !== 'undefined' && window.innerHeight > height - 1}
           align={align}
           justify={justify}

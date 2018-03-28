@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import Tag from 'clean-tag';
 import ReactGA from 'react-ga';
 
-import fbShareLink from 'utils/fbShareLink';
 import blacklist from '../utils/blacklist';
+import fbShareLink from '../../utils/fbShareLink';
 
 import fbicon from './fbicon.svg';
 import fbiconHover from './fbicon-hover.svg';

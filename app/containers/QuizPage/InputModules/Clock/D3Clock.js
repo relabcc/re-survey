@@ -66,7 +66,7 @@ class D3Clock extends Component {
     this.width = (this.clockRadius + this.clockPadding) * 2;
     this.height = (this.clockRadius + this.clockPadding) * 2;
     this.center = [this.width / 2, this.height / 2];
-    this.hourHandLength = (3 * this.clockRadius) / 4;
+    this.hourHandLength = this.clockRadius * 0.6;
     this.minuteHandLength = (6 * this.clockRadius) / 7;
     this.minuteTickStart = this.clockRadius;
     this.hourTickStart = this.clockRadius;
@@ -94,7 +94,7 @@ class D3Clock extends Component {
         value: minute,
         length: -this.minuteHandLength,
         scale: this.minuteScale,
-        strokeRatio: 1 / 20,
+        strokeRatio: 1 / 15,
         tick: {
           range: [0, 60],
           gap: 1,
@@ -178,14 +178,12 @@ class D3Clock extends Component {
     // add marks for minutes
     if (showMinuteTick) this.drawTick('minute', showMinuteLabel);
     if (showHourTick) this.drawTick('hour', showHourLabel);
-    if (showFace) {
-      this.face.append('g').attr('class', 'face-overlay')
-        .append('circle').attr('class', 'hands-cover')
-        .attr('x', 0)
-        .attr('y', 0)
-        .attr('fill', 'currentColor')
-        .attr('r', clockRadius / 20);
-    }
+    this.face.append('g').attr('class', 'face-overlay')
+      .append('circle').attr('class', 'hands-cover')
+      .attr('x', 0)
+      .attr('y', 0)
+      .attr('fill', 'currentColor')
+      .attr('r', clockRadius / 20);
 
     const handsGroup = this.face.append('g').attr('class', 'clock-hands');
     this.hands = handsGroup.selectAll('line')

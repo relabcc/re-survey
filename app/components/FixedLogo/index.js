@@ -6,7 +6,7 @@ import Flex from 'components/Flex';
 
 import TitleLogo from './TitleLogo';
 
-const logoW = '14em';
+const logoW = '15em';
 
 const FixedLogo = ({ children, ...props }) => (
   <Flex
@@ -18,7 +18,7 @@ const FixedLogo = ({ children, ...props }) => (
     py="1em"
     {...props}
   >
-    <Box w={logoW} pr={['1em', null, '2em']}>
+    <Box w={['10em', null, logoW]} pr={['1em', null, '2em']}>
       <TitleLogo />
     </Box>
     {children}

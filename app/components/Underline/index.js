@@ -31,6 +31,15 @@ Underline.forCheckbox = styled(Underline)`
   `}
 `;
 
+Underline.forDegree = styled(Underline)`
+  ${fallback && `
+    &::after {
+      display: block;
+      margin-top: -3%;
+    }
+  `}
+`;
+
 Underline.black = styled(Underline)`
   ${fallback ? `
   &::after {
@@ -38,6 +47,15 @@ Underline.black = styled(Underline)`
   }
   ` : `
   border-image: url(${spriteBlack}) 27.5% repeat;
+  `}
+`;
+
+Underline.black.forDegree = styled(Underline.black)`
+  ${fallback && `
+    &::after {
+      display: block;
+      margin-top: -3%;
+    }
   `}
 `;
 

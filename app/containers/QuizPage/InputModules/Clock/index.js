@@ -42,7 +42,7 @@ class Clock extends PureComponent {
     const { variation, defaultValue } = this.props;
     const { hour, touched } = this.state;
     return (
-      <Relative mt={['5em', '7em', '10em']} mb="2em">
+      <Relative mt={['7em', '7em', '10em']} mb="2em">
         <BackgroundImage ratio={h / w} src={variations[variation]}>
           <TurnMe top="-30%" left={toPercent(465 / w)} right={toPercent(188 / w)} />
           <Absolute left={toPercent(243.98 / w)} right={toPercent(243.98 / w)} top={toPercent(39.55 / h)}>

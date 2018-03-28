@@ -14,6 +14,7 @@ const TextInputwithLable = ({
   defaultValue,
   name,
   children,
+  placeholder,
   ...props
 }) => (
   <Flex is="label" my="2em" flexWrap="wrap" {...props}>
@@ -28,6 +29,7 @@ const TextInputwithLable = ({
         defaultValue={defaultValue}
         disabled={disabled}
         name={name}
+        placeholder={placeholder}
       />
     </Box>
   </Flex>
@@ -39,6 +41,7 @@ TextInputwithLable.propTypes = {
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
   defaultValue: PropTypes.string,
+  placeholder: PropTypes.string,
   name: PropTypes.string,
   children: PropTypes.node,
 };

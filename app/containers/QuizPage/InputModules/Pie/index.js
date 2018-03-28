@@ -10,6 +10,7 @@ import Legs from 'components/Legs';
 import DragMe from 'components/DragMe';
 
 import legend from './legend.svg';
+import legendM from './legend-mobile.svg';
 import PieInput from './Pie';
 
 class Pie extends PureComponent {
@@ -27,16 +28,16 @@ class Pie extends PureComponent {
   render() {
     const { options } = this.props;
     return (
-      <Box pl="10%" mt={['4em', null, '6em']} mb={['4em', null, '6em']}>
+      <Box pl={[0, 0, '10%']} mt={['4em', null, '6em']} mb={['1em', null, '6em']}>
         <Relative>
-          <DragMe top="-10%" right="10%" w="15%" />
-          <Absolute bottom="-11%" left="55%" w="25%" transform="translateX(-60%)">
+          <DragMe top="-10%" right="5%" w="20%" />
+          <Absolute bottom={['-10%', null, '-11%']} left={['50%', null, '55%']} w="25%" transform="translateX(-60%)">
             <Legs />
           </Absolute>
-          <Absolute bottom="5%" left="0" w="22%">
+          <Absolute display={['none', null, 'block']} bottom="5%" left="0" w="22%">
             <BackgroundImage ratio={184.91 / 184.87} src={legend} />
           </Absolute>
-          <Relative pl="25%" pr="15%">
+          <Relative pl={['15%', null, '25%']} pr="15%">
             <PieInput
               position="relative"
               options={options}
@@ -45,6 +46,9 @@ class Pie extends PureComponent {
             />
           </Relative>
         </Relative>
+        <Box display={['block', null, 'none']} mt="3em" px="2em">
+          <BackgroundImage ratio={79.41 / 531.31} src={legendM} />
+        </Box>
       </Box>
     );
   }
