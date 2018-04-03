@@ -140,26 +140,28 @@ class ResultPage extends PureComponent {
           isOpen={openEnroll}
           onRequestClose={this.handleClose}
         >
-          <Box mx="auto" w={['14em', null, '20em']}>
-            <Image src={wantLesson} />
-          </Box>
-          <Box mt="1em" px="2em" f="0.9em">
-            <Image src={doubleLine} />
-          </Box>
-          <Box px={[0, 0, '1em']}>
-            <Text align="center" fontWeight="bold" mt="2em">
-              {taken
-                ? '請確認一下E-mail地址，有任何最新消息我們會立刻通知你！'
-                : '如果你有想上課的意願，底下的問題能幫助我們更了解你對課堂上的需求喔！'}
-            </Text>
-            <Survey
-              buttonEle={Button1}
-              emailOnly={taken}
-              emailRequired
-              emailLabel="你的E-mail地址"
-              submitLabel="送出"
-              onSubmit={this.handleSubmit}
-            />
+          <Box py={['1em', null, '2em']}>
+            <Box mx="auto" w={['14em', null, '20em']}>
+              <Image src={wantLesson} />
+            </Box>
+            <Box mt="1em" px="2em" f="0.9em">
+              <Image src={doubleLine} />
+            </Box>
+            <Box px={[0, 0, '1em']}>
+              <Text align="center" fontWeight="bold" mt="2em">
+                {taken
+                  ? '請確認一下E-mail地址，有任何最新消息我們會立刻通知你！'
+                  : '如果你有想上課的意願，底下的問題能幫助我們更了解你對課堂上的需求喔！'}
+              </Text>
+              <Survey
+                buttonEle={Button1}
+                emailOnly={taken}
+                emailRequired
+                emailLabel="你的E-mail地址"
+                submitLabel="送出"
+                onSubmit={this.handleSubmit}
+              />
+            </Box>
           </Box>
         </Modal>
       </Container>

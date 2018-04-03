@@ -31,7 +31,7 @@ class Pie extends PureComponent {
       <Box pl={[0, 0, '10%']} mt={['4em', null, '6em']} mb={['1em', null, '6em']}>
         <Box px={[0, 0, '10%']}>
           <Relative>
-            <DragMe top={['-10%', null, '-5%']} right={['5%', null, '8%']} w={['20%', null, '15%']} />
+            <DragMe top={['-10%', null, '-5%']} right={0} w={['25%', null, '20%']} />
             <Absolute bottom={['-10%', null, '-11%']} left={['50%', null, '55%']} w="25%" transform="translateX(-60%)">
               <Legs />
             </Absolute>

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { keyframes } from 'styled-components';
 import PropTypes from 'prop-types';
 import { select, event } from 'd3-selection';
 import { pie, arc } from 'd3-shape';
@@ -9,22 +8,7 @@ import { format } from 'd3-format';
 import Box from 'components/Box';
 import DragToRotate, { radianToDegree } from '../utils/DragToRotate';
 
-const bling = keyframes`
-  0%, 50%, 100% {
-    opacity: 0;
-  }
-
-  25%, 75% {
-    opacity: 0.7;
-  }
-`;
-
 const StyledContainer = Box.extend`
-  .pie-handle {
-    cursor: pointer;
-    animation: ${bling} 3s linear;
-  }
-
   .pie-label {
     pointer-events: none;
   }
@@ -126,11 +110,12 @@ class Pie extends Component {
       .attr('x1', 0)
       .attr('y1', 0)
       .attr('x2', 0)
-      .attr('y2', -this.outerRadius)
-      .attr('opacity', 0)
+      .attr('y2', -this.outerRadius + (this.width / 120))
+      .attr('opacity', 0.5)
       .attr('class', (d, i) => i > 0 && 'pie-handle')
       .attr('stroke', 'white')
-      .attr('stroke-width', this.radius / 20)
+      .attr('cursor', 'pointer')
+      .attr('stroke-width', this.radius / 30)
       .attr('transform', (d) => `rotate(${radianToDegree(d.startAngle)})`)
       .call(drag().filter(canDrag).container(this.container)
         .on('end', this.handleDragEnd)

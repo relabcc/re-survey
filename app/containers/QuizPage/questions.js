@@ -61,7 +61,7 @@ export default [
     title: '這些技能你目前為止分別點到多高？',
     name: 'skills',
     axes: [
-      { label: '說故事', scores: ['story'] },
+      { label: '故事文案', scores: ['story'] },
       { label: '視覺設計', scores: ['design'] },
       { label: '圖表製作', scores: ['info'] },
       { label: '資訊處理', scores: ['info'] },

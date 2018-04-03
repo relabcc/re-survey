@@ -18,7 +18,7 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
       <Fullpage>
         <Container px={['1em', null, '4em']} align="center">
           <Box px={[0, 0, '10%', '16%', '10%']}>
-            <BackgroundImage ratio={653.13 / 740.25} src={dr} my="2em"></BackgroundImage>
+            <BackgroundImage ratio={651.54 / 699.93} src={dr} my="2em"></BackgroundImage>
           </Box>
           <Button3 to="/quiz/1">病久沒藥醫，速速檢測去</Button3>
           <Image mx="auto" mt="1.5em" w="6em" src={logo} />

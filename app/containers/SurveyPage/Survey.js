@@ -118,7 +118,7 @@ Survey.propTypes = {
 
 Survey.defaultProps = {
   buttonEle: Button2,
-  emailLabel: '想收到後續通知嗎？(留信箱)',
+  emailLabel: '留下E-mail以收到開課及中獎通知！',
 };
 
 const mapStateToProps = (state) => ({

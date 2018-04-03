@@ -1,11 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import groupBy from 'lodash/groupBy';
+import map from 'lodash/map';
 
 import Relative from 'components/Relative';
 import Absolute from 'components/Absolute';
 import Box from 'components/Box';
 import Flex from 'components/Flex';
 import Paper from 'components/Paper';
+import Text from 'components/Text';
 import BackgroundImage from 'components/BackgroundImage';
 import Image from 'components/Image';
 import MdLink from 'components/MdLink';
@@ -21,7 +24,7 @@ import three from './three-head.svg';
 import hand from './hand-overlay.svg';
 import logo from './black-logo.svg';
 
-import suggestions from './suggestions';
+import suggestions, { categories } from './suggestions';
 
 const Prescription = ({ type, enrolled, onWantClick, ...props }) => (
   <Box {...props}>
@@ -37,10 +40,15 @@ const Prescription = ({ type, enrolled, onWantClick, ...props }) => (
             </Box>
             <Relative>
               <Paper>
-                {suggestions[type].extension.map(({ name, url }, index) => (
-                  <li key={index}>
-                    <Link href={url} target="_blank">{name}</Link>
-                  </li>
+                {map(groupBy(suggestions[type].extension, 'category'), (list, key) => (
+                  <Box key={key} my="1em">
+                    <Text my="0.5em" f="0.8em">{categories[key]}</Text>
+                    {list.map(({ name, url }, index) => (
+                      <li key={index}>
+                        <Link href={url} target="_blank">{name}</Link>
+                      </li>
+                    ))}
+                  </Box>
                 ))}
               </Paper>
               <Absolute w="45%" right="2%" top="0">
