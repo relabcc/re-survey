@@ -5,6 +5,7 @@ import Fullpage from 'components/Fullpage';
 import Image from 'components/Image';
 import BackgroundImage from 'components/BackgroundImage';
 import Box from 'components/Box';
+import Link from 'components/Link';
 import FbShare from 'components/FbShare';
 
 import basename from 'basename';
@@ -21,7 +22,9 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
             <BackgroundImage ratio={651.54 / 699.93} src={dr} my="2em"></BackgroundImage>
           </Box>
           <Button3 to="/quiz/1">病久沒藥醫，速速檢測去</Button3>
-          <Image mx="auto" mt="1.5em" w="6em" src={logo} />
+          <Link href="https://www.facebook.com/ReLAB.cc/" target="_blank">
+            <Image mx="auto" mt="1.5em" w="6em" src={logo} />
+          </Link>
         </Container>
         <Box position="fixed" top="1em" right="1em">
           <FbShare link={basename} />
