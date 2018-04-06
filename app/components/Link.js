@@ -11,6 +11,7 @@ import {
   margin,
   position,
   letterSpacing,
+  themeGet,
 } from 'styled-system';
 import styled from 'styled-components';
 import ReactGA from 'react-ga';
@@ -29,10 +30,12 @@ const getStyledLink = (ele) => styled(ele)`
   ${position}
   text-decoration: none;
   font-weight: bold;
+  border-bottom: 2px solid ${themeGet('colors.darkGray')};
+  padding-bottom: 0.2em;
 
   &:hover {
     color: black;
-    text-decoration: underline;
+    border-bottom-color: black;
   }
 `;
 
