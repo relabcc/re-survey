@@ -18,6 +18,7 @@ import TextInput from '../app/components/TextInput';
 import Paper from '../app/components/Paper';
 import List from '../app/components/List';
 import FbShare from '../app/components/FbShare';
+import Link from '../app/components/Link';
 
 storiesOf('Bubbles', module)
   .add('Bubble', () => (
@@ -79,6 +80,12 @@ storiesOf('Text', module)
     <List>
       <li>1</li>
       <li>List Item</li>
+    </List>
+  ))
+  .add('Links', () => (
+    <List>
+      <li><Link>1124124</Link></li>
+      <li><Link noBorder>1124124</Link></li>
     </List>
   ));
 

@@ -22,7 +22,7 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
             <BackgroundImage ratio={651.54 / 699.93} src={dr} my="2em"></BackgroundImage>
           </Box>
           <Button3 to="/quiz/1">病久沒藥醫，速速檢測去</Button3>
-          <Link href="https://www.facebook.com/ReLAB.cc/" target="_blank">
+          <Link noBorder href="https://www.facebook.com/ReLAB.cc/" target="_blank">
             <Image mx="auto" mt="1.5em" w="6em" src={logo} />
           </Link>
         </Container>

@@ -12,6 +12,7 @@ import {
   position,
   letterSpacing,
   themeGet,
+  borderBottom,
 } from 'styled-system';
 import styled from 'styled-components';
 import ReactGA from 'react-ga';
@@ -32,6 +33,7 @@ const getStyledLink = (ele) => styled(ele)`
   font-weight: bold;
   border-bottom: 2px solid ${themeGet('colors.darkGray')};
   padding-bottom: 0.2em;
+  ${borderBottom}
 
   &:hover {
     color: black;
@@ -39,16 +41,17 @@ const getStyledLink = (ele) => styled(ele)`
   }
 `;
 
-const Link = ({ href, ...props }) => {
+const Link = ({ noBorder, href, ...props }) => {
   const isOutbound = startsWith(href, 'http');
   const StyledLink = getStyledLink(isOutbound ? ReactGA.OutboundLink : 'a');
   return (
-    <StyledLink href={href} to={href} eventLabel={href} {...props} />
+    <StyledLink borderBottom={noBorder ? 'none' : undefined} href={href} to={href} eventLabel={href} {...props} />
   );
 };
 
 Link.propTypes = {
   href: PropTypes.string,
+  noBorder: PropTypes.bool,
 };
 
 Link.defaultProps = {

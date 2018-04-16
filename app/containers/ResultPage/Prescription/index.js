@@ -61,7 +61,7 @@ const Prescription = ({ type, enrolled, onWantClick, ...props }) => (
             <Button1 mx="1em" disabled={enrolled} onClick={onWantClick}>我想上課</Button1>
           </Flex>
           <Box mx="auto" w="8em">
-            <Link href="https://www.facebook.com/ReLAB.cc/" target="_blank">
+            <Link noBorder href="https://www.facebook.com/ReLAB.cc/" target="_blank">
               <Image src={logo} />
             </Link>
           </Box>
