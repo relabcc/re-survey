@@ -5,6 +5,8 @@ import { action } from '@storybook/addon-actions';
 // import { linkTo } from '@storybook/addon-links';
 
 import Bubble from '../app/components/Bubble';
+import Dialog from '../app/components/Bubble/Dialog';
+
 import Underline from '../app/components/Underline';
 
 import { Button1, Button2, Button3 } from '../app/components/Buttons';
@@ -34,6 +36,21 @@ storiesOf('Bubbles', module)
         <Text>在這些常見的視覺溝通製作霧中的比例形式與掌握度？</Text>
         <Text>在這些常見的視覺溝通製作霧中的比例形式與掌握度？</Text>
       </Bubble>
+    </div>
+  ))
+  .add('Dialog', () => (
+    <div>
+      <Dialog>
+        <Text>在這些常見的視覺溝通製作霧中的比例形式與掌握度？</Text>
+        <Text>在這些常見的視覺溝通製作霧中的比例形式與掌握度？</Text>
+      </Dialog>
+      <Dialog>
+        <Text>在這些常見的視覺溝通製作霧中的比例形式與掌握度？</Text>
+        <Text>在這些常見的視覺溝通製作霧中的比例形式與掌握度？</Text>
+        <Text>在這些常見的視覺溝通製作霧中的比例形式與掌握度？</Text>
+        <Text>在這些常見的視覺溝通製作霧中的比例形式與掌握度？</Text>
+        <Text>在這些常見的視覺溝通製作霧中的比例形式與掌握度？</Text>
+      </Dialog>
     </div>
   ))
   .add('Paper', () => (

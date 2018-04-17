@@ -202,7 +202,7 @@ class RadarChart {
         .append('svg:circle').classed('level-dot', true)
         .attr('cx', (d, i) => levelFactor * (1 - Math.sin(i * this.config.radians / this.vis.totalAxes)))
         .attr('cy', (d, i) => levelFactor * (1 - Math.cos(i * this.config.radians / this.vis.totalAxes)))
-        .attr('r', this.config.w / 50)
+        .attr('r', this.config.w / 30)
         .attr('transform', `translate(${this.config.w / 2 - levelFactor}, ${this.config.h / 2 - levelFactor})`)
         .attr('fill', 'gray')
         .attr('opacity', 0)

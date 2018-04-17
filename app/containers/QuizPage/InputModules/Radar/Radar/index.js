@@ -48,7 +48,7 @@ class Radar extends PureComponent {
     return (
       <Box align="center" {...props} mb="-4em">
         <StyledContainer
-          dotRadius={width / 50}
+          dotRadius={width / 30}
           innerRef={(ref) => { this.container = ref; }}
         />
       </Box>

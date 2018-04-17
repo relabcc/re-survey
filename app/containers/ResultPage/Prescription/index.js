@@ -31,7 +31,7 @@ const Prescription = ({ type, enrolled, onWantClick, ...props }) => (
     <Relative>
       <Box px={[0, 0, '13.4%']}>
         <Paper id="prescription">
-          <Image src={title} />
+          <Image mt="2em" src={title} />
           <MdLink py="2em" mx="1em" lineHeight="2">{suggestions[type].suggestion}</MdLink>
           <Box px="1em">
             <Underline.black />
@@ -51,15 +51,15 @@ const Prescription = ({ type, enrolled, onWantClick, ...props }) => (
                   </Box>
                 ))}
               </Paper>
-              <Absolute w="45%" right="2%" top="0">
-                <BackgroundImage transform="translateY(-95%)" src={three} ratio={54.1 / 183.36} />
-              </Absolute>
             </Relative>
           </Box>
           <Flex justify="center" my="2em">
             <Button1 mx="1em" eventLabel="FB Share Result" href={fbShareLink(`${basename}share`)}>分享</Button1>
             <Button1 mx="1em" disabled={enrolled} onClick={onWantClick}>我想上課</Button1>
           </Flex>
+          <Box mx="33%" my="2em">
+            <BackgroundImage src={three} ratio={54.1 / 183.36} />
+          </Box>
           <Box mx="auto" w="8em">
             <Link noBorder href="https://www.facebook.com/ReLAB.cc/" target="_blank">
               <Image src={logo} />

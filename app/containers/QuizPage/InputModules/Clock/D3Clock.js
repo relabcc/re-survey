@@ -110,9 +110,9 @@ class D3Clock extends Component {
   }
 
   updateClock = (value) => {
-    const [hour, minute] = this.getCurrentTime(value);
+    const [hour] = this.getCurrentTime(value);
     this.handData[0].value = hour;
-    this.handData[1].value = minute;
+    // this.handData[1].value = minute;
     this.hands
       .data(this.handData)
       .attr('transform', (d) => `rotate(${d.scale(d.value)})`);

@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ConatianerDiemnsions from 'react-container-dimensions';
-import { format } from 'd3-format';
 
 import Text from 'components/Text';
 import Box from 'components/Box';
@@ -25,7 +24,6 @@ const variations = {
 
 const w = 821;
 const h = 473;
-const f = format('.1f');
 
 class Clock extends PureComponent {
   state = {
@@ -34,7 +32,7 @@ class Clock extends PureComponent {
 
   handleOnChange = (hr) => {
     const { onChange } = this.props;
-    const hour = f(hr);
+    const hour = Math.round(hr);
     this.setState({ hour, touched: true });
     if (onChange) onChange(hour);
   }

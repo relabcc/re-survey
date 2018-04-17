@@ -5,8 +5,13 @@ import Fullpage from 'components/Fullpage';
 import Image from 'components/Image';
 import BackgroundImage from 'components/BackgroundImage';
 import Box from 'components/Box';
+import Relative from 'components/Relative';
+import Absolute from 'components/Absolute';
 import Link from 'components/Link';
 import FbShare from 'components/FbShare';
+import Text from 'components/Text';
+import Underline from 'components/Underline';
+import Dialog from 'components/Bubble/Dialog';
 
 import basename from 'basename';
 
@@ -14,14 +19,59 @@ import dr from './dr.svg';
 import logo from './relab-logo.svg';
 
 export default class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+  state = {
+    how: false,
+  }
+
+  setHow = () => {
+    this.setState({ how: true });
+    window.scrollTo(0, 0);
+  }
+
   render() {
+    const { how } = this.state;
+    const dialogContent = (
+      <Box align="left" m="1em" f="0.8em">
+        <Text f="1.25em" mt="-0.5em" mb="0.5em">
+          {how ? '別急，先做個檢測！' : <span>有一種胖，<br />叫做「資訊代謝不良的胖」</span>}
+        </Text>
+        <Text>
+          {how
+            ? <span>看看有什麼良方能讓資訊的吸收和傳達更有效率，<Underline.inline>提升工作和學習品質</Underline.inline>！</span>
+            : (
+              <span>現代人每天接收的資訊量已遠超過能吸收的範圍，根據
+                <Link href="https://www.google.com/search?q=%E8%AA%8D%E7%9F%A5%E8%B2%A0%E8%8D%B7%E7%90%86%E8%AB%96" target="_blank">認知負荷理論</Link>
+                ，這不只會造成心理壓力，也將嚴重<Underline.inline>影響工作和學習表現</Underline.inline>！
+              </span>)
+          }
+        </Text>
+      </Box>
+    );
     return (
       <Fullpage>
         <Container px={['1em', null, '4em']} align="center">
           <Box px={[0, 0, '10%', '16%', '10%']}>
+            <Relative>
+              <Box display={['block', null, 'none']} mb="-10%" pr="2em">
+                <Dialog.flipped>
+                  {dialogContent}
+                </Dialog.flipped>
+              </Box>
+              <Absolute
+                display={['none', null, 'block']}
+                z={1}
+                left="0"
+                w="70%"
+                transform="translate(-50%, -35%)"
+              >
+                <Dialog>
+                  {dialogContent}
+                </Dialog>
+              </Absolute>
+            </Relative>
             <BackgroundImage ratio={651.54 / 699.93} src={dr} my="2em"></BackgroundImage>
           </Box>
-          <Button3 to="/quiz/1">病久沒藥醫，速速檢測去</Button3>
+          {how ? <Button3 to="/quiz/1">病久沒藥醫，速速檢測去</Button3> : <Button3 onClick={this.setHow}>那怎麼辦</Button3>}
           <Link noBorder href="https://www.facebook.com/ReLAB.cc/" target="_blank">
             <Image mx="auto" mt="1.5em" w="6em" src={logo} />
           </Link>

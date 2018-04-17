@@ -11,12 +11,13 @@ import {
   margin,
   position,
   letterSpacing,
-  themeGet,
-  borderBottom,
 } from 'styled-system';
 import styled from 'styled-components';
 import ReactGA from 'react-ga';
 import startsWith from 'lodash/startsWith';
+
+import Box from './Box';
+import LinkArrow from './LinkArrow';
 
 const getStyledLink = (ele) => styled(ele)`
   ${display}
@@ -31,9 +32,6 @@ const getStyledLink = (ele) => styled(ele)`
   ${position}
   text-decoration: none;
   font-weight: bold;
-  border-bottom: 2px solid ${themeGet('colors.darkGray')};
-  padding-bottom: 0.2em;
-  ${borderBottom}
 
   &:hover {
     color: black;
@@ -41,17 +39,25 @@ const getStyledLink = (ele) => styled(ele)`
   }
 `;
 
-const Link = ({ noBorder, href, ...props }) => {
+const Link = ({ noBorder, ...props }) => {
+  const { href, children } = props;
   const isOutbound = startsWith(href, 'http');
   const StyledLink = getStyledLink(isOutbound ? ReactGA.OutboundLink : 'a');
+  if (noBorder) return <StyledLink to={href} eventLabel={href} {...props} />;
   return (
-    <StyledLink borderBottom={noBorder ? 'none' : undefined} href={href} to={href} eventLabel={href} {...props} />
+    <StyledLink to={href} eventLabel={href} {...props}>
+      <Box.inline mx="0.25em" px="0.25em" py="0.25em" bg="gray" borderRadius="0.5em">
+        {children}
+      </Box.inline>
+      <LinkArrow w="1.25em" mr="0.25em" />
+    </StyledLink>
   );
 };
 
 Link.propTypes = {
   href: PropTypes.string,
   noBorder: PropTypes.bool,
+  children: PropTypes.node,
 };
 
 Link.defaultProps = {

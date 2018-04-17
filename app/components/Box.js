@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 import tag from 'clean-tag';
 import {
@@ -27,6 +28,11 @@ const injectTransform = responsiveStyle({
   cssProperty: 'transform',
 });
 
+const injectVerticalAlign = responsiveStyle({
+  prop: 'verticalAlign',
+  cssProperty: 'verticalAlign',
+});
+
 const injectTransition = responsiveStyle({
   prop: 'transition',
   cssProperty: 'transition',
@@ -44,7 +50,7 @@ const zIndex = style({
   alias: 'z',
 });
 
-const StyledBox = styled(tag)`
+const Box = styled(tag)`
   ${space}
   ${width}
   ${display}
@@ -66,11 +72,14 @@ const StyledBox = styled(tag)`
   ${bottom}
   ${fontWeight}
   ${borderRadius}
+  ${injectVerticalAlign}
   ${({ onClick }) => onClick && 'cursor: pointer;'}
 `;
 
-StyledBox.defaultProps = {
+Box.defaultProps = {
   blacklist,
 };
 
-export default StyledBox;
+Box.inline = (props) => <Box is="span" display="inline-block" verticalAlign="middle" {...props} />;
+
+export default Box;
