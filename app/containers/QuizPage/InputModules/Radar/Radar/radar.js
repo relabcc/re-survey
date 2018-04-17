@@ -28,6 +28,7 @@ const handleData = (json) => {
       if (d.group === record.group) { // push record data into right group in data
         d.axes.push({
           axis: record.axis,
+          sub: record.sub,
           value: +record.value,
           description: record.description,
         });
@@ -139,7 +140,7 @@ class RadarChart {
   // build main vis components
   buildVisComponents() {
     // update vis parameters
-    this.vis.allAxis = this.data[0].axes.map((i) => i.axis);
+    this.vis.allAxis = this.data[0].axes.map((i) => ({ label: i.axis, sub: i.sub }));
     this.vis.totalAxes = this.vis.allAxis.length;
     this.vis.radius = Math.min(this.config.w / 2, this.config.h / 2);
     const realWidth = this.config.w + this.config.paddingX;
@@ -227,17 +228,26 @@ class RadarChart {
 
   // builds out the axes labels
   buildAxesLabels() {
-    this.vis.axes
+    const text = this.vis.axes
       .data(this.vis.allAxis).enter()
       .append('svg:text').classed('axis-labels', true)
-      .text((d) => d)
       .attr('text-anchor', 'middle')
-      .attr('x', (d, i) => this.config.w / 2 * (1 - 1.4 * Math.sin(i * this.config.radians / this.vis.totalAxes)))
-      .attr('y', (d, i) => this.config.h / 2 * (1 - 1.2 * Math.cos(i * this.config.radians / this.vis.totalAxes)) + this.config.h / 30)
+      .attr('transform', (d, i) => `translate(${[
+        this.config.w / 2 * (1 - 1.4 * Math.sin(i * this.config.radians / this.vis.totalAxes)),
+        this.config.h / 2 * (1 - 1.2 * Math.cos(i * this.config.radians / this.vis.totalAxes)) + this.config.h / 30,
+      ].join()})`)
       .attr('font-size', `${this.config.w / 18}px`)
       .attr('font-weight', 'bold');
+    text.append('svg:tspan')
+      .text((d) => d.label)
+      .attr('x', '0')
+      .attr('dy', '-0.5em');
+    text.append('svg:tspan')
+      .text((d) => d.sub)
+      .attr('font-size', '0.8em')
+      .attr('dy', '1.5em')
+      .attr('x', '0');
   }
-
 
   // builds [x, y] coordinates of polygon vertices.
   buildCoordinates() {

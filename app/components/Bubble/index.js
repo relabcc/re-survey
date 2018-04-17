@@ -2,15 +2,20 @@ import React from 'react';
 
 import Box from '../Box';
 
-import bubbleFactory from './bubbleFactory';
+import BubbleBase from './BubbleBase';
 import top from './bubble-1-top.svg';
 import bottom from './bubble-1-bottom.svg';
 
 const ratio = 90 / 775;
 
-export default bubbleFactory({
-  ratio,
-  top,
-  bottom,
-  Fill: (props) => <Box bg="gray" {...props} />,
-});
+const Fill = (props) => <Box bg="gray" {...props} />;
+
+export default (props) => (
+  <BubbleBase
+    ratio={ratio}
+    topSrc={top}
+    bottomSrc={bottom}
+    fill={Fill}
+    {...props}
+  />
+);

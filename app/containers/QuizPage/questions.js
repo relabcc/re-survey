@@ -60,11 +60,11 @@ export default [
     title: '資訊傳達的能力可以大致分為下列五項，你認為自己在這些技能分別點到多高呢？',
     name: 'skills',
     axes: [
-      { label: '故事文案', scores: ['story'] },
-      { label: '視覺設計', scores: ['design'] },
-      { label: '圖表製作', scores: ['info'] },
-      { label: '資訊處理', scores: ['info'] },
-      { label: '了解溝通對象', scores: ['story', 'design'] },
+      { label: '故事文案', sub: '使人產生情感共鳴', scores: ['story'] },
+      { label: '視覺設計', sub: '排版、色彩及圖像', scores: ['design'] },
+      { label: '資訊處理', sub: '理解和整理資訊架構', scores: ['info'] },
+      { label: '了解溝通對象', sub: '換位思考的同理心強度', scores: ['story', 'design'] },
+      { label: '圖表製作', sub: '對圖表的運用掌握', scores: ['info'] },
     ],
   }],
 

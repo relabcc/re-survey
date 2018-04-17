@@ -2,9 +2,9 @@ import React from 'react';
 
 import Border from '../Border';
 
-import bubbleFactory from './bubbleFactory';
-import top from './dialog-upper.svg';
-import bottom from './dialog-lower.svg';
+import BubbleBase from './BubbleBase';
+import topSrc from './dialog-upper.svg';
+import bottomSrc from './dialog-lower.svg';
 import bottomFlipped from './dialog-lower-flipped.svg';
 
 const ratio = 104.14 / 399.47;
@@ -24,16 +24,13 @@ const BorderFill = Border.extend`
 
 const config = {
   ratio,
-  top,
-  bottom,
-  Fill: (props) => <BorderFill bg="bg" {...props} />,
+  topSrc,
+  bottomSrc,
+  fill: (props) => <BorderFill bg="bg" {...props} />,
 };
 
-const Dialog = bubbleFactory(config);
+const Dialog = (props) => <BubbleBase {...config} {...props} />;
 
-Dialog.flipped = bubbleFactory({
-  ...config,
-  bottom: bottomFlipped,
-});
+Dialog.flipped = (props) => <BubbleBase {...config} bottomSrc={bottomFlipped} {...props} />;
 
 export default Dialog;

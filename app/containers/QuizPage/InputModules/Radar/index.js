@@ -36,9 +36,10 @@ class Radar extends PureComponent {
               <RadarInput
                 position="relative"
                 width={width}
-                data={axes.map(({ label }, index) => ({
+                data={axes.map(({ label, sub }, index) => ({
                   axis: label,
                   group: 'a',
+                  sub,
                   value: this.defaultValue.get(index) || 1,
                 }))}
                 onChange={this.handleOnChange}

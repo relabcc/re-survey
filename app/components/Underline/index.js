@@ -59,7 +59,7 @@ Underline.black.forDegree = styled(Underline.black)`
   `}
 `;
 
-Underline.inline = (props) => <Underline mx="-0.25em" display="inline-block" {...props} />;
-Underline.inline.black = (props) => <Underline.black display="inline-block" {...props} />;
+Underline.inline = (props) => <Underline is="span" mx="-0.25em" display="inline-block" {...props} />;
+Underline.inline.black = (props) => <Underline.black is="span" display="inline-block" {...props} />;
 
 export default Underline;

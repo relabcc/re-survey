@@ -77,12 +77,12 @@ class Clock extends PureComponent {
 Clock.propTypes = {
   variation: PropTypes.number,
   onChange: PropTypes.func,
-  defaultValue: PropTypes.string,
+  defaultValue: PropTypes.number,
 };
 
 Clock.defaultProps = {
   variation: 1,
-  defaultValue: '0.0',
+  defaultValue: 0,
 };
 
 export default Clock;

@@ -16,6 +16,7 @@ const FbShare = styled(({ link, ...props }) => <Tag to={fbShareLink(link)} event
   ${fontSize}
   width: 2em;
   height: 2em;
+  background-size: cover;
   background-image: url(${fbicon});
   &:hover {
     background-image: url(${fbiconHover});

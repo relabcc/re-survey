@@ -65,6 +65,7 @@ Radar.propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({
     group: PropTypes.string,
     axis: PropTypes.string,
+    sub: PropTypes.string,
     value: PropTypes.number,
   })),
 };
