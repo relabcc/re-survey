@@ -59,7 +59,16 @@ Underline.black.forDegree = styled(Underline.black)`
   `}
 `;
 
-Underline.inline = (props) => <Underline is="span" mx="-0.25em" display="inline-block" {...props} />;
-Underline.inline.black = (props) => <Underline.black is="span" display="inline-block" {...props} />;
+const Inline = styled(Underline)`
+  ${fallback && `
+    &::after {
+      display: block;
+      margin-top: -1em;
+    }
+  `}
+`;
+
+Underline.inline = (props) => <Inline is="span" mx="-0.25em" display="inline-block" {...props} />;
+Underline.inline.black = (props) => <Underline.black.forDegree is="span" mx="-0.25em" display="inline-block" {...props} />;
 
 export default Underline;

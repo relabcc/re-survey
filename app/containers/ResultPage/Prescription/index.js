@@ -13,7 +13,7 @@ import BackgroundImage from 'components/BackgroundImage';
 import Image from 'components/Image';
 import MdLink from 'components/MdLink';
 import Link from 'components/Link';
-import Underline from 'components/Underline';
+import Speech from 'components/Bubble/Speech';
 import { Button1 } from 'components/Buttons';
 import fbShareLink from 'utils/fbShareLink';
 import basename from 'basename';
@@ -31,15 +31,16 @@ const Prescription = ({ type, enrolled, onWantClick, ...props }) => (
     <Relative>
       <Box px={[0, 0, '13.4%']}>
         <Paper id="prescription">
-          <Image mt="2em" src={title} />
-          <MdLink py="2em" mx="1em" lineHeight="2">{suggestions[type].suggestion}</MdLink>
+          <Image mt="2em" mb="-2%" src={title} />
+          <Speech align="left">
+            <MdLink py="2em" mx="1em" lineHeight="2">{suggestions[type].suggestion}</MdLink>
+          </Speech>
           <Box px="1em">
-            <Underline.black />
             <Box my="2em">
               <Image w="6em" src={others} />
             </Box>
             <Relative>
-              <Paper>
+              <Paper borderColor="gray">
                 {map(groupBy(suggestions[type].extension, 'category'), (list, key) => (
                   <Box key={key} my="1em">
                     <Text my="0.5em" f="0.8em">{categories[key]}</Text>
@@ -60,7 +61,7 @@ const Prescription = ({ type, enrolled, onWantClick, ...props }) => (
           <Box mx="33%" my="2em">
             <BackgroundImage src={three} ratio={54.1 / 183.36} />
           </Box>
-          <Box mx="auto" w="8em">
+          <Box mx="auto" w="8em" my="2em">
             <Link noBorder href="https://www.facebook.com/ReLAB.cc/" target="_blank">
               <Image src={logo} />
             </Link>

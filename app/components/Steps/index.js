@@ -11,8 +11,8 @@ const Wrapper = Box.extend`
 `;
 
 const Steps = ({ current, ...props }) => (
-  <Wrapper w={1} py="1em" mx="auto" {...props}>
-    <BackgroundImage src={stepImages[current]} ratio={77.61 / 388.25} />
+  <Wrapper w={1} py="em" px="7%" mx="auto" {...props}>
+    <BackgroundImage src={stepImages[current]} ratio={77.6 / 259.9} />
   </Wrapper>
 );
 

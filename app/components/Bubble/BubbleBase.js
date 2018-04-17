@@ -30,7 +30,7 @@ class BubbleBase extends PureComponent {
     const { FillComp } = this;
     const { children, topSrc, bottomSrc, ratio, fill, ...props } = this.props;
     return (
-      <Box pt={['8%', null, '5%']}>
+      <Box>
         <Relative pt={`${ratio * 200}%`}>
           <ContainerDimensions>
             {({ width }) => {
@@ -46,11 +46,11 @@ class BubbleBase extends PureComponent {
                         const gap = (width * ratio * 2) - inner.height;
                         return (
                           <Box
-                            px="1em"
-                            {...props}
-                            transform={gap > 0 ? `translateY(${gap / 2}px)` : null}
                             fontWeight="bold"
                             f="1.25em"
+                            px="5%"
+                            {...props}
+                            transform={gap > 0 ? `translateY(${gap / 2}px)` : null}
                           >
                             {children}
                           </Box>

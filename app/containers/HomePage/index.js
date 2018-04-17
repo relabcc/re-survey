@@ -31,17 +31,17 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
   render() {
     const { how } = this.state;
     const dialogContent = (
-      <Box align="left" m="1em" f="0.8em">
+      <Box align="left" mx="1em" mb="1em" f="0.8em">
         <Text f="1.25em" mt="-0.5em" mb="0.5em">
           {how ? '別急，先做個檢測！' : <span>有一種胖，<br />叫做「資訊代謝不良的胖」</span>}
         </Text>
         <Text>
           {how
-            ? <span>看看有什麼良方能讓資訊的吸收和傳達更有效率，<Underline.inline>提升工作和學習品質</Underline.inline>！</span>
+            ? <span>看看有什麼良方能讓資訊的吸收和傳達更有效率，<Underline.inline>提升工作和學習品質！</Underline.inline></span>
             : (
               <span>現代人每天接收的資訊量已遠超過能吸收的範圍，根據
                 <Link href="https://www.google.com/search?q=%E8%AA%8D%E7%9F%A5%E8%B2%A0%E8%8D%B7%E7%90%86%E8%AB%96" target="_blank">認知負荷理論</Link>
-                ，這不只會造成心理壓力，也將嚴重<Underline.inline>影響工作和學習表現</Underline.inline>！
+                ，這不只會造成心理壓力，也將嚴重<Underline.inline>影響工作和學習表現！</Underline.inline>
               </span>)
           }
         </Text>
@@ -52,7 +52,7 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
         <Container px={['1em', null, '4em']} align="center">
           <Box px={[0, 0, '10%', '16%', '10%']}>
             <Relative>
-              <Box display={['block', null, 'none']} mb="-10%" pr="2em">
+              <Box display={['block', null, 'none']} mb="-10%" pr="3em">
                 <Dialog.flipped>
                   {dialogContent}
                 </Dialog.flipped>
@@ -73,7 +73,7 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
           </Box>
           {how ? <Button3 to="/quiz/1">病久沒藥醫，速速檢測去</Button3> : <Button3 onClick={this.setHow}>那怎麼辦</Button3>}
           <Link noBorder href="https://www.facebook.com/ReLAB.cc/" target="_blank">
-            <Image mx="auto" mt="1.5em" w="6em" src={logo} />
+            <Image mx="auto" my="1.5em" w="6em" src={logo} />
           </Link>
         </Container>
         <Box position="fixed" top="1em" right="1em">
