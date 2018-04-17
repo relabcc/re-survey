@@ -14,4 +14,6 @@ const handleGlob = (err, list) => {
   fs.writeFile(`${base}/assets.js`, template(list), process.exit);
 };
 
-glob(`${base}/**/*.+(jpg|jpeg|gif|png|svg)`, handleGlob);
+glob(`${base}/**/*.+(jpg|jpeg|gif|png|svg)`, {
+  ignore: `${base}/public/**`,
+}, handleGlob);
