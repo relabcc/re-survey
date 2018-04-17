@@ -31,6 +31,7 @@ const StyledLink = styled(ReactGA.OutboundLink)`
   ${position}
   text-decoration: none;
   font-weight: bold;
+  white-space: nowrap;
 `;
 
 class Link extends PureComponent {
@@ -50,7 +51,7 @@ class Link extends PureComponent {
       <StyledLink
         to={href}
         eventLabel={href}
-        lineHeight="2"
+        lineHeight="1.5"
         onMouseEnter={this.handleHoverIn}
         onMouseLeave={this.handleHoverOut}
         onFocus={this.handleHoverIn}

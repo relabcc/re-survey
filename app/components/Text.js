@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 import {
   fontSize,
@@ -43,9 +44,11 @@ Text.defaultProps = {
   lineHeight: 1.5,
   letterSpacing: '.05em',
   blacklist,
+  fontWeight: 300,
 };
 
 Text.span = Text.withComponent('span');
 Text.s = Text.withComponent('s');
+Text.bold = (props) => <Text.span fontWeight={900} {...props} />;
 
 export default Text;

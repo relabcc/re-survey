@@ -6,6 +6,7 @@ import { Button2 } from 'components/Buttons';
 import Box from 'components/Box';
 import Text from 'components/Text';
 import Bubble from 'components/Bubble';
+import MdBold from 'components/MdBold';
 
 import { setAnswer } from './reducer';
 
@@ -41,7 +42,7 @@ class Quiz extends PureComponent {
             <div key={i}>
               <Box px={['1em', null, '4em']}>
                 <Bubble>
-                  <Text>{question.title}</Text>
+                  <MdBold>{question.title}</MdBold>
                   {question.description && <Text mt="0.5em" f="0.8em">({question.description})</Text>}
                 </Bubble>
               </Box>

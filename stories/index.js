@@ -22,6 +22,7 @@ import Paper from '../app/components/Paper';
 import List from '../app/components/List';
 import FbShare from '../app/components/FbShare';
 import Link from '../app/components/Link';
+import MdBold from '../app/components/MdBold';
 
 storiesOf('Bubbles', module)
   .add('Bubble', () => (
@@ -114,6 +115,11 @@ storiesOf('Text', module)
       <li>1</li>
       <li>List Item</li>
     </List>
+  ))
+  .add('MdBold', () => (
+    <MdBold>
+      看看有什麼良方能讓資訊的吸收和傳達更有效率，提升工作和學習品質！
+    </MdBold>
   ))
   .add('Links', () => (
     <List>

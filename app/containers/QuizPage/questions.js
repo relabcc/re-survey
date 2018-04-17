@@ -26,12 +26,12 @@ const scenes = [
 export default [
   [{
     type: 'Clock',
-    title: '你每天花幾小時「吸收」對工作或學習有幫助的資訊？',
+    title: '你每天花幾小時[「吸收」]對工作或學習有幫助的資訊？',
     name: 'absorbTime',
   }, {
     type: 'Clock',
     variation: 2,
-    title: '在工作或學習中，你每天花幾小時想辦法「傳達」資訊？',
+    title: '在工作或學習中，你每天花幾小時想辦法[「傳達」]資訊？',
     description: '演講簡報/企劃報告/社群溝通/產品說明/理念推廣/服務介紹/教材...',
     name: 'deliveryTime',
   }],

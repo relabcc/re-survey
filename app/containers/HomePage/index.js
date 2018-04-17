@@ -10,7 +10,6 @@ import Absolute from 'components/Absolute';
 import Link from 'components/Link';
 import FbShare from 'components/FbShare';
 import Text from 'components/Text';
-import Underline from 'components/Underline';
 import Dialog from 'components/Bubble/Dialog';
 
 import basename from 'basename';
@@ -32,16 +31,16 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
     const { how } = this.state;
     const dialogContent = (
       <Box align="left" mx="1em" mb="1em" f="0.8em">
-        <Text f="1.25em" mt="-0.5em" mb="0.5em">
+        <Text f="1.25em" mt="-0.5em" mb="0.5em" fontWeight={900}>
           {how ? '別急，先做個檢測！' : <span>有一種胖，<br />叫做「資訊代謝不良的胖」</span>}
         </Text>
         <Text>
           {how
-            ? <span>看看有什麼良方能讓資訊的吸收和傳達更有效率，<Underline.inline>提升工作和學習品質！</Underline.inline></span>
+            ? <span>看看有什麼良方能讓資訊的吸收和傳達更有效率，<Text.bold>提升工作和學習品質！</Text.bold></span>
             : (
               <span>現代人每天接收的資訊量已遠超過能吸收的範圍，根據
                 <Link href="https://www.google.com/search?q=%E8%AA%8D%E7%9F%A5%E8%B2%A0%E8%8D%B7%E7%90%86%E8%AB%96" target="_blank">認知負荷理論</Link>
-                ，這不只會造成心理壓力，也將嚴重<Underline.inline>影響工作和學習表現！</Underline.inline>
+                ，這不只會造成心理壓力，也將嚴重<Text.bold>影響工作和學習表現！</Text.bold>
               </span>)
           }
         </Text>

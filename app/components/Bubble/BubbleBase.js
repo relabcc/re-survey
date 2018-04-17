@@ -46,7 +46,6 @@ class BubbleBase extends PureComponent {
                         const gap = (width * ratio * 2) - inner.height;
                         return (
                           <Box
-                            fontWeight="bold"
                             f="1.25em"
                             px="5%"
                             {...props}

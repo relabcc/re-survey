@@ -31,7 +31,7 @@ const Prescription = ({ type, enrolled, onWantClick, ...props }) => (
     <Relative>
       <Box px={[0, 0, '13.4%']}>
         <Paper id="prescription">
-          <Image mt="2em" mb="-2%" src={title} />
+          <Image mt="2em" mb="0.5em" src={title} />
           <Speech align="left">
             <MdLink py="2em" mx="1em" lineHeight="2">{suggestions[type].suggestion}</MdLink>
           </Speech>
@@ -43,10 +43,10 @@ const Prescription = ({ type, enrolled, onWantClick, ...props }) => (
               <Paper borderColor="gray">
                 {map(groupBy(suggestions[type].extension, 'category'), (list, key) => (
                   <Box key={key} my="1em">
-                    <Text my="0.5em" f="0.8em">{categories[key]}</Text>
+                    <Text my="0.5em" f="1em" fontWeight={900}>{categories[key]}</Text>
                     {list.map(({ name, url }, index) => (
                       <li key={index}>
-                        <Link href={url} target="_blank">{name}</Link>
+                        <Link lineHeight={2} href={url} target="_blank">{name}</Link>
                       </li>
                     ))}
                   </Box>
