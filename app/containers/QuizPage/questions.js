@@ -38,7 +38,7 @@ export default [
 
   [{
     type: 'Checkbox',
-    title: '你認為自己做得較好的資訊溝通情境有哪些呢？',
+    title: '你認為自己做得[較好]的資訊溝通情境有哪些呢？',
     description: '複選',
     name: 'confident',
     icon: confidence,
@@ -48,7 +48,7 @@ export default [
     }),
   }, {
     type: 'Checkbox',
-    title: '你認為自己做得較差的資訊溝通情境有哪些呢？',
+    title: '你認為自己做得[較差]的資訊溝通情境有哪些呢？',
     description: '複選',
     name: 'nervous',
     icon: nervous,

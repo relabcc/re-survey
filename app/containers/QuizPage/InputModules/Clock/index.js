@@ -42,9 +42,9 @@ class Clock extends PureComponent {
     const { hour, touched } = this.state;
     return (
       <Box mx={[0, 0, '5%']}>
-        <Relative mt={['7em', '7em', '9em']} mb="2em">
+        <Relative mt={['7em', '9em']} mb="2em">
           <BackgroundImage ratio={h / w} src={variations[variation]}>
-            <TurnMe top="-30%" left={toPercent(465 / w)} right={toPercent(188 / w)} />
+            <TurnMe top={['-35%', '-27%']} left={toPercent(465 / w)} right={[toPercent(160 / w), toPercent(200 / w)]} />
             <Absolute left={toPercent(243.98 / w)} right={toPercent(243.98 / w)} top={toPercent(39.55 / h)}>
               <ConatianerDiemnsions>
                 {({ width }) => (

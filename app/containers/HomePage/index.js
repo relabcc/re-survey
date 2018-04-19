@@ -17,7 +17,7 @@ import basename from 'basename';
 import dr from './dr.svg';
 import logo from './relab-logo.svg';
 
-export default class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+export default class HomePage extends React.PureComponent {
   state = {
     how: false,
   }
@@ -48,16 +48,20 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
     );
     return (
       <Fullpage>
-        <Container px={['1em', null, '4em']} align="center">
+        <Container px={['1em', null, '4em']} align="center" mt={['2em', null, null, '6em']}>
           <Box px={[0, 0, '10%', '16%', '10%']}>
             <Relative>
-              <Box display={['block', null, 'none']} mb="-10%" pr="3em">
+              <Box
+                display={['block', null, null, 'none']}
+                mb="-10%"
+                pr={[null, null, '33%', '3em']}
+              >
                 <Dialog.flipped>
                   {dialogContent}
                 </Dialog.flipped>
               </Box>
               <Absolute
-                display={['none', null, 'block']}
+                display={['none', null, null, 'block']}
                 z={1}
                 left="0"
                 w="70%"

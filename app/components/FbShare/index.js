@@ -1,5 +1,5 @@
 import React from 'react';
-import { fontSize } from 'styled-system';
+import { fontSize, themeGet } from 'styled-system';
 import styled from 'styled-components';
 import Tag from 'clean-tag';
 import ReactGA from 'react-ga';
@@ -16,6 +16,9 @@ const FbShare = styled(({ link, ...props }) => <Tag to={fbShareLink(link)} event
   ${fontSize}
   width: 2em;
   height: 2em;
+  background-color: ${themeGet('colors.bg')};
+  border: 1px solid ${themeGet('colors.black')};
+  border-radius: 50%;
   background-size: cover;
   background-image: url(${fbicon});
   &:hover {
@@ -28,6 +31,7 @@ FbShare.defaultProps = {
   is: ReactGA.OutboundLink,
   f: '1em',
   target: '_blank',
+  title: '分享出去',
 };
 
 export default FbShare;
