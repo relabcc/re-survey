@@ -37,7 +37,7 @@ const Prescription = ({ type, enrolled, onWantClick, ...props }) => (
           </Speech>
           <Box px="1em">
             <Box my="2em">
-              <Image w="6em" src={others} />
+              <Image w="9em" src={others} />
             </Box>
             <Relative>
               <Paper borderColor="gray">
