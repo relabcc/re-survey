@@ -49,7 +49,7 @@ export default class HomePage extends React.PureComponent {
     return (
       <Fullpage>
         <Container px={['1em', null, '4em']} align="center" mt={['2em', null, null, '6em']}>
-          <Box px={[0, 0, '10%', '20%']}>
+          <Box px={[0, 0, '10%', '20%', '21%', '5%']}>
             <Relative>
               <Box
                 display={['block', null, null, 'none']}
