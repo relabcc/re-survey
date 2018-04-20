@@ -49,7 +49,7 @@ export default class HomePage extends React.PureComponent {
     return (
       <Fullpage>
         <Container px={['1em', null, '4em']} align="center" mt={['2em', null, null, '6em']}>
-          <Box px={[0, 0, '10%', '16%', '10%']}>
+          <Box px={[0, 0, '10%', '20%']}>
             <Relative>
               <Box
                 display={['block', null, null, 'none']}
@@ -72,7 +72,9 @@ export default class HomePage extends React.PureComponent {
                 </Dialog>
               </Absolute>
             </Relative>
-            <BackgroundImage ratio={651.54 / 699.93} src={dr} my="2em"></BackgroundImage>
+            <Box px="2em" my="2em">
+              <BackgroundImage ratio={651.54 / 699.93} src={dr} />
+            </Box>
           </Box>
           {how ? <Button3 to="/quiz/1">病久沒藥醫，速速檢測去</Button3> : <Button3 onClick={this.setHow}>那怎麼辦</Button3>}
           <Link noBorder href="https://www.facebook.com/ReLAB.cc/" target="_blank">
