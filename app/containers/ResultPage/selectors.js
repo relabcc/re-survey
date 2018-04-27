@@ -31,7 +31,7 @@ const makeSelectQuizScore = () => createSelector(
           const axisScore = quizState.getIn([qIndex, subQIndex, index]);
           // no score or no score related
           if (axisScore === 1 || !isArray(scores)) return subSum;
-          return scores.reduce((subScoreSum, scoreKey) => incrementAtKey(subScoreSum, scoreKey, axisScore / 2), subSum);
+          return scores.reduce((subScoreSum, scoreKey) => incrementAtKey(subScoreSum, scoreKey, axisScore / 4), subSum);
         }, scoreSum);
       case 'Degree':
         return question.options.reduce((subSum, { scores }, index) => {
