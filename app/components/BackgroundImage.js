@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
 import { ratio } from 'styled-system';
+import styled from 'styled-components';
 
 import Box from './Box';
 
-const BackgroundImage = Box.extend`
+const BackgroundImage = styled(Box)`
   position: relative;
   background-image: url(${({ src }) => src});
   background-size: ${({ size }) => size};

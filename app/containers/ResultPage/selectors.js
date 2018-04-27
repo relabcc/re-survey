@@ -19,30 +19,24 @@ const selectSurvey = (state) => state.get('survey');
 const makeSelectQuizScore = () => createSelector(
   selectQuiz,
   (quizState) => quizQuestions.reduce((finalSum, questions, qIndex) => questions.reduce((scoreSum, question, subQIndex) => {
-    switch (question.type) {
-      case 'Checkbox':
-        return question.options.reduce((subSum, { scores }, index) => {
-          // not checked or no score related
-          if (!quizState.getIn([qIndex, subQIndex, index]) || !isArray(scores)) return subSum;
-          return scores.reduce((subScoreSum, scoreKey) => incrementAtKey(subScoreSum, scoreKey), subSum);
-        }, scoreSum);
-      case 'Radar':
-        return question.axes.reduce((subSum, { scores }, index) => {
-          const axisScore = quizState.getIn([qIndex, subQIndex, index]);
-          // no score or no score related
-          if (axisScore === 1 || !isArray(scores)) return subSum;
-          return scores.reduce((subScoreSum, scoreKey) => incrementAtKey(subScoreSum, scoreKey, axisScore / 4), subSum);
-        }, scoreSum);
-      case 'Degree':
-        return question.options.reduce((subSum, { scores }, index) => {
-          const optionScore = quizState.getIn([qIndex, subQIndex, index]);
-          // no score or no score related
-          if (!optionScore || !isArray(scores)) return subSum;
-          return scores.reduce((subScoreSum, scoreKey) => incrementAtKey(subScoreSum, scoreKey, optionScore / 2), subSum);
-        }, scoreSum);
-      default:
-        return scoreSum;
+    if (question.type === 'Checkbox') {
+      return question.options.reduce((subSum, { scores }, index) => {
+        // not checked or no score related
+        if (!quizState.getIn([qIndex, subQIndex, index]) || !isArray(scores)) return subSum;
+        return scores.reduce((subScoreSum, scoreKey) => incrementAtKey(subScoreSum, scoreKey), subSum);
+      }, scoreSum);
     }
+
+    if (question.type === 'Radar') {
+      return question.axes.reduce((subSum, { scores }, index) => {
+        const axisScore = quizState.getIn([qIndex, subQIndex, index]);
+        // no score or no score related
+        if (axisScore === 1 || !isArray(scores)) return subSum;
+        return scores.reduce((subScoreSum, scoreKey) => incrementAtKey(subScoreSum, scoreKey, axisScore / 4), subSum);
+      }, scoreSum);
+    }
+
+    return scoreSum;
   }, finalSum), scoreBase).toJS()
 );
 

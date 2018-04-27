@@ -23,6 +23,7 @@ import doubleLine from './double-line.svg';
 
 import Survey from '../SurveyPage/Survey';
 import isEmail from '../SurveyPage/isEmail';
+import { setScore } from '../QuizPage/reducer';
 import { setAnswer } from '../SurveyPage/reducer';
 
 import {
@@ -35,6 +36,11 @@ class ResultPage extends PureComponent {
   state = {
     openEnroll: false,
     taken: this.props.taken,
+  }
+
+  componentDidMount() {
+    const { syncScore, scores } = this.props;
+    syncScore(scores);
   }
 
   handleOpen = () => {
@@ -133,6 +139,7 @@ ResultPage.propTypes = {
   taken: PropTypes.bool,
   email: PropTypes.string,
   syncAnswer: PropTypes.func,
+  syncScore: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -143,6 +150,7 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = (dispatch) => ({
   syncAnswer: (...param) => dispatch(setAnswer(...param)),
+  syncScore: (score) => dispatch(setScore(score)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ResultPage);

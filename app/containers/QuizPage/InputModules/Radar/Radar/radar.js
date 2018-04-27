@@ -236,15 +236,15 @@ class RadarChart {
         this.config.w / 2 * (1 - 1.4 * Math.sin(i * this.config.radians / this.vis.totalAxes)),
         this.config.h / 2 * (1 - 1.2 * Math.cos(i * this.config.radians / this.vis.totalAxes)) + this.config.h / 30,
       ].join()})`)
-      .attr('font-size', `${this.config.w / 18}px`)
-      .attr('font-weight', 'bold');
+      .attr('font-size', `${this.config.w / 18}px`);
     text.append('svg:tspan')
       .text((d) => d.label)
       .attr('x', '0')
-      .attr('dy', '-0.5em');
+      .attr('dy', '-0.5em')
+      .attr('font-weight', 'bold');
     text.append('svg:tspan')
       .text((d) => d.sub)
-      .attr('font-size', '0.8em')
+      .attr('font-size', '0.75em')
       .attr('dy', '1.5em')
       .attr('x', '0');
   }

@@ -3,24 +3,12 @@ import nervous from './nervous.svg';
 import love from './love.svg';
 
 const scenes = [
-  {
-    label: '一對一講解',
-  },
-  {
-    label: '多人會議討論',
-  },
-  {
-    label: '面對多人演講/教學',
-  },
-  {
-    label: '線上社群貼文內容設計',
-  },
-  {
-    label: '海報文宣品視覺設計',
-  },
-  {
-    label: '撰寫線上文章、報導',
-  },
+  { label: '一對一講解' },
+  { label: '多人會議討論' },
+  { label: '面對多人演講/教學' },
+  { label: '線上社群貼文內容設計' },
+  { label: '海報文宣品視覺設計' },
+  { label: '撰寫線上文章、報導' },
 ];
 
 export default [
@@ -32,7 +20,7 @@ export default [
     type: 'Clock',
     variation: 2,
     title: '在工作或學習中，你每天花幾小時想辦法[「傳達」]資訊？',
-    description: '演講簡報/企劃報告/社群溝通/產品說明/理念推廣/服務介紹/教材...',
+    description: '演講簡報/企劃報告/社群溝通/產品說明/理念推廣/服務介紹/教材...等',
     name: 'deliveryTime',
   }],
 
@@ -42,10 +30,7 @@ export default [
     description: '複選',
     name: 'confident',
     icon: confidence,
-    options: scenes.map((v, i) => {
-      if (i < 4) return v;
-      return Object.assign(v, { scores: ['story'] });
-    }),
+    options: scenes,
   }, {
     type: 'Checkbox',
     title: '你認為自己做得[較差]的資訊溝通情境有哪些呢？',

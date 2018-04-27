@@ -77,7 +77,7 @@ export default class HomePage extends React.PureComponent {
             </Box>
           </Box>
           {how ? <Button3 to="/quiz/1">病久沒藥醫，速速檢測去</Button3> : <Button3 onClick={this.setHow}>那怎麼辦</Button3>}
-          <Link noBorder href="https://www.facebook.com/ReLAB.cc/" target="_blank">
+          <Link noBorder href="https://www.facebook.com/ReLAB.cc/" target="_blank" title="Re-lab 粉絲頁">
             <Image mx="auto" my="1.5em" w="6em" src={logo} />
           </Link>
         </Container>

@@ -27,4 +27,6 @@ export default [
   'dotRadius',
   'strokeWidthRatio',
   'eventLabel',
+  'verticalAlign',
+  'lineHeight',
 ];

@@ -8,13 +8,16 @@ const database = admin.database();
 // // https://firebase.google.com/docs/functions/write-firebase-functions
 
 exports.setUserAgentData = functions.https.onRequest((req, res) => cors(req, res, () => {
-  const { key } = req.query;
+  const { key, tz } = req.query;
   const meta = {
     ip: req.headers['cf-connecting-ip'],
     userAgent: req.headers['user-agent'],
+    timezone: tz,
   };
 
-  database.ref(`logs/${key}/meta`).set(meta).then(() => {
+  const ref = database.ref(`logs/${key}`);
+  ref.child('createdAt').set(admin.database.ServerValue.TIMESTAMP);
+  ref.child('meta').set(meta).then(() => {
     res.json(meta);
   }).catch((err) => {
     res.status(500).json({ error: err.toString() });

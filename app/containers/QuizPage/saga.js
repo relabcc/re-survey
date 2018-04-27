@@ -6,7 +6,7 @@ import { LOCATION_CHANGE } from 'react-router-redux';
 import fetch from 'utils/fetch';
 import firebase from 'services/firebase';
 import basename from 'basename';
-import { SET_ANSWER, receivedDBKey } from './reducer';
+import { SET_ANSWER, SET_SCORE, receivedDBKey } from './reducer';
 import { SET_ANSWER as SET_SURVEY_ANSWER } from '../SurveyPage/reducer';
 
 const logRef = firebase.database().ref('logs');
@@ -27,7 +27,7 @@ function* getKey() {
   if (!key) {
     key = logRef.push().key;
     yield all([
-      call(fetch, `${basename}data/userAgent?key=${key}`),
+      call(fetch, `${basename}data/userAgent?key=${key}&tz=${-new Date().getTimezoneOffset() / 60}`),
       put(receivedDBKey(key)),
     ]);
   }
@@ -45,9 +45,7 @@ function* handleArrayAnswer(target, answer) {
   return yield all(compact(answerTasks));
 }
 
-function* postQuizToFirebase({ idPath, answer }) {
-  const key = yield call(getKey);
-  const target = logRef.child(`/${key}/quiz/${idPath.join('/')}`);
+function* handleAnswer(answer, target) {
   const ans = tryToJS(answer);
   if (isArray(ans)) {
     yield call(handleArrayAnswer, target, ans);
@@ -56,15 +54,22 @@ function* postQuizToFirebase({ idPath, answer }) {
   }
 }
 
+function* postQuizToFirebase({ idPath, answer }) {
+  const dbKey = yield call(getKey);
+  const target = logRef.child(`/${dbKey}/quiz/${idPath.join('/')}`);
+  yield call(handleAnswer, answer, target);
+}
+
 function* postSurveyToFirebase({ key, answer }) {
   const dbKey = yield call(getKey);
   const target = logRef.child(`/${dbKey}/survey/${key}`);
-  const ans = tryToJS(answer);
-  if (isArray(ans)) {
-    yield call(handleArrayAnswer, target, ans);
-  } else {
-    yield call([target, target.set], ans);
-  }
+  yield call(handleAnswer, answer, target);
+}
+
+function* postScoreFirebase({ score }) {
+  const dbKey = yield call(getKey);
+  const target = logRef.child(`/${dbKey}/score`);
+  yield call([target, target.set], score);
 }
 
 function* onLocationChange({ payload: { pathname } }) {
@@ -80,6 +85,7 @@ export default function* quizSaga() {
   yield all([
     takeEvery(SET_ANSWER, postQuizToFirebase),
     takeEvery(SET_SURVEY_ANSWER, postSurveyToFirebase),
+    takeEvery(SET_SCORE, postScoreFirebase),
     takeEvery(LOCATION_CHANGE, onLocationChange),
   ]);
 }

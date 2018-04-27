@@ -62,7 +62,7 @@ const Prescription = ({ type, enrolled, onWantClick, ...props }) => (
             <BackgroundImage src={three} ratio={54.1 / 183.36} />
           </Box>
           <Box mx="auto" w="8em" my="2em">
-            <Link noBorder href="https://www.facebook.com/ReLAB.cc/" target="_blank">
+            <Link noBorder href="https://www.facebook.com/ReLAB.cc/" target="_blank" title="Re-lab 粉絲頁">
               <Image src={logo} />
             </Link>
           </Box>
