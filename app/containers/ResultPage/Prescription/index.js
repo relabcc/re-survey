@@ -11,12 +11,14 @@ import BackgroundImage from 'components/BackgroundImage';
 import Image from 'components/Image';
 // import MdLink from 'components/MdLink';
 import Link from 'components/Link';
+import ResultFatty from 'components/ResultFatty';
 import Speech from 'components/Bubble/Speech';
+import Res from 'components/Bubble/Res';
 import { Button1 } from 'components/Buttons';
 import fbShareLink from 'utils/fbShareLink';
 import basename from 'basename';
 
-import title from './title.svg';
+import titleImg from './title.svg';
 // import others from './others.svg';
 import three from './three-head.svg';
 import hand from './hand-overlay.svg';
@@ -27,27 +29,39 @@ import suggestions from './suggestions';
 import diagnose from './diagnose';
 
 const getDiagnose = (score) => {
-  if (score > 4) return diagnose[2];
-  if (score > 2) return diagnose[1];
-  return diagnose[0];
+  if (score > 4) return 2;
+  if (score > 2) return 1;
+  return 0;
 };
 
 const Prescription = ({ type, enrolled, onWantClick, scoreSum, ...props }) => {
-  const dia = getDiagnose(scoreSum);
+  const diaIndex = getDiagnose(scoreSum);
+  const dia = diagnose[diaIndex];
   return (
     <Box {...props}>
       <Relative>
         <Box px={[0, 0, '13.4%']}>
           <Paper id="prescription">
             <HeaderTitle my="2em" />
-            <Image mt="2em" mb="0.5em" src={title} />
+            <Box px="5%" my="2em">
+              <ResultFatty mb="2em" w={1} active={diaIndex} />
+              <Res>
+                <Text fontWeight="bold">{dia.title}</Text>
+              </Res>
+            </Box>
+            <Image mt="2em" mb="0.5em" src={titleImg} />
             <Speech align="left">
-              <Text>{dia.title}</Text>
-              <Box is="ul" my="1em">
-                {suggestions[type].map(({ name, url }, index) => (
-                  <li key={index}>
-                    <Link lineHeight={2} href={url} target="_blank">{name}</Link>
-                  </li>
+              <Text mt="1.5em" fontWeight="bold">{dia.suggestion}</Text>
+              <Box f="0.8em" pl="1.5rem" my="2em">
+                {suggestions[type].map(({ name, title, url }, index) => (
+                  <Box mb="1.5em" key={index}>
+                    <Text>{title}</Text>
+                    <ul>
+                      <li>
+                        <Link lineHeight={2} href={url} target="_blank">{name}</Link>
+                      </li>
+                    </ul>
+                  </Box>
                 ))}
               </Box>
             </Speech>

@@ -7,6 +7,7 @@ import { action } from '@storybook/addon-actions';
 import Bubble from '../app/components/Bubble';
 import Dialog from '../app/components/Bubble/Dialog';
 import Speech from '../app/components/Bubble/Speech';
+import Res from '../app/components/Bubble/Res';
 
 import Underline from '../app/components/Underline';
 
@@ -23,6 +24,7 @@ import List from '../app/components/List';
 import FbShare from '../app/components/FbShare';
 import Link from '../app/components/Link';
 import MdBold from '../app/components/MdBold';
+import ResultFatty from '../app/components/ResultFatty';
 
 storiesOf('Bubbles', module)
   .add('Bubble', () => (
@@ -70,6 +72,19 @@ storiesOf('Bubbles', module)
       </Speech>
     </div>
   ))
+  .add('Res', () => (
+    <div>
+      <Res>
+        <Text>高風險群，建議儘快就診治療</Text>
+      </Res>
+      <Res>
+        <Text>亞健康群，建議進一步檢查</Text>
+      </Res>
+      <Res>
+        <Text>指數正常，建議定期回診追蹤</Text>
+      </Res>
+    </div>
+  ))
   .add('Paper', () => (
     <Paper>
       <Text>在這些常見的視覺溝通製作霧中的比例形式與掌握度？</Text>
@@ -98,6 +113,9 @@ storiesOf('Buttons', module)
   ))
   .add('FbShare', () => (
     <FbShare onClick={action('onClick')} />
+  ))
+  .add('ResultFatty', () => (
+    <ResultFatty w={1} active={0} />
   ));
 
 storiesOf('Text', module)
