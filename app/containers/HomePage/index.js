@@ -72,7 +72,7 @@ export default class HomePage extends React.PureComponent {
                 </Dialog>
               </Absolute>
             </Relative>
-            <Box px="2em" my="2em">
+            <Box px="15%" my="2em">
               <BackgroundImage ratio={651.54 / 699.93} src={dr} />
             </Box>
           </Box>

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import ReactGA from 'react-ga';
 
 import minBy from 'lodash/minBy';
+import sumBy from 'lodash/sumBy';
 
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -15,7 +16,6 @@ import Text from 'components/Text';
 import Modal from 'components/Modal';
 import { Button1 } from 'components/Buttons';
 
-import HeaderTitle from './HeaderTitle';
 import Prescription from './Prescription';
 
 import wantLesson from './i-want-lesson.svg';
@@ -90,10 +90,10 @@ class ResultPage extends PureComponent {
 
     return (
       <Container py="2em">
-        <HeaderTitle />
         <Prescription
           mt="3em"
           type={minBy(scoresArray, ([, value]) => value)[0]}
+          scoreSum={sumBy(scoresArray, ([, value]) => value)}
           onWantClick={this.handleOpen}
           enrolled={enrolled}
         />
