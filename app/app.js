@@ -44,8 +44,7 @@ const MOUNT_NODE = document.getElementById('app');
 smoothscroll.polyfill();
 
 // official UA-77055530-18
-
-ReactGA.initialize('UA-58674730-15', { debug: !IS_PRODUCTION });
+ReactGA.initialize(IS_PRODUCTION ? 'UA-77055530-18' : 'UA-58674730-15', { debug: !IS_PRODUCTION });
 
 const render = (messages) => {
   ReactDOM.render(

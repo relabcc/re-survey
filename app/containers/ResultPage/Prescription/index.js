@@ -9,6 +9,7 @@ import Paper from 'components/Paper';
 import Text from 'components/Text';
 import BackgroundImage from 'components/BackgroundImage';
 import Image from 'components/Image';
+import Underline from 'components/Underline';
 // import MdLink from 'components/MdLink';
 import Link from 'components/Link';
 import ResultFatty from 'components/ResultFatty';
@@ -42,13 +43,20 @@ const Prescription = ({ type, enrolled, onWantClick, scoreSum, ...props }) => {
       <Relative>
         <Box px={[0, 0, '13.4%']}>
           <Paper id="prescription">
-            <HeaderTitle my="2em" pos={diaIndex}>
+            <Box align="center">
+              <Underline.inline.black>
+                <Text f="1.5em" mt="1em" fontWeight="bold">
+                  「資訊肥胖症」檢測結果
+                </Text>
+              </Underline.inline.black>
+            </Box>
+            <HeaderTitle mt="2em" pos={diaIndex}>
               {dia.title}
             </HeaderTitle>
-            <Box px="7.5%" my="2em">
-              <ResultFatty mb="2em" w={1} active={diaIndex} />
+            <Box px="7.5%" mt="1em" mb="2em">
+              <ResultFatty w={1} active={diaIndex} />
             </Box>
-            <Image mb="0.5em" src={titleImg} />
+            <Image my="1em" src={titleImg} />
             <Speech align="left">
               <Text mt="1.5em" fontWeight="bold">{dia.suggestion}</Text>
               <Box f="0.8em" my="2em">

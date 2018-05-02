@@ -14,6 +14,7 @@ const Underline = styled(Box)`
   ${fallback ? `
   &::after {
     content: url(${line});
+    width: 100%;
   }
   ` : `
   border: 0.5em solid transparent;

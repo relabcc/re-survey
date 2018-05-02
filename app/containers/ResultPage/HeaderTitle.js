@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import Box from 'components/Box';
 import Text from 'components/Text';
 
-const size = '1.5em';
+const size = '1.25em';
 
 const Triangle = styled(Box)`
   width: 0;
@@ -16,6 +16,8 @@ const Triangle = styled(Box)`
   border-top: ${size} solid black;
 `;
 
+const poses = ['17.5%', '47.5%', '77.5%'];
+
 const HeaderTitle = ({ children, pos, ...props }) => (
   <Box align="center" {...props}>
     <Box
@@ -25,14 +27,11 @@ const HeaderTitle = ({ children, pos, ...props }) => (
       py={['1em', null, '2em']}
       borderRadius="2.5em"
     >
-      <Text f="1.5em" fontWeight="bold">
-        「資訊肥胖症」檢測結果
-      </Text>
       <Text f="1.25em" fontWeight="bold">
         {children}
       </Text>
     </Box>
-    <Triangle ml={`${10 + (pos * 33)}%`} />
+    <Triangle ml={poses[pos]} />
   </Box>
 );
 
