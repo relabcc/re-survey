@@ -43,7 +43,7 @@ const Prescription = ({ type, enrolled, onWantClick, scoreSum, ...props }) => {
         <Box px={[0, 0, '13.4%']}>
           <Paper id="prescription">
             <HeaderTitle my="2em" />
-            <Box px="5%" my="2em">
+            <Box px="7.5%" my="2em">
               <ResultFatty mb="2em" w={1} active={diaIndex} />
               <Res>
                 <Text fontWeight="bold">{dia.title}</Text>

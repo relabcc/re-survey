@@ -9,7 +9,7 @@ const HeaderTitle = (props) => (
       bg="black"
       color="white"
       px="5em"
-      py="2em"
+      py={['1em', null, '2em']}
       borderRadius="2.5em"
       display="inline-block"
     >
