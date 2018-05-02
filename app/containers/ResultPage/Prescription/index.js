@@ -13,7 +13,7 @@ import Image from 'components/Image';
 import Link from 'components/Link';
 import ResultFatty from 'components/ResultFatty';
 import Speech from 'components/Bubble/Speech';
-import Res from 'components/Bubble/Res';
+// import Res from 'components/Bubble/Res';
 import { Button1 } from 'components/Buttons';
 import fbShareLink from 'utils/fbShareLink';
 import basename from 'basename';
@@ -42,25 +42,20 @@ const Prescription = ({ type, enrolled, onWantClick, scoreSum, ...props }) => {
       <Relative>
         <Box px={[0, 0, '13.4%']}>
           <Paper id="prescription">
-            <HeaderTitle my="2em" />
+            <HeaderTitle my="2em" pos={diaIndex}>
+              {dia.title}
+            </HeaderTitle>
             <Box px="7.5%" my="2em">
               <ResultFatty mb="2em" w={1} active={diaIndex} />
-              <Res>
-                <Text fontWeight="bold">{dia.title}</Text>
-              </Res>
             </Box>
-            <Image mt="2em" mb="0.5em" src={titleImg} />
+            <Image mb="0.5em" src={titleImg} />
             <Speech align="left">
               <Text mt="1.5em" fontWeight="bold">{dia.suggestion}</Text>
-              <Box f="0.8em" pl="1.5rem" my="2em">
+              <Box f="0.8em" my="2em">
                 {suggestions[type].map(({ name, title, url }, index) => (
                   <Box mb="1.5em" key={index}>
-                    <Text>{title}</Text>
-                    <ul>
-                      <li>
-                        <Link lineHeight={2} href={url} target="_blank">{name}</Link>
-                      </li>
-                    </ul>
+                    <Text>{title}：</Text>
+                    <Link lineHeight={2} href={url} target="_blank">{name}</Link>
                   </Box>
                 ))}
               </Box>
