@@ -4,7 +4,8 @@
     ".write": "auth != null",
     "logs": {
       ".read": "auth != null",
-      ".write": true
+      ".write": true,
+      ".indexOn": "createdAt"
     }
   }
 }
