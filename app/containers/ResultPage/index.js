@@ -91,7 +91,6 @@ class ResultPage extends PureComponent {
     return (
       <Container py="2em">
         <Prescription
-          mt="3em"
           type={minBy(scoresArray, ([, value]) => value)[0]}
           scoreSum={sumBy(scoresArray, ([, value]) => value)}
           onWantClick={this.handleOpen}

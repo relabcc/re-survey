@@ -40,7 +40,7 @@ export default class HomePage extends React.PureComponent {
             : (
               <span>現代人每天接收的資訊量已遠超過能吸收的範圍，根據
                 <Link href="https://www.google.com/search?q=%E8%AA%8D%E7%9F%A5%E8%B2%A0%E8%8D%B7%E7%90%86%E8%AB%96" target="_blank">認知負荷理論</Link>
-                ，這不只會造成心理壓力，也將嚴重<Text.bold>影響工作和學習表現！</Text.bold>
+                ，這不只會造成心理壓力，也嚴重<Text.bold>影響工作和學習！</Text.bold>
               </span>)
           }
         </Text>

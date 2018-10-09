@@ -6,6 +6,8 @@ export default [
   require('./components/Bubble/dialog-lower-flipped.svg'),
   require('./components/Bubble/dialog-lower.svg'),
   require('./components/Bubble/dialog-upper.svg'),
+  require('./components/Bubble/res-lower.svg'),
+  require('./components/Bubble/res-upper.svg'),
   require('./components/Bubble/speech-lower.svg'),
   require('./components/Bubble/speech-upper.svg'),
   require('./components/Buttons/button-1-hover.svg'),
