@@ -3,6 +3,7 @@ const cors = require('cors');
 const whitelist = [
   'http://localhost:3000',
   'https://survey.relab.cc/',
+  'https://survey.infoinfo.tw/',
   'https://re-survey-b9bcc.firebaseapp.com/',
 ];
 

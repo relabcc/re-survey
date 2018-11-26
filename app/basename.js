@@ -1,1 +1,1 @@
-export default 'https://survey.relab.cc/';
+export default 'https://survey.infoinfo.tw/';
