@@ -282,6 +282,7 @@
     "babel-preset-env": "1.5.1",
     "babel-preset-react": "6.24.1",
     "babel-preset-stage-0": "6.24.1",
+    "clean-css": "^4.1.11",
     "circular-dependency-plugin": "3.0.0",
     "copy-webpack-plugin": "^4.2.0",
     "coveralls": "2.13.1",
