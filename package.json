@@ -329,6 +329,6 @@
     "webpack": "3.5.5",
     "webpack-dev-middleware": "1.11.0",
     "webpack-hot-middleware": "2.18.0",
-    "webpack-subresource-integrity": "1.0.1"
+    "webpack-subresource-integrity": "1.5.1"
   }
 }
